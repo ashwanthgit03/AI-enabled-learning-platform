@@ -79,6 +79,21 @@
           "target_score": 95.0
         }
       ]
+    },
+    {
+      "id": "public_ration",
+      "title": "Ration shop",
+      "department": "Public service",
+      "eligibility": "12th Pass with any degree",
+      "experience_years": 2,
+      "description": "be Polite",
+      "required_competencies": [
+        {
+          "code": "maths_101",
+          "name": "Mathematics",
+          "target_score": 80.0
+        }
+      ]
     }
   ],
   "quizzes": {
@@ -176,6 +191,17 @@
         },
         {
           "id": "Q_AUTO_DOC-105",
+          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "options": [
+            "Follow standard MoSPI operational protocol",
+            "Ignore metadata validation",
+            "Manual paper entry without audit",
+            "Bypass sampling frame"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_AUTO_DOC-106",
           "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
           "options": [
             "Follow standard MoSPI operational protocol",
@@ -391,6 +417,13 @@
       "associated_competency": "COMP_SAMPLING",
       "uploaded_at": "2026-08-24T23:12:14.986104",
       "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+    },
+    {
+      "id": "DOC-106",
+      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-25T08:57:42.506063",
+      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
     }
   ],
   "users": {
@@ -416,9 +449,9 @@
       "department": "public service",
       "password": "12345678",
       "created_at": "2026-08-24T22:58:03.096382",
-      "selected_role_id": "ROLE_TEST_OFFICER",
+      "selected_role_id": "public_ration",
       "current_scores": {
-        "COMP_SAMPLING": 66.7
+        "maths_101": 0.0
       },
       "enrolled_courses": [
         "IGOT-STAT-003",
@@ -427,7 +460,9 @@
         "DOC-103",
         "DOC-102",
         "IGOT-STAT-005",
-        "DOC-104"
+        "DOC-104",
+        "IGOT-STAT-002",
+        "IGOT-STAT-004"
       ],
       "completed_courses": [],
       "badges": []

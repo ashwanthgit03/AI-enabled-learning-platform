@@ -1,4 +1,4 @@
-// Creator / Admin Portal Application Engine
+// Creator / Admin Suite Application Engine (Left Sidebar Layout)
 let rolesData = [];
 let igotCoursesData = [];
 let analyticsChartInstance = null;
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function switchCreatorTab(tabName) {
-  const tabs = ['roles', 'igot', 'upload', 'quiz', 'employees', 'analytics'];
+  const tabs = ['roles', 'igot', 'upload', 'baseline-quiz', 'intermediate-quiz', 'employees', 'analytics'];
   tabs.forEach(t => {
     const btn = document.getElementById(`tab-btn-${t}`);
     const content = document.getElementById(`tab-content-${t}`);
@@ -74,7 +74,7 @@ function renderCreatorRoleList(roles) {
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
         <h4 style="color: #fff; font-size: 1.05rem;">${r.title}</h4>
-        <span style="font-size: 0.75rem; background: rgba(6,182,212,0.15); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px;">${r.department}</span>
+        <span style="font-size: 0.75rem; background: rgba(16,185,129,0.15); color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px;">${r.department}</span>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0;">${r.description}</p>
       <p style="font-size: 0.8rem; color: var(--accent-amber);">Eligibility: ${r.eligibility}</p>
@@ -89,7 +89,7 @@ function renderCreatorRoleList(roles) {
 }
 
 function populateCompetencyDropdowns(roles) {
-  const dropdownIds = ['igot-comp', 'mat-comp', 'q-comp'];
+  const dropdownIds = ['igot-comp', 'mat-comp', 'b-q-comp', 'i-q-comp'];
   const compMap = new Map();
 
   roles.forEach(r => {
@@ -192,11 +192,11 @@ function renderIGOTCourseList(courses) {
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
         <h4 style="color: #fff; font-size: 1rem;">${c.title}</h4>
-        <span style="font-size: 0.75rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px;">${c.competency_code}</span>
+        <span style="font-size: 0.75rem; background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); padding: 0.2rem 0.5rem; border-radius: 4px;">${c.competency_code}</span>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0;">${c.provider}</p>
       <p style="font-size: 0.8rem; color: var(--text-main); margin-bottom: 0.6rem;">${c.description}</p>
-      <a href="${c.igot_url}" target="_blank" style="font-size: 0.75rem; color: var(--accent); text-decoration: underline;">
+      <a href="${c.igot_url}" target="_blank" style="font-size: 0.75rem; color: var(--accent-cyan); text-decoration: underline;">
         🔗 ${c.igot_url} ↗
       </a>
     `;
@@ -261,7 +261,7 @@ async function handleUploadMaterial(e) {
   }
 
   const status = document.getElementById("upload-status");
-  status.innerHTML = '<span style="color: var(--accent);">⏳ Processing document and generating AI evaluation questions...</span>';
+  status.innerHTML = '<span style="color: var(--primary);">⏳ Processing document and generating AI evaluation questions...</span>';
 
   try {
     const res = await fetch("/api/v1/creator/upload-material", {
@@ -271,7 +271,7 @@ async function handleUploadMaterial(e) {
     const data = await res.json();
 
     if (res.ok) {
-      status.innerHTML = `<span style="color: var(--accent-green);">✅ ${data.message}</span>`;
+      status.innerHTML = `<span style="color: var(--primary);">✅ ${data.message}</span>`;
       document.getElementById("upload-material-form").reset();
     } else {
       status.innerHTML = `<span style="color: var(--accent-rose);">❌ ${data.detail}</span>`;
@@ -281,19 +281,20 @@ async function handleUploadMaterial(e) {
   }
 }
 
-async function handleAddQuestion(e) {
+async function handleCustomQuizSubmit(e, quizType) {
   e.preventDefault();
-  const competency_code = document.getElementById("q-comp").value;
-  const quiz_type = document.getElementById("q-type").value;
-  const question = document.getElementById("q-text").value.trim();
+  const prefix = quizType === 'baseline' ? 'b' : 'i';
+  
+  const competency_code = document.getElementById(`${prefix}-q-comp`).value;
+  const question = document.getElementById(`${prefix}-q-text`).value.trim();
 
-  const optInputs = document.querySelectorAll(".q-opt");
+  const optInputs = document.querySelectorAll(`.${prefix}-q-opt`);
   const options = Array.from(optInputs).map(i => i.value.trim());
 
-  const checkedRadio = document.querySelector('input[name="correct-opt"]:checked');
+  const checkedRadio = document.querySelector(`input[name="${prefix}-correct-opt"]:checked`);
   const answer = parseInt(checkedRadio.value);
 
-  const payload = { competency_code, quiz_type, question, options, answer };
+  const payload = { competency_code, quiz_type: quizType, question, options, answer };
 
   try {
     const res = await fetch("/api/v1/creator/quiz/add", {
@@ -304,8 +305,8 @@ async function handleAddQuestion(e) {
     const data = await res.json();
 
     if (res.ok) {
-      alert("🎉 Custom question saved successfully!");
-      document.getElementById("add-quiz-form").reset();
+      alert(`🎉 Custom ${quizType.toUpperCase()} question saved successfully!`);
+      e.target.reset();
     } else {
       alert(`Error: ${data.detail}`);
     }
@@ -332,12 +333,12 @@ async function loadCreatorEmployees() {
       const regDate = emp.created_at !== 'N/A' ? new Date(emp.created_at).toLocaleDateString() : 'N/A';
 
       tr.innerHTML = `
-        <td style="padding: 0.75rem;"><code style="color: var(--accent);">${emp.user_id}</code></td>
+        <td style="padding: 0.75rem;"><code style="color: var(--accent-cyan);">${emp.user_id}</code></td>
         <td style="padding: 0.75rem; font-weight: 600; color: #fff;">${emp.name}</td>
         <td style="padding: 0.75rem; color: var(--text-muted);">${emp.department}</td>
         <td style="padding: 0.75rem; color: var(--accent-amber);">${emp.selected_role_title}</td>
         <td style="padding: 0.75rem;">${emp.enrolled_count} Courses</td>
-        <td style="padding: 0.75rem;"><span style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px;">🏅 ${emp.badge_count} Badges</span></td>
+        <td style="padding: 0.75rem;"><span style="background: rgba(16, 185, 129, 0.2); color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px;">🏅 ${emp.badge_count} Badges</span></td>
         <td style="padding: 0.75rem; color: var(--text-muted); font-size: 0.8rem;">${regDate}</td>
       `;
       tbody.appendChild(tr);
@@ -372,8 +373,8 @@ async function loadAnalytics() {
         datasets: [{
           label: "Department Average Competency Score (%)",
           data: scores.length > 0 ? scores : [45, 60, 30],
-          backgroundColor: "rgba(99, 102, 241, 0.7)",
-          borderColor: "#6366f1",
+          backgroundColor: "rgba(16, 185, 129, 0.6)",
+          borderColor: "#10b981",
           borderWidth: 1,
           borderRadius: 6
         }]
