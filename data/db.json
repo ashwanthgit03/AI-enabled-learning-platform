@@ -116,9 +116,57 @@
           ],
           "answer": 2,
           "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
+        },
+        {
+          "id": "Q_RAG_BASE_COMP_SAMPLING_1",
+          "question": "According to syllabus document 'MoSPI Advanced Sampling Manual 2026': What is the primary objective of sample selection for COMP_SAMPLING?",
+          "options": [
+            "To eliminate all non-sampling errors manually",
+            "To collect non-random convenience data without stratification",
+            "To minimize sampling variance and ensure representative data collection",
+            "To bypass official NSO field verification guidelines"
+          ],
+          "answer": 2,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
+        },
+        {
+          "id": "Q_RAG_BASE_COMP_SAMPLING_2",
+          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
+          "options": [
+            "Unweighted simple arithmetic mean across non-equivalent clusters",
+            "Deterministic manual imputation without audit trail",
+            "Horvitz-Thompson weighted estimation formula for probability sampling",
+            "Arbitrary non-probabilistic index scaling"
+          ],
+          "answer": 2,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
         }
       ],
       "intermediate": [
+        {
+          "id": "Q_RAG_INT_COMP_SAMPLING_1",
+          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
+          "options": [
+            "Horvitz-Thompson weighted estimation formula for probability sampling",
+            "Deterministic manual imputation without audit trail",
+            "Unweighted simple arithmetic mean across non-equivalent clusters",
+            "Arbitrary non-probabilistic index scaling"
+          ],
+          "answer": 0,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
+        },
+        {
+          "id": "Q_RAG_INT_COMP_SAMPLING_2",
+          "question": "Based on 'MoSPI Advanced Sampling Manual 2026': What protocol must be followed prior to publishing public microdata?",
+          "options": [
+            "Storing raw field survey schedules without encryption",
+            "Discarding baseline survey metadata without backup",
+            "Publishing unmasked personally identifiable information (PII)",
+            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols"
+          ],
+          "answer": 3,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
+        },
         {
           "id": "Q_RAG_INT_COMP_SAMPLING_1",
           "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
@@ -245,6 +293,13 @@
       "title": "MoSPI Advanced Sampling Manual 2026",
       "associated_competency": "COMP_SAMPLING",
       "uploaded_at": "2026-08-25T10:15:22.014736",
+      "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
+    },
+    {
+      "id": "DOC-103",
+      "title": "MoSPI Advanced Sampling Manual 2026",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-25T10:20:05.407877",
       "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
     }
   ],

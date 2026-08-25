@@ -329,9 +329,9 @@ async function proceedToBaselineQuiz() {
             ${isRAG ? '🤖 RAG Generated' : '✍️ Creator Set'}
           </span>
         </div>
-        <div style="margin-top: 0.8rem;">
+        <div style="margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.5rem;">
           ${q.options.map((opt, optIdx) => `
-            <button type="button" class="option-btn" id="q-${q.id}-opt-${optIdx}" onclick="selectBaselineAnswer('${q.id}', ${optIdx})">
+            <button type="button" class="option-btn" onclick="selectBaselineAnswer('${q.id}', ${optIdx}, this)">
               ${String.fromCharCode(65 + optIdx)}. ${opt}
             </button>
           `).join('')}
@@ -344,21 +344,17 @@ async function proceedToBaselineQuiz() {
   }
 }
 
-function selectBaselineAnswer(qId, optIdx) {
+function selectBaselineAnswer(qId, optIdx, btnEl) {
   selectedBaselineAnswers[qId] = optIdx;
 
-  const qObj = activeBaselineQuestions.find(q => q.id === qId);
-  if (qObj) {
-    qObj.options.forEach((_, idx) => {
-      const btn = document.getElementById(`q-${qId}-opt-${idx}`);
-      if (btn) {
-        if (idx === optIdx) {
-          btn.classList.add('selected');
-        } else {
-          btn.classList.remove('selected');
-        }
-      }
-    });
+  if (btnEl) {
+    const card = btnEl.closest('.question-card');
+    if (card) {
+      card.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('selected');
+      });
+    }
+    btnEl.classList.add('selected');
   }
 }
 
@@ -664,9 +660,9 @@ async function loadIntermediateQuiz(compCode) {
             ${isRAG ? '🤖 RAG Generated' : '✍️ Creator Set'}
           </span>
         </div>
-        <div style="margin-top: 0.6rem;">
+        <div style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.5rem;">
           ${q.options.map((opt, optIdx) => `
-            <button type="button" class="option-btn" id="int-q-${q.id}-opt-${optIdx}" onclick="selectIntermediateAnswer('${q.id}', ${optIdx})">
+            <button type="button" class="option-btn" onclick="selectIntermediateAnswer('${q.id}', ${optIdx}, this)">
               ${String.fromCharCode(65 + optIdx)}. ${opt}
             </button>
           `).join('')}
@@ -681,20 +677,17 @@ async function loadIntermediateQuiz(compCode) {
   }
 }
 
-function selectIntermediateAnswer(qId, optIdx) {
+function selectIntermediateAnswer(qId, optIdx, btnEl) {
   selectedIntermediateAnswers[qId] = optIdx;
-  const qObj = activeIntermediateQuestions.find(q => q.id === qId);
-  if (qObj) {
-    qObj.options.forEach((_, idx) => {
-      const btn = document.getElementById(`int-q-${qId}-opt-${idx}`);
-      if (btn) {
-        if (idx === optIdx) {
-          btn.classList.add('selected');
-        } else {
-          btn.classList.remove('selected');
-        }
-      }
-    });
+
+  if (btnEl) {
+    const card = btnEl.closest('.question-card');
+    if (card) {
+      card.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('selected');
+      });
+    }
+    btnEl.classList.add('selected');
   }
 }
 
