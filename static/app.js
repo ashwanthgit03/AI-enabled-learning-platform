@@ -101,15 +101,15 @@ function switchAuthTab(mode) {
     regForm.classList.add('hidden');
     btnLogin.className = 'btn btn-primary';
     btnReg.className = 'btn btn-secondary';
-    title.innerText = "Government Officer Login";
-    subtitle.innerText = "Sign in to continue your competency learning journey";
+    title.innerText = "Serving Government Officer Sign-In";
+    subtitle.innerText = "Mission Karmayogi On-the-Job Capacity Assessment Portal";
   } else {
     loginForm.classList.add('hidden');
     regForm.classList.remove('hidden');
     btnLogin.className = 'btn btn-secondary';
     btnReg.className = 'btn btn-success';
-    title.innerText = "Register New Government Officer";
-    subtitle.innerText = "Select your official job title from dropdown during registration";
+    title.innerText = "Register Serving Government Officer";
+    subtitle.innerText = "Select your current official position/cadre during registration";
   }
 }
 
@@ -167,11 +167,11 @@ async function handleRegisterSubmit(e) {
   }
 
   if (!selectedJobId) {
-    errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Please select your official Government Job Title from the dropdown.</span>';
+    errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Please select your Current Official Government Position / Cadre from the dropdown.</span>';
     return;
   }
 
-  errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Registering account...</span>';
+  errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Registering serving officer profile...</span>';
 
   try {
     const res = await fetch('/api/v1/auth/register', {
@@ -190,7 +190,7 @@ async function handleRegisterSubmit(e) {
       document.getElementById('auth-modal').classList.add('hidden');
       document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;
 
-      showFancyPopup("Registration Successful!", `Account created for ${data.user.name} (${data.user.user_id}). Profile saved to Creator Portal.`, 'success', () => {
+      showFancyPopup("Officer Profile Created!", `Registered serving officer ${data.user.name} (${data.user.user_id}).`, 'success', () => {
         loadLearnerRoles();
         selectRole(selectedJobId);
         loadLiveUserProfile();
@@ -218,10 +218,10 @@ function handleLogout() {
 // STRICT SEQUENTIAL STEP LOCKING CONTROL
 function switchStep(stepNumber) {
   if (stepNumber > 0 && stepNumber > maxUnlockedStep) {
-    const stepTitles = ["Profile Home", "Role Benchmark", "Baseline Quiz", "Skill Gap Matrix", "iGOT Learning Feed", "Intermediate Evaluation", "My Progress Roadmap"];
+    const stepTitles = ["Profile Home", "Official Position Cadre", "On-the-Job Diagnostic", "Knowledge Gap Matrix", "iGOT Karmayogi Feed", "Post-Course Evaluation", "My Capacity Roadmap"];
     showFancyPopup(
       "🔒 Step Locked",
-      `Step ${stepNumber} (${stepTitles[stepNumber]}) is currently locked.\n\nPlease complete Step ${maxUnlockedStep} first for your active role to unlock this section.`,
+      `Step ${stepNumber} (${stepTitles[stepNumber]}) is currently locked.\n\nPlease complete Step ${maxUnlockedStep} first for your active serving position to unlock this section.`,
       "info"
     );
     return;
@@ -281,13 +281,13 @@ function updateSidebarLockUI() {
 
 function updateOfficerProfileBanner(currentStep = 0) {
   const stepTitles = [
-    "Profile & Command Dashboard",
-    "Step 1: Role Benchmark Selection",
-    "Step 2: Diagnostic Baseline Quiz",
-    "Step 3: Identified Skill Gap Matrix",
-    "Step 4: iGOT Karmayogi Learning Feed",
-    "Step 5: Intermediate Evaluation Quiz",
-    "Step 6: Progress & Improvement Roadmap"
+    "Profile & Capacity Dashboard",
+    "Step 1: Position Cadre Selection",
+    "Step 2: On-the-Job Diagnostic Assessment",
+    "Step 3: Identified Knowledge Gap Matrix",
+    "Step 4: iGOT Karmayogi Capacity Feed",
+    "Step 5: Post-Learning Evaluation Quiz",
+    "Step 6: Capacity Building Roadmap"
   ];
 
   if (activeUser) {
@@ -312,7 +312,7 @@ function updateOfficerProfileBanner(currentStep = 0) {
   const selectedRoleObj = allLearnerRoles.find(r => r.id === selectedRoleId);
   const roleTitleText = selectedRoleObj ? selectedRoleObj.title : "None Selected";
 
-  document.getElementById('banner-officer-role').innerText = `Target Role: ${roleTitleText}`;
+  document.getElementById('banner-officer-role').innerText = `Current Position: ${roleTitleText}`;
   document.getElementById('banner-step-status').innerText = stepTitles[currentStep] || "Profile Dashboard";
 
   const homeRoleEl = document.getElementById('home-profile-role');
@@ -334,7 +334,7 @@ async function loadLearnerRoles() {
 function populateJobRoleDropdown(roles) {
   const selectBox = document.getElementById('reg-job-role');
   if (!selectBox) return;
-  selectBox.innerHTML = '<option value="" disabled selected>-- Select your Government Job Title --</option>';
+  selectBox.innerHTML = '<option value="" disabled selected>-- Select your Current Official Position / Cadre --</option>';
   roles.forEach(role => {
     const opt = document.createElement('option');
     opt.value = role.id;
@@ -366,7 +366,7 @@ function renderLearnerRolesGrid(roles) {
   grid.innerHTML = '';
 
   if (roles.length === 0) {
-    grid.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No matching government roles found for your search query.</p>';
+    grid.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No matching government positions found for your search query.</p>';
     return;
   }
 
@@ -383,7 +383,7 @@ function renderLearnerRolesGrid(roles) {
       </div>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.6rem 0;">${role.description}</p>
       <p style="font-size: 0.8rem; color: var(--accent-amber); margin-bottom: 0.8rem; font-weight: 600;">
-        🎓 <strong>Eligibility Benchmark:</strong> ${role.eligibility}
+        📜 <strong>Official Position Qualification Standards:</strong> ${role.eligibility}
       </p>
       <div style="margin-top: 0.5rem;">
         <strong style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Target Competency Benchmarks:</strong>
@@ -418,7 +418,7 @@ async function selectRole(roleId) {
   if (isNewRoleSelected) {
     selectedBaselineAnswers = {};
     activeBaselineQuestions = [];
-    maxUnlockedStep = 1; // Reset progression for new role
+    maxUnlockedStep = 1;
 
     const quizBox = document.getElementById('baseline-quiz-box');
     if (quizBox) quizBox.innerHTML = '';
@@ -435,7 +435,7 @@ async function selectRole(roleId) {
     }
   }
 
-  unlockNextStep(2); // Unlock Step 2 for this role
+  unlockNextStep(2);
   updateOfficerProfileBanner(1);
 
   try {
@@ -464,10 +464,10 @@ async function proceedToBaselineQuiz() {
     selectedBaselineAnswers = {};
 
     const box = document.getElementById('baseline-quiz-box');
-    box.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: var(--primary);">Diagnostic Evaluation Questions for ${data.role_title}</h3>`;
+    box.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: var(--primary);">On-the-Job Assessment Questions for ${data.role_title}</h3>`;
 
     if (activeBaselineQuestions.length === 0) {
-      box.innerHTML += '<p style="color: var(--text-muted);">No baseline diagnostic questions created yet for this role. Creator can upload syllabus PDF or add questions.</p>';
+      box.innerHTML += '<p style="color: var(--text-muted);">No baseline diagnostic questions created yet for this position. Creator can upload syllabus PDF or add questions.</p>';
       return;
     }
 
@@ -536,7 +536,7 @@ async function submitBaselineQuiz() {
     });
     const data = await res.json();
 
-    unlockNextStep(3); // UNLOCK STEP 3
+    unlockNextStep(3);
 
     if (res.ok) {
       renderRadarChart(data.gap_analysis);
@@ -573,7 +573,7 @@ function renderRadarChart(gapAnalysis) {
       labels: labels,
       datasets: [
         {
-          label: 'Required Benchmark (Target %)',
+          label: 'Required Position Benchmark (Target %)',
           data: targets,
           borderColor: '#06b6d4',
           backgroundColor: 'rgba(6, 182, 212, 0.15)',
@@ -581,7 +581,7 @@ function renderRadarChart(gapAnalysis) {
           borderWidth: 2
         },
         {
-          label: 'Current Employee Score (%)',
+          label: 'Current Officer Score (%)',
           data: currents,
           borderColor: '#2563eb',
           backgroundColor: 'rgba(37, 99, 235, 0.25)',
@@ -634,8 +634,8 @@ function renderGapCards(gapAnalysis) {
         </span>
       </div>
       <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
-        <span>Current Score: ${gap.current_score}%</span>
-        <span>Target Benchmark: ${gap.target_benchmark}%</span>
+        <span>Current Officer Score: ${gap.current_score}%</span>
+        <span>Position Benchmark: ${gap.target_benchmark}%</span>
       </div>
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" style="width: ${(gap.current_score / gap.target_benchmark) * 100}%;"></div>
@@ -665,7 +665,7 @@ async function fetchAndDisplayRecommendations() {
 
     container.innerHTML = '';
     if (!data.recommendations || data.recommendations.length === 0) {
-      container.innerHTML = '<div class="glass-card" style="padding: 2rem; text-align: center;"><h3 style="color: var(--accent-green);">🎉 Excellent Work! All Competency Benchmarks Achieved</h3><p style="color: var(--text-muted); margin-top: 0.5rem;">No knowledge gaps detected for your selected government role.</p></div>';
+      container.innerHTML = '<div class="glass-card" style="padding: 2rem; text-align: center;"><h3 style="color: var(--accent-green);">🎉 Excellent Work! All Position Competency Benchmarks Achieved</h3><p style="color: var(--text-muted); margin-top: 0.5rem;">No knowledge gaps detected for your current official position.</p></div>';
       return;
     }
 
@@ -781,7 +781,7 @@ function launchCoursePlayer(courseId, title, compCode, igotUrl) {
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700;">✅ Status: Course Enrolled & Active</span>
       <button class="btn btn-success" onclick="closeCourseModalAndStartQuiz('${compCode}')">
-        Take Intermediate Evaluation Quiz & Claim Badge ➔
+        Take Post-Learning Evaluation Quiz & Claim Badge ➔
       </button>
     </div>
   `;
@@ -875,8 +875,8 @@ async function submitIntermediateQuiz() {
 
     if (res.ok) {
       showFancyPopup(
-        "Intermediate Quiz Passed!",
-        `Score: ${data.quiz_score}%\nCompetency score updated to ${data.updated_competency_score}%!\n\nStep 6 (My Progress Roadmap) is now unlocked!`,
+        "Evaluation Quiz Passed!",
+        `Score: ${data.quiz_score}%\nCompetency score updated to ${data.updated_competency_score}%!\n\nStep 6 (My Capacity Roadmap) is now unlocked!`,
         "success",
         () => {
           loadLiveUserProfile();
@@ -907,7 +907,7 @@ async function loadLiveUserProfile() {
     if (homeCompBox) {
       homeCompBox.innerHTML = '';
       if (!data.competencies || data.competencies.length === 0) {
-        homeCompBox.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No target role selected. Go to Step 1 to select a job role.</p>';
+        homeCompBox.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No official position selected. Go to Step 1 to select your position.</p>';
       } else {
         data.competencies.forEach(c => {
           const isOk = c.gap <= 5.0;
@@ -936,7 +936,7 @@ async function loadLiveUserProfile() {
     const box = document.getElementById('live-profile-box');
     if (box) {
       if (!data.role) {
-        box.innerHTML = `<p style="color: var(--text-muted);">No active role selected for ${data.name}. Select a role in Step 1.</p>`;
+        box.innerHTML = `<p style="color: var(--text-muted);">No active position selected for ${data.name}. Select a position in Step 1.</p>`;
         return;
       }
 
@@ -946,7 +946,7 @@ async function loadLiveUserProfile() {
           <p style="font-size: 0.85rem; color: var(--text-muted);">${data.role.title} (${data.role.department})</p>
         </div>
 
-        <h5 style="color: #172033; margin-bottom: 0.5rem; font-weight: 700;">Competency Status:</h5>
+        <h5 style="color: #172033; margin-bottom: 0.5rem; font-weight: 700;">Position Competency Status:</h5>
         <div style="display: flex; flex-direction: column; gap: 0.8rem;">
       `;
 
@@ -970,7 +970,7 @@ async function loadLiveUserProfile() {
       html += `</div><h5 style="color: #172033; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Earned iGOT Badges:</h5>`;
 
       if (data.badges.length === 0) {
-        html += '<p style="font-size: 0.85rem; color: var(--text-muted);">No badges earned yet. Complete intermediate evaluation quizzes to earn badges.</p>';
+        html += '<p style="font-size: 0.85rem; color: var(--text-muted);">No badges earned yet. Complete post-learning evaluation quizzes to earn badges.</p>';
       } else {
         data.badges.forEach(b => {
           html += `
@@ -1004,7 +1004,7 @@ async function loadProgressDashboard() {
     compContainer.innerHTML = '';
 
     if (!data.competencies || data.competencies.length === 0) {
-      compContainer.innerHTML = '<p style="color: var(--text-muted);">Select a role in Step 1 to view competency benchmarks.</p>';
+      compContainer.innerHTML = '<p style="color: var(--text-muted);">Select your official position in Step 1 to view competency benchmarks.</p>';
     } else {
       data.competencies.forEach(c => {
         const isOk = c.gap <= 5.0;
@@ -1073,7 +1073,7 @@ async function loadProgressDashboard() {
               </button>
             </div>
             <p style="font-size: 0.85rem; color: #475569;">
-              <strong>Action Strategy:</strong> Enroll in the indexed iGOT Karmayogi module for ${c.name}. Focus on operational guidelines and complete the Step 5 intermediate quiz to bridge this ${c.gap}% knowledge gap.
+              <strong>Action Strategy:</strong> Enroll in the indexed iGOT Karmayogi module for ${c.name}. Focus on operational guidelines and complete the Step 5 post-learning quiz to bridge this ${c.gap}% knowledge gap.
             </p>
           `;
           actionContainer.appendChild(item);
@@ -1081,7 +1081,7 @@ async function loadProgressDashboard() {
       });
 
       if (actionContainer.innerHTML === '') {
-        actionContainer.innerHTML = '<div style="background: #ecfdf5; border: 1px solid #a7f3d0; padding: 1.25rem; border-radius: 12px;"><h4 style="color: var(--accent-green);">🎉 100% Competency Compliance Achieved!</h4><p style="color: #475569; font-size: 0.85rem; margin-top: 0.3rem;">All required competency target benchmarks have been met. Continue reviewing advanced modules on iGOT Karmayogi.</p></div>';
+        actionContainer.innerHTML = '<div style="background: #ecfdf5; border: 1px solid #a7f3d0; padding: 1.25rem; border-radius: 12px;"><h4 style="color: var(--accent-green);">🎉 100% Competency Compliance Achieved!</h4><p style="color: #475569; font-size: 0.85rem; margin-top: 0.3rem;">All required position competency target benchmarks have been met. Continue reviewing advanced modules on iGOT Karmayogi.</p></div>';
       }
     }
 

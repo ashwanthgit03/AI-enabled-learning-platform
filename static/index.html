@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GovLearn AI - Government Workforce Learning Portal (SIH)</title>
+  <title>GovLearn AI - Mission Karmayogi Officer Capacity Building Portal (SIH)</title>
   <link rel="stylesheet" href="/static/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -15,7 +15,7 @@
       <span style="font-size: 1.5rem;">🤖</span>
       <div>
         <span style="font-weight: 800; font-size: 1.15rem; color: #172033;">GovLearn AI</span>
-        <span class="brand-badge">MoSPI iGOT KARMAYOGI</span>
+        <span class="brand-badge">MISSION KARMAYOGI • IN-SERVICE CAPACITY BUILDING</span>
       </div>
     </div>
     <div class="nav-links">
@@ -30,46 +30,46 @@
   <!-- Left Sidebar & Main Content Layout -->
   <div class="creator-layout">
 
-    <!-- LEFT SIDEBAR VERTICAL NAVIGATION WITH PROFILE HOME & STRICT STEP LOCKING -->
+    <!-- LEFT SIDEBAR VERTICAL NAVIGATION -->
     <aside class="creator-sidebar">
-      <div class="sidebar-heading">PROFILE & DASHBOARD</div>
+      <div class="sidebar-heading">OFFICER DASHBOARD</div>
 
       <button type="button" class="sidebar-btn active" id="step-nav-0" onclick="switchStep(0)">
-        <span>👤 0. Profile & Command Center</span>
+        <span>👤 0. Profile & Capacity Center</span>
         <span class="unlocked-badge">HOME</span>
       </button>
 
-      <div class="sidebar-heading">LEARNER WORKFLOW</div>
+      <div class="sidebar-heading">IN-SERVICE WORKFLOW</div>
 
       <button type="button" class="sidebar-btn" id="step-nav-1" onclick="switchStep(1)">
-        <span>🏛️ 1. Role Benchmark</span>
+        <span>🏛️ 1. Official Position Cadre</span>
         <span class="unlocked-badge">UNLOCKED</span>
       </button>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-2" onclick="switchStep(2)">
-        <span>✍️ 2. Baseline Quiz</span>
+        <span>✍️ 2. On-the-Job Diagnostic</span>
         <span class="lock-badge" id="badge-lock-2">🔒 LOCKED</span>
       </button>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-3" onclick="switchStep(3)">
-        <span>🕸️ 3. Skill Gap Matrix</span>
+        <span>🕸️ 3. Knowledge Gap Matrix</span>
         <span class="lock-badge" id="badge-lock-3">🔒 LOCKED</span>
       </button>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-4" onclick="switchStep(4)">
-        <span>🎓 4. iGOT Learning Feed</span>
+        <span>🎓 4. iGOT Karmayogi Feed</span>
         <span class="lock-badge" id="badge-lock-4">🔒 LOCKED</span>
       </button>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-5" onclick="switchStep(5)">
-        <span>🏆 5. Intermediate Eval</span>
+        <span>🏆 5. Post-Course Evaluation</span>
         <span class="lock-badge" id="badge-lock-5">🔒 LOCKED</span>
       </button>
 
-      <div class="sidebar-heading">PERSONAL ROADMAP</div>
+      <div class="sidebar-heading">CAPACITY ROADMAP</div>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-6" onclick="switchStep(6)">
-        <span>📈 6. My Progress Roadmap</span>
+        <span>📈 6. My Growth Roadmap</span>
         <span class="lock-badge" id="badge-lock-6">🔒 LOCKED</span>
       </button>
     </aside>
@@ -86,18 +86,18 @@
               <h3 style="color: #172033; font-size: 1.2rem;" id="banner-officer-name">Government Officer</h3>
               <span style="font-size: 0.75rem; background: #eff6ff; color: var(--primary); padding: 0.15rem 0.5rem; border-radius: 12px; font-weight: 700;" id="banner-officer-id">ID: Unauthenticated</span>
             </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;" id="banner-officer-role">Target Role: None Selected</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;" id="banner-officer-role">Current Position: None Selected</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 1.5rem; align-items: center;">
           <div style="text-align: right;">
-            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">WORKFLOW STATUS</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">CAPACITY BUILDING STATUS</span>
             <strong style="color: var(--primary); font-size: 0.9rem;" id="banner-step-status">Profile Dashboard</strong>
           </div>
 
           <div style="text-align: right; border-left: 1px solid var(--border-light); padding-left: 1.5rem;">
-            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">iGOT BADGES</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">VERIFIED iGOT BADGES</span>
             <strong style="color: var(--accent-green); font-size: 0.9rem;" id="banner-badge-count">🏅 0 Badges</strong>
           </div>
         </div>
@@ -110,11 +110,11 @@
             <div>
               <h2 class="text-gradient" style="font-size: 1.8rem;" id="greeting-header-text">Good Day, Officer! ☀️</h2>
               <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
-                Welcome to your MoSPI iGOT Karmayogi Personalized Workforce Learning Command Center.
+                Mission Karmayogi Continuous Capacity Building & On-the-Job Skill Enhancement Platform for In-Service Officers.
               </p>
             </div>
             <button class="btn btn-primary" onclick="switchStep(1)" style="padding: 0.85rem 1.6rem; font-size: 1rem; border-radius: 12px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">
-              🚀 Start / Continue Competency Learning Workflow ➔
+              🚀 Assess My Position Competency Gaps ➔
             </button>
           </div>
         </div>
@@ -123,10 +123,10 @@
           
           <!-- OFFICER PROFILE DETAILS CARD -->
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem; color: #172033;">📋 Officer Service Profile</h3>
+            <h3 style="margin-bottom: 1rem; color: #172033;">📋 Active Officer Service Profile</h3>
             <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem;">
               <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
-                <span style="color: var(--text-muted);">Officer Full Name:</span>
+                <span style="color: var(--text-muted);">Serving Officer Name:</span>
                 <strong style="color: #172033;" id="home-profile-name">Loading...</strong>
               </div>
               <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
@@ -134,19 +134,19 @@
                 <strong style="color: var(--primary);" id="home-profile-id">Loading...</strong>
               </div>
               <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
-                <span style="color: var(--text-muted);">Department / Ministry:</span>
+                <span style="color: var(--text-muted);">Ministry / Department / Division:</span>
                 <strong style="color: #172033;" id="home-profile-dept">Loading...</strong>
               </div>
               <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
-                <span style="color: var(--text-muted);">Target Government Position:</span>
+                <span style="color: var(--text-muted);">Current Official Position / Cadre:</span>
                 <strong style="color: var(--accent-amber);" id="home-profile-role">None Selected</strong>
               </div>
             </div>
 
             <div style="margin-top: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 1rem; display: flex; align-items: center; justify-content: space-between;">
               <div>
-                <strong style="color: var(--primary); font-size: 0.9rem;">Ready for Competency Assessment?</strong>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Select your job role to unlock diagnostic quizzes and iGOT feeds.</p>
+                <strong style="color: var(--primary); font-size: 0.9rem;">Ready for On-the-Job Competency Assessment?</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Select your current official position to identify knowledge gaps and receive targeted iGOT modules.</p>
               </div>
               <button class="btn btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1rem;" onclick="switchStep(1)">
                 Go to Step 1 ➔
@@ -156,7 +156,7 @@
 
           <!-- ACTIVE COMPETENCY & BADGE SUMMARY CARD -->
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem; color: #172033;">🏆 Active Competencies & Badges</h3>
+            <h3 style="margin-bottom: 1rem; color: #172033;">🏆 Position Competency Benchmarks & Badges</h3>
             <div id="home-profile-competencies" style="display: flex; flex-direction: column; gap: 0.8rem;">
               <!-- Populated dynamically -->
             </div>
@@ -165,14 +165,14 @@
         </div>
       </div>
 
-      <!-- STEP 1: ROLE SELECTION & ELIGIBILITY CHECK -->
+      <!-- STEP 1: POSITION CADRE SELECTION -->
       <div id="step-content-1" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div style="flex: 1;">
-              <h2 class="text-gradient" style="font-size: 1.6rem;">Step 1: Select Your Government Role & Check Eligibility</h2>
+              <h2 class="text-gradient" style="font-size: 1.6rem;">Step 1: Select Your Current Official Government Position / Cadre</h2>
               <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
-                Choose your target government role from below or search. The platform evaluates your baseline skills against official Creator benchmark standards.
+                Select your serving official position below. The system evaluates your on-the-job competencies against official Mission Karmayogi capacity benchmarks.
               </p>
             </div>
             <button class="btn btn-primary" onclick="proceedToBaselineQuiz()" id="btn-to-step2-top" disabled style="padding: 0.85rem 1.6rem; font-size: 1rem; border-radius: 12px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">
@@ -183,7 +183,7 @@
 
         <!-- LIVE ROLE SEARCH & FILTER BAR -->
         <div style="margin-bottom: 1.5rem;">
-          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Police, IAS, Tax, Food, Statistical)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
+          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Official Position Title, Department, or Skill Keyword (e.g. Police, IAS, Tax, Food, Statistical, Customs)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
         </div>
 
         <div class="role-grid" id="learner-role-grid">
@@ -195,15 +195,15 @@
         </div>
       </div>
 
-      <!-- STEP 2: DIAGNOSTIC BASELINE QUIZ -->
+      <!-- STEP 2: ON-THE-JOB DIAGNOSTIC BASELINE QUIZ -->
       <div id="step-content-2" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 class="text-gradient">Step 2: Diagnostic Baseline Assessment Quiz</h2>
-            <button class="btn btn-secondary" onclick="switchStep(1)">⬅️ Back to Role Selection</button>
+            <h2 class="text-gradient">Step 2: On-the-Job Diagnostic Competency Assessment</h2>
+            <button class="btn btn-secondary" onclick="switchStep(1)">⬅️ Back to Position Selection</button>
           </div>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
-            Complete these diagnostic evaluation questions (combining Creator benchmarks & AI RAG generated document questions).
+            Complete these diagnostic questions to assess your operational skill levels across core competencies required for your official government position.
           </p>
         </div>
 
@@ -213,32 +213,32 @@
 
         <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
           <button class="btn btn-secondary" onclick="switchStep(1)">⬅️ Previous Step</button>
-          <button class="btn btn-success" onclick="submitBaselineQuiz()">Submit Diagnostic Quiz & Calculate Skill Gaps ➔</button>
+          <button class="btn btn-success" onclick="submitBaselineQuiz()">Submit Diagnostic Assessment & Identify Gaps ➔</button>
         </div>
       </div>
 
-      <!-- STEP 3: SKILL GAP RADAR DASHBOARD -->
+      <!-- STEP 3: KNOWLEDGE GAP RADAR DASHBOARD -->
       <div id="step-content-3" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 class="text-gradient">Step 3: Identified Competency Skill Gaps</h2>
-            <button class="btn btn-secondary" onclick="switchStep(2)">⬅️ Back to Baseline Quiz</button>
+            <h2 class="text-gradient">Step 3: Identified On-the-Job Knowledge Gaps</h2>
+            <button class="btn btn-secondary" onclick="switchStep(2)">⬅️ Back to Assessment</button>
           </div>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
-            Comparing baseline assessment scores against required Creator target benchmarks.
+            Comparing your on-the-job assessment scores against official Mission Karmayogi target benchmarks for your serving position.
           </p>
         </div>
 
         <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem;">
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem;">🕸️ Competency Radar Analysis</h3>
+            <h3 style="margin-bottom: 1rem;">🕸️ Position Competency Radar Analysis</h3>
             <div style="height: 360px; position: relative;">
               <canvas id="gapRadarChart"></canvas>
             </div>
           </div>
 
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem;">🎯 Competency Gap Cards</h3>
+            <h3 style="margin-bottom: 1rem;">🎯 Competency Deficit Cards</h3>
             <div id="gap-cards-container" style="display: flex; flex-direction: column; gap: 1rem;">
               <!-- Rendered dynamically -->
             </div>
@@ -251,15 +251,15 @@
         </div>
       </div>
 
-      <!-- STEP 4: iGOT RECOMMENDATIONS & LEARNING -->
+      <!-- STEP 4: iGOT RECOMMENDATIONS & CAPACITY BUILDING -->
       <div id="step-content-4" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 class="text-gradient">Step 4: iGOT Karmayogi Recommended Training Feed</h2>
-            <button class="btn btn-secondary" onclick="switchStep(3)">⬅️ Back to Skill Gap Matrix</button>
+            <h2 class="text-gradient">Step 4: Targeted iGOT Karmayogi Capacity Building Feed</h2>
+            <button class="btn btn-secondary" onclick="switchStep(3)">⬅️ Back to Knowledge Gap Matrix</button>
           </div>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
-            Scraped and indexed directly from the iGOT Karmayogi national platform (igotkarmayogi.gov.in) and MoSPI training repositories.
+            Indexed directly from igotkarmayogi.gov.in and recommended specifically to bridge your identified on-the-job competency deficits.
           </p>
         </div>
 
@@ -268,7 +268,7 @@
         </div>
 
         <div style="margin-top: 2rem;">
-          <button class="btn btn-secondary" onclick="switchStep(3)">⬅️ Back to Skill Gap Matrix</button>
+          <button class="btn btn-secondary" onclick="switchStep(3)">⬅️ Back to Knowledge Gap Matrix</button>
         </div>
       </div>
 
@@ -276,29 +276,29 @@
       <div id="step-content-5" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 class="text-gradient">Step 5: Post-Course Intermediate Quiz & Badge Claim</h2>
+            <h2 class="text-gradient">Step 5: Post-Learning Evaluation Quiz & Badge Verification</h2>
             <button class="btn btn-secondary" onclick="switchStep(4)">⬅️ Back to Recommended Courses</button>
           </div>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
-            Complete this intermediate comprehension test after reviewing the course to update your official competency score!
+            Complete this post-learning assessment after reviewing the module to update your official competency score on your profile!
           </p>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
           <!-- Intermediate Quiz Box -->
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem;">✍️ Intermediate Knowledge Check</h3>
+            <h3 style="margin-bottom: 1rem;">✍️ Post-Learning Comprehension Check</h3>
             <div id="intermediate-quiz-box">
-              <p style="color: var(--text-muted);">Select a course from Step 4 to launch your intermediate evaluation quiz.</p>
+              <p style="color: var(--text-muted);">Select a course from Step 4 to launch your post-learning evaluation quiz.</p>
             </div>
             <button class="btn btn-success" id="btn-submit-int-quiz" style="margin-top: 1.5rem; width: 100%; justify-content: center; display: none;" onclick="submitIntermediateQuiz()">
-              Submit Intermediate Quiz & Update Profile
+              Submit Post-Learning Quiz & Update Competency Profile
             </button>
           </div>
 
           <!-- Real-Time Updated Profile & Badges -->
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem;">🏆 Live Competency Profile & iGOT Badges</h3>
+            <h3 style="margin-bottom: 1rem;">🏆 Updated Position Competency Profile & iGOT Badges</h3>
             <div id="live-profile-box">
               <!-- Profile state rendered dynamically -->
             </div>
@@ -310,12 +310,12 @@
         </div>
       </div>
 
-      <!-- STEP 6: DEDICATED PROGRESS & SKILL IMPROVEMENT ROADMAP DASHBOARD -->
+      <!-- STEP 6: DEDICATED CAPACITY BUILDING & GROWTH ROADMAP -->
       <div id="step-content-6" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--accent-green);">
-          <h2 class="text-gradient" style="font-size: 1.6rem;">📈 My Skill Progress & Improvement Roadmap</h2>
+          <h2 class="text-gradient" style="font-size: 1.6rem;">📈 Officer Capacity Building & Professional Growth Roadmap</h2>
           <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
-            Detailed analytics on your current competency levels, verified iGOT badges, and AI-recommended action plans for continuous career growth.
+            Continuous tracking of your on-the-job competency compliance, verified iGOT certificates, and targeted career capacity building recommendations.
           </p>
         </div>
 
@@ -323,7 +323,7 @@
           
           <!-- Competency Benchmark Compliance Bars -->
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem;">🎯 Competency Mastery vs Target Benchmarks</h3>
+            <h3 style="margin-bottom: 1rem;">🎯 On-the-Job Competency Mastery vs Position Benchmarks</h3>
             <div id="roadmap-competencies-list" style="display: flex; flex-direction: column; gap: 1rem;">
               <!-- Populated dynamically -->
             </div>
@@ -331,7 +331,7 @@
 
           <!-- Verified Badges & Learning History -->
           <div class="glass-card">
-            <h3 style="margin-bottom: 1rem;">🏅 Verified iGOT Badges & Certificates</h3>
+            <h3 style="margin-bottom: 1rem;">🏅 Verified iGOT Badges & Capacities Earned</h3>
             <div id="roadmap-badges-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
               <!-- Populated dynamically -->
             </div>
@@ -341,9 +341,9 @@
 
         <!-- AI Personalized Action Plan for Improvement -->
         <div class="glass-card">
-          <h3 style="margin-bottom: 0.75rem; color: var(--primary);">💡 AI Action Plan for Continuous Skill Improvement</h3>
+          <h3 style="margin-bottom: 0.75rem; color: var(--primary);">💡 AI Action Plan for Continuous On-the-Job Improvement</h3>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
-            Customized recommendations to close your remaining competency gaps and reach 100% compliance target.
+            Targeted strategies to close your remaining position competency gaps and achieve 100% operational mastery.
           </p>
           <div id="roadmap-action-plan" style="display: flex; flex-direction: column; gap: 0.75rem;">
             <!-- Populated dynamically -->
@@ -362,14 +362,14 @@
       
       <div style="text-align: center; margin-bottom: 1.5rem;">
         <div style="width: 58px; height: 58px; background: #eff6ff; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; border: 1px solid #bfdbfe; margin-bottom: 0.75rem;">🤖</div>
-        <h2 style="color: #172033; font-size: 1.6rem;" id="auth-modal-title">Government Officer Login</h2>
-        <p style="color: #64748b; font-size: 0.85rem;" id="auth-modal-subtitle">Sign in to continue your competency learning journey</p>
+        <h2 style="color: #172033; font-size: 1.6rem;" id="auth-modal-title">Serving Government Officer Sign-In</h2>
+        <p style="color: #64748b; font-size: 0.85rem;" id="auth-modal-subtitle">Mission Karmayogi On-the-Job Capacity Assessment Portal</p>
       </div>
 
       <!-- Auth Mode Switcher Tabs -->
       <div style="display: flex; background: #f1f5f9; border-radius: 10px; padding: 0.3rem; margin-bottom: 1.5rem;">
-        <button type="button" id="tab-auth-login" class="btn btn-primary" style="flex: 1; justify-content: center; border-radius: 8px; font-size: 0.85rem;" onclick="switchAuthTab('login')">Login</button>
-        <button type="button" id="tab-auth-register" class="btn btn-secondary" style="flex: 1; justify-content: center; border-radius: 8px; font-size: 0.85rem;" onclick="switchAuthTab('register')">Register New Officer</button>
+        <button type="button" id="tab-auth-login" class="btn btn-primary" style="flex: 1; justify-content: center; border-radius: 8px; font-size: 0.85rem;" onclick="switchAuthTab('login')">Officer Login</button>
+        <button type="button" id="tab-auth-register" class="btn btn-secondary" style="flex: 1; justify-content: center; border-radius: 8px; font-size: 0.85rem;" onclick="switchAuthTab('register')">Register Serving Officer</button>
       </div>
 
       <!-- LOGIN FORM -->
@@ -392,7 +392,7 @@
       <!-- REGISTER FORM -->
       <form id="register-form" class="hidden" onsubmit="handleRegisterSubmit(event)">
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Officer Full Name</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Serving Officer Full Name</label>
           <input type="text" id="reg-name" placeholder="Officer Full Name" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1rem;">
@@ -401,21 +401,21 @@
           <small style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.2rem;">* Format: 4-10 letters of name followed by numbers/underscores (e.g. ashw_101)</small>
         </div>
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Select Official Government Job / Role</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Current Official Position / Cadre</label>
           <select id="reg-job-role" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem; font-size: 0.9rem;">
-            <option value="" disabled selected>-- Select your Government Job Title --</option>
+            <option value="" disabled selected>-- Select your Current Official Position / Cadre --</option>
             <!-- Populated dynamically with all 69 Government Jobs -->
           </select>
         </div>
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
-          <input type="text" id="reg-dept" placeholder="Department / Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Ministry / Department / Division</label>
+          <input type="text" id="reg-dept" placeholder="Ministry / Department / Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1.5rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Create Password</label>
           <input type="password" id="reg-password" placeholder="Password" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
-        <button type="submit" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">Register Officer & Save Account ➔</button>
+        <button type="submit" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">Register Serving Officer & Create Profile ➔</button>
       </form>
 
       <div id="auth-error-msg" style="margin-top: 1rem; font-size: 0.85rem; text-align: center;"></div>

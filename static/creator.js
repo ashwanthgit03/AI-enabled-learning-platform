@@ -51,7 +51,7 @@ function refreshAllCreatorData() {
   loadCompetencyOptions();
   loadCreatorEmployees();
   loadCreatorAnalytics();
-  showFancyPopup("Database Refreshed", "All registries and roles refreshed successfully.", "success");
+  showFancyPopup("Database Refreshed", "All registries and positions refreshed successfully.", "success");
 }
 
 function switchCreatorTab(tabName) {
@@ -110,7 +110,7 @@ function renderCreatorRoles(roles) {
   container.innerHTML = '';
 
   if (roles.length === 0) {
-    container.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No matching active government roles found.</p>';
+    container.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No matching active government positions found.</p>';
     return;
   }
 
@@ -132,7 +132,7 @@ function renderCreatorRoles(roles) {
         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.6rem;">${role.description}</p>
         
         <p style="font-size: 0.8rem; color: var(--accent-amber); font-weight: 600; margin-bottom: 0.8rem;">
-          🎓 <strong>Eligibility Benchmark:</strong> ${role.eligibility}
+          📜 <strong>Official Position Qualification Standards:</strong> ${role.eligibility}
         </p>
 
         <div style="margin-bottom: 1rem;">
@@ -204,12 +204,12 @@ async function handleCreateRole(e) {
     const data = await res.json();
 
     if (res.ok) {
-      showFancyPopup("Role Created", data.message, "success");
+      showFancyPopup("Position Defined", data.message, "success");
       document.getElementById('create-role-form').reset();
       loadCreatorRoles();
       switchCreatorTab('active-roles');
     } else {
-      showFancyPopup("Error Creating Role", data.detail, "error");
+      showFancyPopup("Error Creating Position", data.detail, "error");
     }
   } catch (err) {
     showFancyPopup("Error", "Failed to communicate with server.", "error");
@@ -300,13 +300,13 @@ async function handleSaveRoleEdit(e) {
 
     if (res.ok) {
       closeEditRoleModal();
-      showFancyPopup("Role Updated", data.message, "success");
+      showFancyPopup("Position Updated", data.message, "success");
       loadCreatorRoles();
     } else {
       showFancyPopup("Update Error", data.detail, "error");
     }
   } catch (err) {
-    showFancyPopup("Error", "Failed to update role.", "error");
+    showFancyPopup("Error", "Failed to update position.", "error");
   }
 }
 
@@ -495,7 +495,7 @@ function renderCreatorEmployeeTable(employees) {
   tbody.innerHTML = '';
 
   if (employees.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" style="padding: 1.5rem; text-align: center; color: var(--text-muted);">No government officers registered yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="padding: 1.5rem; text-align: center; color: var(--text-muted);">No serving government officers registered yet.</td></tr>';
     return;
   }
 
@@ -533,7 +533,7 @@ async function deleteEmployee(userId, name) {
       showFancyPopup("Error", data.detail, "error");
     }
   } catch (err) {
-    showFancyPopup("Error", "Failed to delete employee account.", "error");
+    showFancyPopup("Error", "Failed to delete officer account.", "error");
   }
 }
 
@@ -566,7 +566,7 @@ function renderAnalyticsChart(averages) {
     data: {
       labels: labels.length ? labels : ['COMP_GOVERNANCE', 'COMP_FINANCE', 'COMP_DATA_ANALYTICS'],
       datasets: [{
-        label: 'Average Employee Benchmark Score (%)',
+        label: 'Average Officer Benchmark Score (%)',
         data: values.length ? values : [75, 60, 85],
         backgroundColor: 'rgba(37, 99, 235, 0.65)',
         borderColor: '#2563eb',
