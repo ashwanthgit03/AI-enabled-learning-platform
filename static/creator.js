@@ -1,15 +1,94 @@
-// Creator & Admin Control Center Logic Engine
+// Creator & Admin Control Center Logic Engine (With High-Security Auth Guard)
 let creatorRoles = [];
 let creatorCourses = [];
 let analyticsChartInstance = null;
+let activeCreatorToken = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadCreatorRoles();
-  loadCreatorCourses();
-  loadCompetencyOptions();
-  loadCreatorEmployees();
-  loadCreatorAnalytics();
+  checkCreatorAuthSession();
 });
+
+// HIGH SECURITY AUTHENTICATION ENGINE
+function checkCreatorAuthSession() {
+  const savedToken = localStorage.getItem("mospi_creator_token");
+  if (savedToken) {
+    activeCreatorToken = savedToken;
+    document.getElementById('creator-auth-modal').classList.add('hidden');
+    loadCreatorRoles();
+    loadCreatorCourses();
+    loadCompetencyOptions();
+    loadCreatorEmployees();
+    loadCreatorAnalytics();
+  } else {
+    showCreatorAuthModal();
+  }
+}
+
+function showCreatorAuthModal() {
+  activeCreatorToken = null;
+  document.getElementById('creator-auth-modal').classList.remove('hidden');
+}
+
+async function handleCreatorLogin(e) {
+  e.preventDefault();
+  const cid = document.getElementById('creator-user-id').value.trim();
+  const pass = document.getElementById('creator-password').value;
+  const errDiv = document.getElementById('creator-auth-error');
+
+  errDiv.innerHTML = '<span style="color: var(--primary);">⏳ Authenticating Administrator Credentials...</span>';
+
+  try {
+    const res = await fetch('/api/v1/creator/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ creator_id: cid, password: pass })
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      activeCreatorToken = data.token;
+      localStorage.setItem("mospi_creator_token", activeCreatorToken);
+      document.getElementById('creator-auth-modal').classList.add('hidden');
+      errDiv.innerHTML = '';
+      
+      showFancyPopup("Authentication Successful!", `Welcome Administrator Ashwanth (${cid}). Secure Admin Session Granted.`, 'success', () => {
+        loadCreatorRoles();
+        loadCreatorCourses();
+        loadCompetencyOptions();
+        loadCreatorEmployees();
+        loadCreatorAnalytics();
+      });
+    } else {
+      errDiv.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
+    }
+  } catch (err) {
+    errDiv.innerHTML = '<span style="color: var(--accent-red);">❌ Connection error during admin login.</span>';
+  }
+}
+
+function handleCreatorLogout() {
+  localStorage.removeItem("mospi_creator_token");
+  activeCreatorToken = null;
+  showCreatorAuthModal();
+}
+
+// Authenticated Secure Fetch Wrapper
+async function creatorFetch(url, options = {}) {
+  if (!options.headers) options.headers = {};
+  if (options.headers instanceof Headers) {
+    options.headers.append("X-Creator-Token", activeCreatorToken || "");
+  } else {
+    options.headers["X-Creator-Token"] = activeCreatorToken || "";
+  }
+
+  const res = await fetch(url, options);
+  if (res.status === 401 || res.status === 403) {
+    showFancyPopup("Access Denied", "Admin security session expired or invalid. Please re-authenticate.", "error", () => {
+      showCreatorAuthModal();
+    });
+  }
+  return res;
+}
 
 // Fancy Glassmorphic Popup Modal Engine
 function showFancyPopup(title, message, type = 'success', onClose = null) {
@@ -196,7 +275,7 @@ async function handleCreateRole(e) {
   };
 
   try {
-    const res = await fetch('/api/v1/creator/roles', {
+    const res = await creatorFetch('/api/v1/creator/roles', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -291,7 +370,7 @@ async function handleSaveRoleEdit(e) {
   };
 
   try {
-    const res = await fetch(`/api/v1/creator/roles/${roleId}`, {
+    const res = await creatorFetch(`/api/v1/creator/roles/${roleId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -379,7 +458,7 @@ async function handleCreateIGOTCourse(e) {
   };
 
   try {
-    const res = await fetch('/api/v1/creator/igot/add', {
+    const res = await creatorFetch('/api/v1/creator/igot/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -425,7 +504,7 @@ async function handleUploadMaterial(e) {
   statusDiv.innerHTML = '<span style="color: var(--primary);">⏳ Ingesting document & generating RAG MCQs...</span>';
 
   try {
-    const res = await fetch('/api/v1/creator/upload-material', {
+    const res = await creatorFetch('/api/v1/creator/upload-material', {
       method: 'POST',
       body: formData
     });
@@ -463,7 +542,7 @@ async function handleCustomQuizSubmit(e, type) {
   };
 
   try {
-    const res = await fetch('/api/v1/creator/quiz/add', {
+    const res = await creatorFetch('/api/v1/creator/quiz/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -524,7 +603,7 @@ async function deleteEmployee(userId, name) {
   if (!confirm(`Are you sure you want to revoke access and delete account for Officer ${name} (${userId})?`)) return;
 
   try {
-    const res = await fetch(`/api/v1/creator/employee/${userId}`, { method: 'DELETE' });
+    const res = await creatorFetch(`/api/v1/creator/employee/${userId}`, { method: 'DELETE' });
     const data = await res.json();
     if (res.ok) {
       showFancyPopup("Access Revoked", data.message, "success");

@@ -11,8 +11,9 @@ import json
 import os
 import re
 import datetime
+import uuid
 from typing import List, Dict, Any, Optional
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form, status
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Header, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
@@ -286,6 +287,48 @@ def login_user(req: LoginRequest):
     }
 
 # -------------------------------------------------------------------
+# CREATOR SECURITY AUTHENTICATION ENGINE
+# -------------------------------------------------------------------
+CREATOR_ID_SECRET = "Ashwanth0018"
+CREATOR_PASS_SECRET = "ashu@2006"
+ACTIVE_CREATOR_TOKENS: set = set()
+
+class CreatorLoginRequest(BaseModel):
+    creator_id: str = Field(..., example="Ashwanth0018")
+    password: str = Field(..., example="ashu@2006")
+
+def verify_creator_security_token(x_creator_token: Optional[str] = Header(None, alias="X-Creator-Token")):
+    """Security Guard Header Middleware protecting Creator APIs."""
+    if not x_creator_token or x_creator_token not in ACTIVE_CREATOR_TOKENS:
+        raise HTTPException(
+            status_code=401,
+            detail="Access Denied: High-Security Government Admin Authentication Required. Please log in as Creator (Ashwanth0018)."
+        )
+    return x_creator_token
+
+@app.post("/api/v1/creator/auth/login", tags=["Creator Security Auth"])
+def creator_auth_login(req: CreatorLoginRequest):
+    """
+    Authenticates the Creator / Admin Portal.
+    Restricted exclusively to Creator ID 'Ashwanth0018' and password 'ashu@2006'.
+    Generates a secure admin session token.
+    """
+    if req.creator_id.strip() == CREATOR_ID_SECRET and req.password == CREATOR_PASS_SECRET:
+        token = f"creator_token_{uuid.uuid4().hex}"
+        ACTIVE_CREATOR_TOKENS.add(token)
+        return {
+            "status": "SUCCESS",
+            "message": "Creator Authentication Successful. Welcome Administrator Ashwanth!",
+            "token": token,
+            "creator_id": CREATOR_ID_SECRET
+        }
+    else:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid Creator Credentials! Access restricted exclusively to authorized Administrator."
+        )
+
+# -------------------------------------------------------------------
 # CREATOR PORTAL APIs (WITH MODIFY ROLE & COMPETENCY REQUIREMENTS)
 # -------------------------------------------------------------------
 @app.get("/api/v1/creator/roles", tags=["Creator Portal"])
@@ -293,7 +336,7 @@ def get_all_creator_roles():
     db = read_db()
     return {"status": "success", "roles": db.get("roles", [])}
 
-@app.post("/api/v1/creator/roles", tags=["Creator Portal"])
+@app.post("/api/v1/creator/roles", tags=["Creator Portal"], dependencies=[Depends(verify_creator_security_token)])
 def create_role(req: CreateRoleRequest):
     """Creator endpoint to add a new government role with required eligibility & competencies."""
     db = read_db()
@@ -310,7 +353,7 @@ def create_role(req: CreateRoleRequest):
     
     return {"status": "SUCCESS", "message": f"Role '{req.title}' created successfully by Creator.", "role": new_role}
 
-@app.put("/api/v1/creator/roles/{role_id}", tags=["Creator Portal"])
+@app.put("/api/v1/creator/roles/{role_id}", tags=["Creator Portal"], dependencies=[Depends(verify_creator_security_token)])
 def update_role(role_id: str, req: UpdateRoleRequest):
     """
     Creator endpoint to modify an existing government role, eligibility criteria,
@@ -341,7 +384,7 @@ def update_role(role_id: str, req: UpdateRoleRequest):
     
     return {"status": "SUCCESS", "message": f"Role '{role['title']}' ({role_id}) updated successfully by Creator.", "role": role}
 
-@app.delete("/api/v1/creator/roles/{role_id}", tags=["Creator Portal"])
+@app.delete("/api/v1/creator/roles/{role_id}", tags=["Creator Portal"], dependencies=[Depends(verify_creator_security_token)])
 def delete_role(role_id: str):
     """Creator endpoint to delete a role from the platform."""
     db = read_db()
@@ -355,7 +398,7 @@ def delete_role(role_id: str):
     write_db(db)
     return {"status": "SUCCESS", "message": f"Role '{role_id}' deleted successfully."}
 
-@app.post("/api/v1/creator/igot/add", tags=["Creator Portal"])
+@app.post("/api/v1/creator/igot/add", tags=["Creator Portal"], dependencies=[Depends(verify_creator_security_token)])
 def add_igot_course(req: CreateIGOTCourseRequest):
     """Creator endpoint to index or add custom iGOT Karmayogi course."""
     db = read_db()
@@ -376,7 +419,7 @@ def add_igot_course(req: CreateIGOTCourseRequest):
     
     return {"status": "SUCCESS", "message": f"iGOT Course '{req.title}' added to database.", "course": new_course}
 
-@app.post("/api/v1/creator/upload-material", tags=["Creator Portal"])
+@app.post("/api/v1/creator/upload-material", tags=["Creator Portal"], dependencies=[Depends(verify_creator_security_token)])
 def upload_learning_material(
     title: str = Form(...),
     associated_competency: str = Form(...),
@@ -430,7 +473,7 @@ def upload_learning_material(
         "rag_generated_quizzes": rag_results
     }
 
-@app.post("/api/v1/creator/quiz/add", tags=["Creator Portal"])
+@app.post("/api/v1/creator/quiz/add", tags=["Creator Portal"], dependencies=[Depends(verify_creator_security_token)])
 def add_custom_quiz_question(req: AddQuizQuestionRequest):
     """Creator endpoint to manually add custom MCQs to any competency baseline or intermediate quiz."""
     db = read_db()
