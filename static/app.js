@@ -10,6 +10,7 @@ let selectedBaselineAnswers = {};
 let selectedIntermediateAnswers = {};
 let currentActiveCompForIntQuiz = null;
 
+let maxUnlockedStep = 1; // Strict linear progression state
 let gapRadarChartInstance = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -198,12 +199,24 @@ function handleLogout() {
   activeUser = null;
   currentUserId = null;
   selectedRoleId = null;
+  maxUnlockedStep = 1;
   document.getElementById('nav-officer-info').innerText = "Not Logged In";
   showAuthModal();
 }
 
+// STRICT SEQUENTIAL STEP LOCKING CONTROL
 function switchStep(stepNumber) {
-  for (let i = 1; i <= 5; i++) {
+  if (stepNumber > maxUnlockedStep) {
+    const stepTitles = ["Role Benchmark", "Baseline Quiz", "Skill Gap Matrix", "iGOT Learning Feed", "Intermediate Evaluation", "My Progress Roadmap"];
+    showFancyPopup(
+      "🔒 Step Locked",
+      `Step ${stepNumber} (${stepTitles[stepNumber - 1]}) is currently locked.\n\nPlease complete Step ${maxUnlockedStep} first to unlock this section.`,
+      "info"
+    );
+    return;
+  }
+
+  for (let i = 1; i <= 6; i++) {
     const navItem = document.getElementById(`step-nav-${i}`);
     const content = document.getElementById(`step-content-${i}`);
     if (navItem && content) {
@@ -216,6 +229,65 @@ function switchStep(stepNumber) {
       }
     }
   }
+
+  updateSidebarLockUI();
+  updateOfficerProfileBanner(stepNumber);
+
+  if (stepNumber === 6) {
+    loadProgressDashboard();
+  }
+}
+
+function unlockNextStep(targetStep) {
+  maxUnlockedStep = Math.max(maxUnlockedStep, targetStep);
+  updateSidebarLockUI();
+}
+
+function updateSidebarLockUI() {
+  for (let i = 1; i <= 6; i++) {
+    const navItem = document.getElementById(`step-nav-${i}`);
+    if (!navItem) continue;
+
+    const isCurrentActive = navItem.classList.contains("active");
+
+    if (i <= maxUnlockedStep) {
+      navItem.classList.remove("locked");
+      const badgeSpan = navItem.querySelector('.lock-badge, .unlocked-badge');
+      if (badgeSpan) {
+        badgeSpan.className = 'unlocked-badge';
+        badgeSpan.innerText = isCurrentActive ? 'ACTIVE' : 'UNLOCKED';
+      }
+    } else {
+      navItem.classList.add("locked");
+      const badgeSpan = navItem.querySelector('.lock-badge, .unlocked-badge');
+      if (badgeSpan) {
+        badgeSpan.className = 'lock-badge';
+        badgeSpan.innerText = '🔒 LOCKED';
+      }
+    }
+  }
+}
+
+function updateOfficerProfileBanner(currentStep = 1) {
+  const stepTitles = [
+    "Step 1: Role Benchmark Selection",
+    "Step 2: Diagnostic Baseline Quiz",
+    "Step 3: Identified Skill Gap Matrix",
+    "Step 4: iGOT Karmayogi Learning Feed",
+    "Step 5: Intermediate Evaluation Quiz",
+    "Step 6: Progress & Improvement Roadmap"
+  ];
+
+  if (activeUser) {
+    const initials = activeUser.name ? activeUser.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase() : 'GO';
+    document.getElementById('banner-avatar').innerText = initials;
+    document.getElementById('banner-officer-name').innerText = activeUser.name;
+    document.getElementById('banner-officer-id').innerText = `ID: ${activeUser.user_id}`;
+  }
+
+  const selectedRoleObj = allLearnerRoles.find(r => r.id === selectedRoleId);
+  document.getElementById('banner-officer-role').innerText = selectedRoleObj ? `Target Role: ${selectedRoleObj.title}` : "Target Role: None Selected";
+  document.getElementById('banner-step-status').innerText = stepTitles[currentStep - 1] || "Step 1: Role Selection";
 }
 
 async function loadLearnerRoles() {
@@ -309,6 +381,9 @@ async function selectRole(roleId) {
   if (btnBottom) btnBottom.disabled = false;
   if (btnTop) btnTop.disabled = false;
 
+  unlockNextStep(2); // UNLOCK STEP 2
+  updateOfficerProfileBanner(1);
+
   try {
     await fetch('/api/v1/learner/select-role', {
       method: 'POST',
@@ -324,6 +399,8 @@ async function proceedToBaselineQuiz() {
   if (!selectedRoleId && allLearnerRoles.length > 0) {
     selectedRoleId = allLearnerRoles[0].id;
   }
+
+  unlockNextStep(2);
   switchStep(2);
 
   try {
@@ -405,6 +482,8 @@ async function submitBaselineQuiz() {
     });
     const data = await res.json();
 
+    unlockNextStep(3); // UNLOCK STEP 3
+
     if (res.ok) {
       renderRadarChart(data.gap_analysis);
       renderGapCards(data.gap_analysis);
@@ -415,6 +494,7 @@ async function submitBaselineQuiz() {
       });
     }
   } catch (err) {
+    unlockNextStep(3);
     showFancyPopup("Submission Note", "Calculating competency skill gaps.", "info", () => {
       switchStep(3);
     });
@@ -512,6 +592,7 @@ function renderGapCards(gapAnalysis) {
 }
 
 async function fetchAndDisplayRecommendations() {
+  unlockNextStep(4); // UNLOCK STEP 4
   switchStep(4);
   const container = document.getElementById('rec-cards-container');
   container.innerHTML = '<p style="color: var(--primary);">⏳ Indexing iGOT Karmayogi Courses & Uploaded Syllabus Materials...</p>';
@@ -578,6 +659,7 @@ async function fetchAndDisplayRecommendations() {
 
 async function handleCourseAction(courseId, title, type, compCode, actionUrl) {
   currentActiveCompForIntQuiz = compCode;
+  unlockNextStep(5); // UNLOCK STEP 5
 
   try {
     await fetch('/api/v1/learner/igot/enroll', {
@@ -601,6 +683,7 @@ async function handleCourseAction(courseId, title, type, compCode, actionUrl) {
 
 function launchCoursePlayer(courseId, title, compCode, igotUrl) {
   currentActiveCompForIntQuiz = compCode;
+  unlockNextStep(5);
 
   const modal = document.getElementById('course-modal');
   const modalContent = document.getElementById('modal-content');
@@ -657,6 +740,7 @@ function closeCourseModal() {
 
 function closeCourseModalAndStartQuiz(compCode) {
   closeCourseModal();
+  unlockNextStep(5);
   switchStep(5);
   loadIntermediateQuiz(compCode);
 }
@@ -734,10 +818,18 @@ async function submitIntermediateQuiz() {
     });
     const data = await res.json();
 
+    unlockNextStep(6); // UNLOCK STEP 6 (ROADMAP DASHBOARD)
+
     if (res.ok) {
-      showFancyPopup("Intermediate Quiz Passed!", `Score: ${data.quiz_score}%\nCompetency level boosted from ${data.previous_competency_score}% to ${data.updated_competency_score}%!`, "success", () => {
-        loadLiveUserProfile();
-      });
+      showFancyPopup(
+        "Intermediate Quiz Passed!",
+        `Score: ${data.quiz_score}%\nCompetency score updated to ${data.updated_competency_score}%!\n\nStep 6 (My Progress Roadmap) is now unlocked!`,
+        "success",
+        () => {
+          loadLiveUserProfile();
+          switchStep(6);
+        }
+      );
     }
   } catch (err) {
     showFancyPopup("Submission Error", "Failed to submit intermediate quiz.", "error");
@@ -749,6 +841,13 @@ async function loadLiveUserProfile() {
   try {
     const res = await fetch(`/api/v1/learner/profile/${currentUserId}`);
     const data = await res.json();
+
+    updateOfficerProfileBanner(maxUnlockedStep);
+
+    const badgeCountEl = document.getElementById('banner-badge-count');
+    if (badgeCountEl) {
+      badgeCountEl.innerText = `🏅 ${data.badges ? data.badges.length : 0} Badges`;
+    }
 
     const box = document.getElementById('live-profile-box');
     if (!data.role) {
@@ -804,5 +903,106 @@ async function loadLiveUserProfile() {
     box.innerHTML = html;
   } catch (err) {
     console.error("Profile load failed:", err);
+  }
+}
+
+// STEP 6: PROGRESS & IMPROVEMENT ROADMAP DASHBOARD
+async function loadProgressDashboard() {
+  if (!currentUserId) currentUserId = "ashw_101";
+
+  try {
+    const res = await fetch(`/api/v1/learner/profile/${currentUserId}`);
+    const data = await res.json();
+
+    // 1. Render Competency Mastery Bars
+    const compContainer = document.getElementById('roadmap-competencies-list');
+    compContainer.innerHTML = '';
+
+    if (!data.competencies || data.competencies.length === 0) {
+      compContainer.innerHTML = '<p style="color: var(--text-muted);">Select a role in Step 1 to view competency benchmarks.</p>';
+    } else {
+      data.competencies.forEach(c => {
+        const isOk = c.gap <= 5.0;
+        const pct = Math.min(100, Math.round((c.current_score / c.target_benchmark) * 100));
+
+        const card = document.createElement('div');
+        card.style.background = '#f8fafc';
+        card.style.border = `1px solid ${isOk ? '#a7f3d0' : '#dbe2ea'}`;
+        card.style.padding = '1rem';
+        card.style.borderRadius = '12px';
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0.4rem;">
+            <strong style="color: #172033;">${c.name}</strong>
+            <span style="font-weight: 700; color: ${isOk ? 'var(--accent-green)' : 'var(--primary)'};">
+              ${c.current_score}% / ${c.target_benchmark}% ${isOk ? '✅ Competent' : `(Deficit: ${c.gap}%)`}
+            </span>
+          </div>
+          <div class="progress-bar-bg" style="height: 10px;">
+            <div class="progress-bar-fill" style="width: ${pct}%; background: ${isOk ? 'var(--accent-green)' : 'var(--primary)'};"></div>
+          </div>
+        `;
+        compContainer.appendChild(card);
+      });
+    }
+
+    // 2. Render Verified iGOT Badges
+    const badgeContainer = document.getElementById('roadmap-badges-list');
+    badgeContainer.innerHTML = '';
+
+    if (!data.badges || data.badges.length === 0) {
+      badgeContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No badges claimed yet. Complete post-course evaluation quizzes in Step 5 to claim official badges.</p>';
+    } else {
+      data.badges.forEach(b => {
+        const div = document.createElement('div');
+        div.className = 'badge-card';
+        div.innerHTML = `
+          <div class="badge-icon">🏅</div>
+          <div>
+            <strong style="color: #172033; font-size: 0.9rem;">${b.title}</strong>
+            <p style="font-size: 0.75rem; color: var(--text-muted);">Verified on iGOT Karmayogi System • ${new Date(b.issued_at).toLocaleDateString()}</p>
+          </div>
+        `;
+        badgeContainer.appendChild(div);
+      });
+    }
+
+    // 3. Render AI Personal Improvement Action Plan
+    const actionContainer = document.getElementById('roadmap-action-plan');
+    actionContainer.innerHTML = '';
+
+    if (!data.competencies || data.competencies.length === 0) {
+      actionContainer.innerHTML = '<p style="color: var(--text-muted);">Complete Step 1 & 2 to generate your personalized action plan.</p>';
+    } else {
+      data.competencies.forEach(c => {
+        if (c.gap > 5.0) {
+          const item = document.createElement('div');
+          item.style.background = '#fff7ed';
+          item.style.border = '1px solid #ffedd5';
+          item.style.borderRadius = '12px';
+          item.style.padding = '1rem';
+
+          item.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+              <strong style="color: #ea580c; font-size: 0.95rem;">⚠️ Priority Gap: ${c.name} (${c.gap}% Deficit)</strong>
+              <button class="btn btn-primary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;" onclick="switchStep(4)">
+                🚀 Launch iGOT Training
+              </button>
+            </div>
+            <p style="font-size: 0.85rem; color: #475569;">
+              <strong>Action Strategy:</strong> Enroll in the indexed iGOT Karmayogi module for ${c.name}. Focus on operational guidelines and complete the Step 5 intermediate quiz to bridge this ${c.gap}% knowledge gap.
+            </p>
+          `;
+          actionContainer.appendChild(item);
+        }
+      });
+
+      if (actionContainer.innerHTML === '') {
+        actionContainer.innerHTML = '<div style="background: #ecfdf5; border: 1px solid #a7f3d0; padding: 1.25rem; border-radius: 12px;"><h4 style="color: var(--accent-green);">🎉 100% Competency Compliance Achieved!</h4><p style="color: #475569; font-size: 0.85rem; margin-top: 0.3rem;">All required competency target benchmarks have been met. Continue reviewing advanced modules on iGOT Karmayogi.</p></div>';
+      }
+    }
+
+  } catch (err) {
+    console.error("Failed to load progress dashboard:", err);
   }
 }

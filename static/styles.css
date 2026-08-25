@@ -177,14 +177,14 @@ h1, h2, h3, h4, h5, h6 {
   cursor: not-allowed;
 }
 
-/* Creator Portal Left Sidebar Layout */
+/* Creator Portal & Learner Sidebar Layout */
 .creator-layout {
   display: flex;
   min-height: calc(100vh - 65px);
 }
 
 .creator-sidebar {
-  width: 260px;
+  width: 270px;
   background: var(--bg-sidebar);
   padding: 1.5rem 1rem;
   display: flex;
@@ -205,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-btn {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
   width: 100%;
   padding: 0.85rem 1rem;
   border-radius: 10px;
@@ -219,7 +219,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.2s ease;
 }
 
-.sidebar-btn:hover {
+.sidebar-btn:hover:not(.locked) {
   background: #1e293b;
   color: #ffffff;
 }
@@ -231,11 +231,64 @@ h1, h2, h3, h4, h5, h6 {
   border-left: 4px solid #60a5fa;
 }
 
+/* Locked Step Styling */
+.sidebar-btn.locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.lock-badge {
+  font-size: 0.7rem;
+  background: #334155;
+  color: #94a3b8;
+  padding: 0.15rem 0.45rem;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.unlocked-badge {
+  font-size: 0.7rem;
+  background: #064e3b;
+  color: #34d399;
+  padding: 0.15rem 0.45rem;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
 .creator-content {
   flex: 1;
   padding: 2rem;
   overflow-y: auto;
   background-color: var(--bg-body);
+}
+
+/* Officer Profile Header Banner */
+.officer-profile-banner {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  padding: 1.25rem 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.profile-avatar {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #2563eb, #0284c7);
+  color: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 800;
 }
 
 /* Role Grid & Competency Cards */
