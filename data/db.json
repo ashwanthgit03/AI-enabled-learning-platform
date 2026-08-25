@@ -1,0 +1,436 @@
+{
+  "roles": [
+    {
+      "id": "ROLE_JSO",
+      "title": "Junior Statistical Officer (JSO)",
+      "department": "National Statistical Office (NSO)",
+      "eligibility": "Bachelor's Degree in Statistics/Mathematics with minimum 60% marks in Class 12th Mathematics.",
+      "experience_years": 0,
+      "description": "Responsible for field data collection, sample survey execution, and preliminary data processing.",
+      "required_competencies": [
+        {
+          "code": "COMP_SAMPLING",
+          "name": "Sampling Techniques & Survey Design",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Processing & Coding (Python/R)",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Data Security & GIGW Compliance",
+          "target_score": 70
+        }
+      ]
+    },
+    {
+      "id": "ROLE_PRICE_STAT",
+      "title": "Director of Price Statistics",
+      "department": "Price Statistics Division (PSD)",
+      "eligibility": "Master's Degree in Economics/Statistics + 5 years experience in Price Index compilation.",
+      "experience_years": 5,
+      "description": "Oversees CPI (Urban/Rural) compilation, WPI updates, base year revisions, and price trend analysis.",
+      "required_competencies": [
+        {
+          "code": "COMP_INDEX_NUMBERS",
+          "name": "Index Numbers & CPI/WPI Methodology",
+          "target_score": 90
+        },
+        {
+          "code": "COMP_ECON_STATS",
+          "name": "National Accounts & Macroeconomic Indicators",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_DATA_ANALYST",
+      "title": "Senior Data Analytics Officer",
+      "department": "Digital & IT Division - MoSPI",
+      "eligibility": "B.Tech/M.Sc in Computer Science or Statistics with 3+ years experience in Big Data.",
+      "experience_years": 3,
+      "description": "Builds automated data pipelines, dashboards, machine learning models, and large-scale census processing.",
+      "required_competencies": [
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Processing & Coding (Python/R)",
+          "target_score": 90
+        },
+        {
+          "code": "COMP_SAMPLING",
+          "name": "Sampling Techniques & Survey Design",
+          "target_score": 70
+        }
+      ]
+    },
+    {
+      "id": "ROLE_TEST_OFFICER",
+      "title": "Chief Survey Methodology Officer",
+      "department": "Survey Design Division",
+      "eligibility": "Ph.D. or Master's in Statistics",
+      "experience_years": 8,
+      "description": "Oversees large-scale sample survey methodology across all states.",
+      "required_competencies": [
+        {
+          "code": "COMP_SAMPLING",
+          "name": "Sampling Techniques",
+          "target_score": 95.0
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "COMP_SAMPLING": {
+      "baseline": [
+        {
+          "id": "Q_SAMP_1",
+          "question": "What type of sampling ensures every individual in the population has an equal non-zero probability of selection?",
+          "options": [
+            "Convenience Sampling",
+            "Simple Random Sampling",
+            "Quota Sampling",
+            "Judgemental Sampling"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "Q_SAMP_2",
+          "question": "Which error in sample surveys arises due to non-response or faulty questionnaire design?",
+          "options": [
+            "Sampling Error",
+            "Non-Sampling Error",
+            "Standard Error",
+            "Margin of Error"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "Q_SAMP_3",
+          "question": "In Stratified Sampling, how should elements within each stratum ideally be?",
+          "options": [
+            "Heterogeneous within, Homogeneous between",
+            "Homogeneous within, Heterogeneous between",
+            "Completely random",
+            "Identical across all strata"
+          ],
+          "answer": 1
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "Q_SAMP_INT_1",
+          "question": "In a 2-stage cluster sampling design for NSO, what is selected at the Primary Sampling Unit (PSU) level?",
+          "options": [
+            "Individual households",
+            "Urban Frame Survey (UFS) blocks or Villages",
+            "State capitals",
+            "Persons aged 15-59"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "Q_SAMP_INT_2",
+          "question": "How is the design effect (Deff) defined in complex survey sample estimation?",
+          "options": [
+            "Ratio of variance of complex sample to variance of SRS of same size",
+            "Difference between sample mean and population mean",
+            "Product of sample size and standard deviation",
+            "Ratio of sample size to population size"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_AUTO_DOC-102",
+          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "options": [
+            "Follow standard MoSPI operational protocol",
+            "Ignore metadata validation",
+            "Manual paper entry without audit",
+            "Bypass sampling frame"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_AUTO_DOC-103",
+          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "options": [
+            "Follow standard MoSPI operational protocol",
+            "Ignore metadata validation",
+            "Manual paper entry without audit",
+            "Bypass sampling frame"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_AUTO_DOC-104",
+          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "options": [
+            "Follow standard MoSPI operational protocol",
+            "Ignore metadata validation",
+            "Manual paper entry without audit",
+            "Bypass sampling frame"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_AUTO_DOC-105",
+          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "options": [
+            "Follow standard MoSPI operational protocol",
+            "Ignore metadata validation",
+            "Manual paper entry without audit",
+            "Bypass sampling frame"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    "COMP_INDEX_NUMBERS": {
+      "baseline": [
+        {
+          "id": "Q_IDX_1",
+          "question": "Which formula is used for calculating the Consumer Price Index (CPI) in India?",
+          "options": [
+            "Paasche's Index",
+            "Laspeyres' Weighted Price Index",
+            "Fisher's Ideal Index",
+            "Marshall-Edgeworth Index"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "Q_IDX_2",
+          "question": "What base year weights are held constant in Laspeyres price index formula?",
+          "options": [
+            "Current year quantities",
+            "Base year quantities",
+            "Average quantities",
+            "Target year prices"
+          ],
+          "answer": 1
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "Q_IDX_INT_1",
+          "question": "When updating base year weights for CPI, what household survey dataset is primarily utilized?",
+          "options": [
+            "Periodic Labour Force Survey (PLFS)",
+            "Household Consumption Expenditure Survey (HCES)",
+            "Annual Survey of Industries (ASI)",
+            "Agricultural Census"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    "COMP_DATA_ANALYTICS": {
+      "baseline": [
+        {
+          "id": "Q_DATA_1",
+          "question": "Which Python library is primarily used for tabular data manipulation in statistical analysis?",
+          "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "Q_DATA_2",
+          "question": "What is the primary objective of Exploratory Data Analysis (EDA)?",
+          "options": [
+            "To deploy machine learning models",
+            "To understand data distribution, anomalies, and underlying patterns",
+            "To encrypt government data",
+            "To format output as HTML"
+          ],
+          "answer": 1
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "Q_DATA_INT_1",
+          "question": "Which technique is used to handle missing data in large-scale census datasets without introducing bias?",
+          "options": [
+            "Zero filling",
+            "Multiple Imputation by Chained Equations (MICE)",
+            "Deleting all incomplete rows",
+            "Mean substitution for categorical variables"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    "COMP_GOVERNANCE": {
+      "baseline": [
+        {
+          "id": "Q_GOV_1",
+          "question": "What does GIGW stand for in Indian government IT infrastructure compliance?",
+          "options": [
+            "Guidelines for Indian Government Websites",
+            "Global Information Governance Web",
+            "Government Integrated Gateway Web",
+            "General IT Governance Framework"
+          ],
+          "answer": 0
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "Q_GOV_INT_1",
+          "question": "Under MoSPI data privacy protocols, how must personally identifiable information (PII) be treated before public release?",
+          "options": [
+            "Stored in plain text",
+            "Anonymized/Pseudonymized via microdata masking",
+            "Shared with third parties",
+            "Archived without encryption"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  },
+  "igot_courses": [
+    {
+      "course_id": "IGOT-STAT-001",
+      "title": "Advanced Survey Sampling & Field Data Estimation",
+      "provider": "National Statistical Systems Training Academy (NSSTA), MoSPI",
+      "competency_code": "COMP_SAMPLING",
+      "competency_name": "Sampling Techniques & Survey Design",
+      "duration": "10 Hours",
+      "rating": 4.9,
+      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491201948192001/overview",
+      "description": "Official NSSTA training module covering Stratified Random Sampling, Cluster Sampling, and Multi-Stage Survey Designs in NSO socio-economic surveys.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-STAT-002",
+      "title": "National Accounts Statistics & GDP Estimation Methodology",
+      "provider": "Central Statistics Office (CSO), MoSPI",
+      "competency_code": "COMP_ECON_STATS",
+      "competency_name": "National Accounts & Macroeconomic Indicators",
+      "duration": "16 Hours",
+      "rating": 4.8,
+      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491202819201922/overview",
+      "description": "Comprehensive CSO guide on Gross Value Added (GVA), Gross Domestic Product (GDP), input-output tables, and sector-wise economic estimation.",
+      "embed_video_url": "https://www.youtube.com/embed/Y63w40V6F64"
+    },
+    {
+      "course_id": "IGOT-STAT-003",
+      "title": "Python & R for Official Data Processing & Analytics",
+      "provider": "MoSPI Digital Capacity Division & NITI Aayog",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Data Processing & Coding (Python/R)",
+      "duration": "12 Hours",
+      "rating": 4.9,
+      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491203819201923/overview",
+      "description": "Hands-on data cleaning using Pandas, exploratory data analysis, and automated report generation for official government statisticians.",
+      "embed_video_url": "https://www.youtube.com/embed/rfscVS0vtbw"
+    },
+    {
+      "course_id": "IGOT-STAT-004",
+      "title": "Index Numbers: Consumer Price Index (CPI) & WPI Calculation",
+      "provider": "Price Statistics Division (PSD), MoSPI",
+      "competency_code": "COMP_INDEX_NUMBERS",
+      "competency_name": "Index Numbers & CPI/WPI Methodology",
+      "duration": "8 Hours",
+      "rating": 4.7,
+      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491204819201924/overview",
+      "description": "Methodology for Laspeyres price index formula, base year updating, weighting diagrams, and item basket selection for CPI urban and rural.",
+      "embed_video_url": "https://www.youtube.com/embed/sU-L0cK1tE8"
+    },
+    {
+      "course_id": "IGOT-STAT-005",
+      "title": "Data Governance, Security & GIGW Compliance in Government Systems",
+      "provider": "DARPG & Ministry of Electronics and IT (MeitY)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Data Security & GIGW Compliance",
+      "duration": "5 Hours",
+      "rating": 4.6,
+      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491205819201925/overview",
+      "description": "Guidelines for Indian Government Websites (GIGW 3.0), data privacy protocols, and secure microdata handling in public administrative systems.",
+      "embed_video_url": "https://www.youtube.com/embed/X9Xh_s-z-88"
+    }
+  ],
+  "creator_uploaded_materials": [
+    {
+      "id": "DOC-101",
+      "title": "MoSPI_Sampling_Methodology_Manual_2025.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-24T14:00:00Z",
+      "summary": "Official reference guide on sampling frame creation and estimation formulas for NSO surveys."
+    },
+    {
+      "id": "DOC-102",
+      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-24T22:54:43.844896",
+      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+    },
+    {
+      "id": "DOC-103",
+      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-24T22:55:32.955693",
+      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+    },
+    {
+      "id": "DOC-104",
+      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-24T23:07:40.964658",
+      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+    },
+    {
+      "id": "DOC-105",
+      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-24T23:12:14.986104",
+      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+    }
+  ],
+  "users": {
+    "EMP-101": {
+      "user_id": "EMP-101",
+      "name": "Officer Ramesh Kumar",
+      "department": "National Statistical Office (NSO)",
+      "password": "pass123",
+      "created_at": "2026-08-24T22:55:32.891137",
+      "selected_role_id": "ROLE_JSO",
+      "current_scores": {
+        "COMP_SAMPLING": 100.0,
+        "COMP_DATA_ANALYTICS": 100.0,
+        "COMP_GOVERNANCE": 45.0
+      },
+      "enrolled_courses": [],
+      "completed_courses": [],
+      "badges": []
+    },
+    "emp101": {
+      "user_id": "emp101",
+      "name": "Ashwanth",
+      "department": "public service",
+      "password": "12345678",
+      "created_at": "2026-08-24T22:58:03.096382",
+      "selected_role_id": "ROLE_TEST_OFFICER",
+      "current_scores": {
+        "COMP_SAMPLING": 66.7
+      },
+      "enrolled_courses": [
+        "IGOT-STAT-003",
+        "IGOT-STAT-001",
+        "DOC-101",
+        "DOC-103",
+        "DOC-102",
+        "IGOT-STAT-005",
+        "DOC-104"
+      ],
+      "completed_courses": [],
+      "badges": []
+    }
+  }
+}

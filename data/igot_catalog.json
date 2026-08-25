@@ -1,0 +1,62 @@
+[
+  {
+    "course_id": "IGOT-STAT-001",
+    "title": "Advanced Survey Sampling & Field Data Estimation",
+    "provider": "National Statistical Systems Training Academy (NSSTA)",
+    "competency_code": "COMP_SAMPLING",
+    "competency_name": "Sampling Techniques & Survey Design",
+    "level": "Intermediate",
+    "duration": "10 Hours",
+    "rating": 4.8,
+    "igot_url": "https://igotkarmayogi.gov.in/course/stat-001",
+    "description": "Covers probability sampling, multi-stage stratified sampling, and non-sampling error minimization in MoSPI field surveys."
+  },
+  {
+    "course_id": "IGOT-STAT-002",
+    "title": "National Accounts Statistics & GDP Estimation Methodology",
+    "provider": "Central Statistics Office (CSO)",
+    "competency_code": "COMP_ECON_STATS",
+    "competency_name": "National Accounts & Economic Statistics",
+    "level": "Advanced",
+    "duration": "16 Hours",
+    "rating": 4.9,
+    "igot_url": "https://igotkarmayogi.gov.in/course/stat-002",
+    "description": "Detailed guide on Gross Value Added (GVA), Gross Domestic Product (GDP), and sector-wise economic estimation."
+  },
+  {
+    "course_id": "IGOT-STAT-003",
+    "title": "Python & R for Official Data Processing & Analytics",
+    "provider": "MoSPI Digital Capacity Division",
+    "competency_code": "COMP_DATA_ANALYTICS",
+    "competency_name": "Data Analytics & Statistical Coding",
+    "level": "Beginner to Intermediate",
+    "duration": "12 Hours",
+    "rating": 4.7,
+    "igot_url": "https://igotkarmayogi.gov.in/course/stat-003",
+    "description": "Practical hands-on data cleaning, exploratory data analysis, and automated report generation for official statisticians."
+  },
+  {
+    "course_id": "IGOT-STAT-004",
+    "title": "Index Numbers: Consumer Price Index (CPI) & WPI Calculation",
+    "provider": "Price Statistics Division (PSD)",
+    "competency_code": "COMP_INDEX_NUMBERS",
+    "competency_name": "Index Numbers & Price Statistics",
+    "level": "Intermediate",
+    "duration": "8 Hours",
+    "rating": 4.6,
+    "igot_url": "https://igotkarmayogi.gov.in/course/stat-004",
+    "description": "Methodology for Laspeyres price index formula, base year updating, and item basket selection for CPI urban and rural."
+  },
+  {
+    "course_id": "IGOT-STAT-005",
+    "title": "Data Governance, Security & GIGW Compliance in Government Systems",
+    "provider": "DARPG & Ministry of Electronics and IT",
+    "competency_code": "COMP_GOVERNANCE",
+    "competency_name": "Data Governance & IT Security",
+    "level": "Basic",
+    "duration": "5 Hours",
+    "rating": 4.5,
+    "igot_url": "https://igotkarmayogi.gov.in/course/stat-005",
+    "description": "Guidelines for Indian Government Websites (GIGW), data privacy laws, and secure data handling procedures."
+  }
+]
