@@ -19,15 +19,16 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from pydantic import BaseModel, Field
 
-# Import Scraper, RAG Engine & Semantic Recommendation Engine
+# Import Scraper, RAG Engine, Semantic Recommendation Engine & Adaptive Quiz Engine
 from igot_scraper import IGOTKarmayogiScraper
 from rag_quiz_engine import RAGQuizGeneratorEngine
 from semantic_recommendation_engine import SemanticRecommendationEngine
+from adaptive_quiz_engine import AdaptiveQuizEngine
 
 app = FastAPI(
     title="GovLearn AI Platform (SIH)",
     description="Full-stack AI learning platform with Creator Portal & Learner Portal connecting to iGOT Karmayogi ecosystem.",
-    version="3.4.0"
+    version="4.0.0"
 )
 
 # Enable CORS for cross-origin requests
@@ -74,10 +75,15 @@ class LoginRequest(BaseModel):
     user_id: str = Field(..., example="ashw_101")
     password: str = Field(..., example="pass123")
 
+class SubSkillItem(BaseModel):
+    code: str
+    name: str
+
 class CompetencyRequirement(BaseModel):
     code: str
     name: str
     target_score: float = Field(..., ge=1, le=100)
+    sub_skills: Optional[List[SubSkillItem]] = None
 
 class CreateRoleRequest(BaseModel):
     id: str
@@ -113,6 +119,12 @@ class BaselineSubmitRequest(BaseModel):
     user_id: str
     role_id: str
     answers: Dict[str, int]
+
+class AdaptiveNextQuestionRequest(BaseModel):
+    user_id: str
+    role_id: str
+    history: List[Dict[str, Any]] = []
+    current_competency_code: Optional[str] = None
 
 class IntermediateSubmitRequest(BaseModel):
     user_id: str
@@ -705,12 +717,31 @@ def get_baseline_quiz(role_id: str):
         "questions": questions
     }
 
+@app.post("/api/v1/learner/quiz/adaptive/next", tags=["Learner Portal"])
+def get_next_adaptive_question(req: AdaptiveNextQuestionRequest):
+    """
+    Computerized Adaptive Testing (CAT) Engine:
+    Dynamically steps up/down difficulty (L1, L2, L3) based on candidate response history
+    and scales initial difficulty by officer experience years.
+    """
+    db = read_db()
+    engine = AdaptiveQuizEngine(db)
+    next_item = engine.select_next_adaptive_question(
+        role_id=req.role_id,
+        history=req.history,
+        current_competency_code=req.current_competency_code
+    )
+    return {
+        "status": "SUCCESS",
+        "question": next_item
+    }
+
 @app.post("/api/v1/learner/quiz/baseline/submit", tags=["Learner Portal"])
 def submit_baseline_quiz(req: BaselineSubmitRequest):
     """
     Grades diagnostic baseline quiz, updates user's baseline scores,
-    and calculates skill gaps against Creator's required benchmark target scores.
-    Auto-creates profile if needed to prevent 404 errors.
+    calculates skill gaps against Creator's required benchmark target scores,
+    and generates detailed Sub-Skill Knowledge Gap Heatmap.
     """
     db = read_db()
     roles = db.get("roles", [])
@@ -785,8 +816,13 @@ def submit_baseline_quiz(req: BaselineSubmitRequest):
             "needs_training": gap > 5.0
         })
         
+    # Generate Sub-Skill Knowledge Gap Heatmap via AdaptiveQuizEngine
+    adaptive_engine = AdaptiveQuizEngine(db)
+    sub_skill_heatmap = adaptive_engine.generate_sub_skill_heatmap(role["id"], req.answers)
+
     user_data["selected_role_id"] = role["id"]
     user_data["current_scores"] = current_scores
+    user_data["last_answers"] = req.answers
     users[req.user_id] = user_data
     db["users"] = users
     write_db(db)
@@ -796,15 +832,16 @@ def submit_baseline_quiz(req: BaselineSubmitRequest):
         "user_id": req.user_id,
         "role_title": role["title"],
         "current_scores": current_scores,
-        "gap_analysis": gap_analysis
+        "gap_analysis": gap_analysis,
+        "sub_skill_heatmap": sub_skill_heatmap
     }
 
 @app.post("/api/v1/learner/recommendations", tags=["Learner Portal"])
 def get_recommendations_and_igot_scraping(user_id: str = Form(...)):
     """
-    STRICT SEMANTIC GAP RECOMMENDATION ENGINE:
-    Calculates gaps and uses Semantic Vector Search to recommend ONLY courses
-    matching identified competency deficits (gap_score > 5.0).
+    STRICT SEMANTIC SUB-SKILL GAP RECOMMENDATION ENGINE:
+    Calculates sub-skill deficits and uses Semantic Vector Search to recommend courses
+    and pinpoint modules matching identified competency and sub-skill deficits.
     """
     db = read_db()
     users = db.get("users", {})
@@ -849,14 +886,18 @@ def get_recommendations_and_igot_scraping(user_id: str = Form(...)):
             "gap_score": gap
         })
         
-    # Run Semantic Recommendation Engine
+    adaptive_engine = AdaptiveQuizEngine(db)
+    sub_skill_heatmap = adaptive_engine.generate_sub_skill_heatmap(role["id"], user.get("last_answers", {}))
+
+    # Run Semantic Recommendation Engine with Sub-Skill Heatmap
     targeted_recommendations = semantic_engine.recommend_targeted_courses(
         user_role_title=role["title"],
         user_dept=role["department"],
         gap_analysis=gap_analysis,
         all_courses=igot_courses,
         creator_materials=creator_materials,
-        enrolled_course_ids=user.get("enrolled_courses", [])
+        enrolled_course_ids=user.get("enrolled_courses", []),
+        sub_skill_heatmap=sub_skill_heatmap
     )
 
     return {
@@ -864,7 +905,8 @@ def get_recommendations_and_igot_scraping(user_id: str = Form(...)):
         "user_id": user_id,
         "role_title": role["title"],
         "total_recommendations": len(targeted_recommendations),
-        "recommendations": targeted_recommendations
+        "recommendations": targeted_recommendations,
+        "sub_skill_heatmap": sub_skill_heatmap
     }
 
 @app.post("/api/v1/learner/igot/enroll", tags=["Learner Portal"])

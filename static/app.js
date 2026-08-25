@@ -475,16 +475,23 @@ async function proceedToBaselineQuiz() {
       const qDiv = document.createElement('div');
       qDiv.className = 'question-card';
       const isRAG = q.source && q.source.includes('RAG');
+      const diffLevel = q.difficulty_level || 2;
+      const diffClass = `difficulty-tag-l${diffLevel}`;
+      const diffText = diffLevel === 1 ? 'L1 Foundational' : (diffLevel === 2 ? 'L2 Applied' : 'L3 Advanced');
 
       qDiv.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
           <p style="font-weight: 700; font-size: 1rem; color: #172033; flex: 1;">
             <span style="color: var(--primary);">Q${idx + 1}.</span> [${q.competency_name}] ${q.question}
           </p>
-          <span style="font-size: 0.7rem; background: ${isRAG ? '#ecfdf5' : '#eff6ff'}; color: ${isRAG ? '#16a34a' : '#2563eb'}; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">
-            ${isRAG ? '🤖 RAG Generated' : '✍️ Creator Set'}
-          </span>
+          <div style="display: flex; gap: 0.4rem; align-items: center;">
+            <span class="${diffClass}">${diffText}</span>
+            <span style="font-size: 0.7rem; background: ${isRAG ? '#ecfdf5' : '#eff6ff'}; color: ${isRAG ? '#16a34a' : '#2563eb'}; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">
+              ${isRAG ? '🤖 RAG Generated' : '✍️ Creator Set'}
+            </span>
+          </div>
         </div>
+        ${q.scenario_text ? `<div class="scenario-callout">🏛️ <strong>Government Scenario Context:</strong> ${q.scenario_text}</div>` : ''}
         <div style="margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.5rem;">
           ${q.options.map((opt, optIdx) => `
             <button type="button" class="option-btn" onclick="selectBaselineAnswer('${q.id}', ${optIdx}, this)">
@@ -541,6 +548,9 @@ async function submitBaselineQuiz() {
     if (res.ok) {
       renderRadarChart(data.gap_analysis);
       renderGapCards(data.gap_analysis);
+      if (data.sub_skill_heatmap) {
+        renderSubSkillHeatmap(data.sub_skill_heatmap);
+      }
       switchStep(3);
     } else {
       showFancyPopup("Skill Gap Calculation Note", data.detail || "Calculating skill gaps...", "info", () => {
@@ -645,6 +655,44 @@ function renderGapCards(gapAnalysis) {
   });
 }
 
+function renderSubSkillHeatmap(heatmap) {
+  const container = document.getElementById('sub-skill-heatmap-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  if (!heatmap || heatmap.length === 0) {
+    container.innerHTML = '<p style="color: var(--text-muted); padding: 0.5rem;">No sub-skill data available.</p>';
+    return;
+  }
+
+  heatmap.forEach(sub => {
+    const card = document.createElement('div');
+    card.className = 'sub-skill-card';
+
+    const statusColor = sub.badge_class === 'success' ? '#16a34a' : (sub.badge_class === 'warning' ? '#ea580c' : '#dc2626');
+    const statusBg = sub.badge_class === 'success' ? '#ecfdf5' : (sub.badge_class === 'warning' ? '#fff7ed' : '#fef2f2');
+
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
+        <strong style="color: #172033; font-size: 0.92rem;">${sub.sub_skill_name}</strong>
+        <span style="font-size: 0.7rem; background: ${statusBg}; color: ${statusColor}; padding: 0.2rem 0.5rem; border-radius: 6px; font-weight: 700;">
+          ${sub.status_badge}
+        </span>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">${sub.competency_name}</p>
+      <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted);">
+        <span>Current: ${sub.current_score}%</span>
+        <span>Target: ${sub.target_benchmark}%</span>
+        <span style="color: ${statusColor}; font-weight: 700;">Deficit: ${sub.deficit_pct}%</span>
+      </div>
+      <div class="progress-bar-bg" style="height: 6px; margin-top: 0.4rem;">
+        <div class="progress-bar-fill" style="width: ${Math.min(100, (sub.current_score / sub.target_benchmark) * 100)}%; background: ${statusColor};"></div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
 async function fetchAndDisplayRecommendations() {
   unlockNextStep(4);
   switchStep(4);
@@ -688,7 +736,8 @@ async function fetchAndDisplayRecommendations() {
           </div>
 
           <h3 style="color: #172033; font-size: 1.1rem; margin-bottom: 0.4rem;">${rec.title}</h3>
-          <p style="font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 0.4rem;">⚠️ Recommended for: ${rec.target_competency}</p>
+          <p style="font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 0.2rem;">⚠️ Target Competency: ${rec.target_competency}</p>
+          ${rec.pinpoint_module_section ? `<p style="font-size: 0.8rem; color: #ea580c; font-weight: 700; margin-bottom: 0.4rem;">🎯 Pinpoint Module: ${rec.pinpoint_module_section}</p>` : ''}
           <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem;">${rec.provider}</p>
           <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">${rec.description}</p>
         </div>
@@ -700,7 +749,7 @@ async function fetchAndDisplayRecommendations() {
           </div>
 
           <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="handleCourseAction('${rec.id}', '${rec.title.replace(/'/g, "\\'")}', '${rec.type}', '${rec.competency_code}', '${rec.action_url}')">
-            ${isPDF ? '📄 Open Syllabus PDF & Take Quiz' : (rec.is_enrolled ? '▶️ Review iGOT Module & Take Quiz' : '🚀 Enroll & Launch iGOT Module')}
+            ${isPDF ? '📄 Open Syllabus PDF & Take Quiz' : (rec.is_enrolled ? '▶️ Review iGOT Module & Take Quiz' : '🚀 Launch iGOT Pinpoint Module')}
           </button>
         </div>
       `;
