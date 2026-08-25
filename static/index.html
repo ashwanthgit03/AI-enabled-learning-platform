@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learner Portal - MoSPI AI Personalized Learning Platform (SIH)</title>
+  <title>GovLearn AI - India's Official Statistical System Platform (SIH)</title>
   <link rel="stylesheet" href="/static/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <!-- Glass Navbar (Private Employee Portal - No Creator Switcher) -->
+  <!-- Top White Glass Navbar -->
   <nav class="navbar">
     <div class="nav-brand">
-      <span>🏛️ MoSPI Interactive Learning System</span>
-      <span class="brand-badge">iGOT KARMAYOGI INTEGRATED</span>
+      <span style="font-size: 1.5rem;">🤖</span>
+      <div>
+        <span style="font-weight: 800; font-size: 1.15rem; color: #172033;">GovLearn AI</span>
+        <span class="brand-badge">MoSPI iGOT KARMAYOGI</span>
+      </div>
     </div>
     <div class="nav-links">
-      <div id="nav-user-badge" style="display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid var(--border-light);">
+      <div id="nav-user-badge" style="display: flex; align-items: center; gap: 0.75rem; background: #f8fafc; padding: 0.4rem 0.8rem; border-radius: 30px; border: 1px solid #edf0f4;">
         <span style="font-size: 0.8rem; color: var(--text-muted);">Active Officer:</span>
-        <strong style="color: var(--accent);" id="nav-officer-info">Not Logged In</strong>
-        <button class="btn btn-secondary" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="handleLogout()">Logout</button>
+        <strong style="color: var(--primary);" id="nav-officer-info">Not Logged In</strong>
+        <button class="btn btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem; border-radius: 20px;" onclick="handleLogout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -30,15 +33,15 @@
     <div class="step-bar">
       <div class="step-item active" id="step-nav-1" onclick="switchStep(1)">
         <span class="step-number">1</span>
-        <span>Role & Eligibility</span>
+        <span>Role & Benchmark</span>
       </div>
       <div class="step-item" id="step-nav-2" onclick="switchStep(2)">
         <span class="step-number">2</span>
-        <span>Baseline Quiz</span>
+        <span>Baseline Assessment</span>
       </div>
       <div class="step-item" id="step-nav-3" onclick="switchStep(3)">
         <span class="step-number">3</span>
-        <span>Skill Gap Radar</span>
+        <span>Skill Gap Matrix</span>
       </div>
       <div class="step-item" id="step-nav-4" onclick="switchStep(4)">
         <span class="step-number">4</span>
@@ -46,18 +49,18 @@
       </div>
       <div class="step-item" id="step-nav-5" onclick="switchStep(5)">
         <span class="step-number">5</span>
-        <span>Intermediate Quiz & Badges</span>
+        <span>Intermediate Evaluation</span>
       </div>
     </div>
 
     <!-- STEP 1: ROLE SELECTION & ELIGIBILITY CHECK -->
     <div id="step-content-1">
-      <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
+      <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
           <div>
-            <h2 class="text-gradient">Step 1: Select Your Government Role & Check Eligibility</h2>
+            <h2 class="text-gradient" style="font-size: 1.6rem;">Step 1: Select Your Government Role & Check Eligibility</h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
-              Select your target statistical role. The platform will compare your current skills against the official Creator benchmarks set by MoSPI.
+              Choose your target statistical role. The platform evaluates your baseline skills against official Creator benchmark standards.
             </p>
           </div>
         </div>
@@ -65,7 +68,7 @@
 
       <!-- LIVE ROLE SEARCH & FILTER BAR -->
       <div style="margin-bottom: 1.5rem; position: relative;">
-        <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Sampling, GDP, Price Index)..." style="width: 100%; padding: 0.9rem 1.2rem; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--accent); border-radius: 12px; color: #fff; font-size: 0.95rem; outline: none; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.15);">
+        <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Sampling, GDP, Price Index)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
       </div>
 
       <div class="role-grid" id="learner-role-grid">
@@ -73,16 +76,16 @@
       </div>
 
       <div style="margin-top: 2rem; text-align: right;">
-        <button class="btn btn-primary" onclick="proceedToBaselineQuiz()" id="btn-to-step2" disabled>Proceed to Diagnostic Quiz ➔</button>
+        <button class="btn btn-primary" onclick="proceedToBaselineQuiz()" id="btn-to-step2" disabled>Proceed to Diagnostic Assessment ➔</button>
       </div>
     </div>
 
     <!-- STEP 2: DIAGNOSTIC BASELINE QUIZ -->
     <div id="step-content-2" class="hidden">
       <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2>Step 2: Diagnostic Baseline Assessment Quiz</h2>
+        <h2 class="text-gradient">Step 2: Diagnostic Baseline Assessment Quiz</h2>
         <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
-          Answer these diagnostic questions to evaluate your current knowledge level against required role benchmarks.
+          Complete these diagnostic evaluation questions to measure your current competency level against role benchmark requirements.
         </p>
       </div>
 
@@ -91,50 +94,50 @@
       </div>
 
       <div style="margin-top: 1.5rem; text-align: right;">
-        <button class="btn btn-success" onclick="submitBaselineQuiz()">Submit Diagnostic Quiz & Calculate Gaps ➔</button>
+        <button class="btn btn-success" onclick="submitBaselineQuiz()">Submit Diagnostic Quiz & Calculate Skill Gaps ➔</button>
       </div>
     </div>
 
     <!-- STEP 3: SKILL GAP RADAR DASHBOARD -->
     <div id="step-content-3" class="hidden">
       <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2>Step 3: Identified Competency Skill Gaps</h2>
+        <h2 class="text-gradient">Step 3: Identified Competency Skill Gaps</h2>
         <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Comparing your current quiz score against the required role benchmark.
+          Comparing baseline assessment scores against required Creator target benchmarks.
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem;">
         <div class="glass-card">
-          <h3>🕸️ Competency Radar Analysis</h3>
-          <div style="max-height: 320px; position: relative;">
+          <h3 style="margin-bottom: 1rem;">🕸️ Competency Radar Analysis</h3>
+          <div style="height: 360px; position: relative;">
             <canvas id="gapRadarChart"></canvas>
           </div>
         </div>
 
         <div class="glass-card">
-          <h3>📊 Competency Gap Cards</h3>
-          <div id="gap-cards-container" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+          <h3 style="margin-bottom: 1rem;">🎯 Competency Gap Cards</h3>
+          <div id="gap-cards-container" style="display: flex; flex-direction: column; gap: 1rem;">
             <!-- Rendered dynamically -->
           </div>
         </div>
       </div>
 
       <div style="margin-top: 2rem; text-align: right;">
-        <button class="btn btn-primary" onclick="fetchAndDisplayRecommendations()">Fetch iGOT Karmayogi Courses ➔</button>
+        <button class="btn btn-primary" onclick="fetchAndDisplayRecommendations()">Fetch iGOT Karmayogi Recommended Courses ➔</button>
       </div>
     </div>
 
     <!-- STEP 4: iGOT RECOMMENDATIONS & LEARNING -->
     <div id="step-content-4" class="hidden">
       <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2>Step 4: iGOT Karmayogi Recommended Training Feed</h2>
+        <h2 class="text-gradient">Step 4: iGOT Karmayogi Recommended Training Feed</h2>
         <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Scraped and indexed directly from the iGOT Karmayogi national platform (igotkarmayogi.gov.in) and internal MoSPI creator repositories.
+          Scraped and indexed directly from the iGOT Karmayogi national platform (igotkarmayogi.gov.in) and MoSPI training repositories.
         </p>
       </div>
 
-      <div class="rec-grid" id="rec-cards-container">
+      <div class="role-grid" id="rec-cards-container">
         <!-- Rendered dynamically -->
       </div>
     </div>
@@ -142,9 +145,9 @@
     <!-- STEP 5: INTERMEDIATE POST-QUIZ & BADGES -->
     <div id="step-content-5" class="hidden">
       <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2>Step 5: Post-Course Intermediate Quiz & iGOT Badge Claim</h2>
+        <h2 class="text-gradient">Step 5: Post-Course Intermediate Quiz & Badge Claim</h2>
         <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Complete this intermediate comprehension test after taking the course to update your official competency profile!
+          Complete this intermediate comprehension test after reviewing the course to update your official competency score!
         </p>
       </div>
 
@@ -153,7 +156,7 @@
         <div class="glass-card">
           <h3 style="margin-bottom: 1rem;">✍️ Intermediate Knowledge Check</h3>
           <div id="intermediate-quiz-box">
-            <p style="color: var(--text-muted);">Select a course from Step 4 to launch your intermediate quiz.</p>
+            <p style="color: var(--text-muted);">Select a course from Step 4 to launch your intermediate evaluation quiz.</p>
           </div>
           <button class="btn btn-success" id="btn-submit-int-quiz" style="margin-top: 1.5rem; width: 100%; justify-content: center; display: none;" onclick="submitIntermediateQuiz()">
             Submit Intermediate Quiz & Update Profile
@@ -162,8 +165,8 @@
 
         <!-- Real-Time Updated Profile & Badges -->
         <div class="glass-card">
-          <h3>🏆 Live Competency Profile & iGOT Badges</h3>
-          <div id="live-profile-box" style="margin-top: 1rem;">
+          <h3 style="margin-bottom: 1rem;">🏆 Live Competency Profile & iGOT Badges</h3>
+          <div id="live-profile-box">
             <!-- Profile state rendered dynamically -->
           </div>
         </div>
@@ -173,53 +176,57 @@
   </div>
 
   <!-- AUTHENTICATION (LOGIN / REGISTER) MODAL -->
-  <div id="auth-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px); z-index: 2000; display: flex; align-items: center; justify-content: center;">
-    <div class="glass-card" style="width: 90%; max-width: 440px; border: 1px solid var(--accent); padding: 2.5rem; border-radius: 20px;">
+  <div id="auth-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); z-index: 2000; display: flex; align-items: center; justify-content: center;">
+    <div class="glass-card" style="width: 95%; max-width: 480px; background: #ffffff; border: 1px solid #edf0f4; padding: 2.5rem; border-radius: 24px; box-shadow: 0 25px 70px rgba(30, 41, 59, 0.2);">
       
       <div style="text-align: center; margin-bottom: 1.5rem;">
-        <span style="font-size: 2.5rem;">🏛️</span>
-        <h2 style="color: #fff; font-size: 1.5rem; margin-top: 0.5rem;" id="auth-modal-title">Government Employee Login</h2>
-        <p style="color: var(--text-muted); font-size: 0.85rem;" id="auth-modal-subtitle">Access the MoSPI AI Learning Portal</p>
+        <div style="width: 58px; height: 58px; background: #eff6ff; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; border: 1px solid #bfdbfe; margin-bottom: 0.75rem;">🤖</div>
+        <h2 style="color: #172033; font-size: 1.6rem;" id="auth-modal-title">Government Officer Login</h2>
+        <p style="color: #64748b; font-size: 0.85rem;" id="auth-modal-subtitle">Sign in to continue your competency learning journey</p>
       </div>
 
       <!-- Auth Mode Switcher Tabs -->
-      <div style="display: flex; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.3rem; margin-bottom: 1.5rem;">
-        <button type="button" id="tab-auth-login" class="btn btn-primary" style="flex: 1; justify-content: center; border-radius: 6px; font-size: 0.85rem;" onclick="switchAuthTab('login')">Login</button>
-        <button type="button" id="tab-auth-register" class="btn btn-secondary" style="flex: 1; justify-content: center; border-radius: 6px; font-size: 0.85rem;" onclick="switchAuthTab('register')">Register New Officer</button>
+      <div style="display: flex; background: #f1f5f9; border-radius: 10px; padding: 0.3rem; margin-bottom: 1.5rem;">
+        <button type="button" id="tab-auth-login" class="btn btn-primary" style="flex: 1; justify-content: center; border-radius: 8px; font-size: 0.85rem;" onclick="switchAuthTab('login')">Login</button>
+        <button type="button" id="tab-auth-register" class="btn btn-secondary" style="flex: 1; justify-content: center; border-radius: 8px; font-size: 0.85rem;" onclick="switchAuthTab('register')">Register New Officer</button>
       </div>
 
       <!-- LOGIN FORM -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Government Employee ID</label>
-          <input type="text" id="login-user-id" placeholder="e.g. EMP-101" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Employee ID</label>
+          <div style="position: relative; margin-top: 0.3rem;">
+            <input type="text" id="login-user-id" placeholder="Enter your employee ID (e.g. EMP-101)" required style="width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none;">
+          </div>
         </div>
         <div style="margin-bottom: 1.5rem;">
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Password</label>
-          <input type="password" id="login-password" placeholder="••••••••" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Password</label>
+          <div style="position: relative; margin-top: 0.3rem;">
+            <input type="password" id="login-password" placeholder="Enter your password" required style="width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none;">
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">Login to Platform ➔</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">Sign In ➔</button>
       </form>
 
       <!-- REGISTER FORM -->
       <form id="register-form" class="hidden" onsubmit="handleRegisterSubmit(event)">
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Officer Full Name</label>
-          <input type="text" id="reg-name" placeholder="e.g. Officer Ramesh Kumar" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Officer Full Name</label>
+          <input type="text" id="reg-name" placeholder="e.g. Officer Ramesh Kumar" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Government Employee ID</label>
-          <input type="text" id="reg-user-id" placeholder="e.g. EMP-102" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Employee ID</label>
+          <input type="text" id="reg-user-id" placeholder="e.g. EMP-102" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Department / Division</label>
-          <input type="text" id="reg-dept" placeholder="e.g. Price Statistics Division" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
+          <input type="text" id="reg-dept" placeholder="e.g. Price Statistics Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1.5rem;">
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Create Password</label>
-          <input type="password" id="reg-password" placeholder="••••••••" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Create Password</label>
+          <input type="password" id="reg-password" placeholder="••••••••" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
-        <button type="submit" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.8rem;">Register Officer & Save Account ➔</button>
+        <button type="submit" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">Register Officer & Save Account ➔</button>
       </form>
 
       <div id="auth-error-msg" style="margin-top: 1rem; font-size: 0.85rem; text-align: center;"></div>
@@ -228,9 +235,9 @@
   </div>
 
   <!-- EMBEDDED iGOT COURSE PLAYER MODAL -->
-  <div id="course-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; display: flex; align-items: center; justify-content: center;">
-    <div class="glass-card" style="width: 90%; max-width: 850px; background: #0f172a; border: 1px solid var(--accent); position: relative; padding: 2rem;">
-      <button onclick="closeCourseModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">✕</button>
+  <div id="course-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+    <div class="glass-card" style="width: 90%; max-width: 800px; background: #ffffff; border: 1px solid #edf0f4; position: relative; padding: 2rem; box-shadow: 0 25px 70px rgba(15, 23, 42, 0.2);">
+      <button onclick="closeCourseModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.5rem; cursor: pointer;">✕</button>
       <div id="modal-content">
         <!-- Embedded course video / details -->
       </div>

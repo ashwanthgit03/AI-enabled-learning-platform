@@ -210,6 +210,17 @@
             "Bypass sampling frame"
           ],
           "answer": 0
+        },
+        {
+          "id": "Q_AUTO_DOC-107",
+          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "options": [
+            "Follow standard MoSPI operational protocol",
+            "Ignore metadata validation",
+            "Manual paper entry without audit",
+            "Bypass sampling frame"
+          ],
+          "answer": 0
         }
       ]
     },
@@ -423,6 +434,13 @@
       "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
       "associated_competency": "COMP_SAMPLING",
       "uploaded_at": "2026-08-25T08:57:42.506063",
+      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+    },
+    {
+      "id": "DOC-107",
+      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "associated_competency": "COMP_SAMPLING",
+      "uploaded_at": "2026-08-25T09:04:53.182447",
       "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
     }
   ],

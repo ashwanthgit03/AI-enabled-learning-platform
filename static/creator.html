@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creator & Admin Suite - MoSPI AI Learning Platform (SIH)</title>
+  <title>GovLearn AI - Creator & Admin Control Center (SIH)</title>
   <link rel="stylesheet" href="/static/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -12,11 +12,14 @@
   <!-- Top Glass Navbar (Isolated Admin Suite - No Switcher to Learner Portal) -->
   <nav class="navbar">
     <div class="nav-brand">
-      <span>🏛️ MoSPI Creator & Admin Suite</span>
-      <span class="brand-badge">ADMIN CONTROL CENTER</span>
+      <span style="font-size: 1.5rem;">🤖</span>
+      <div>
+        <span style="font-weight: 800; font-size: 1.15rem; color: #172033;">GovLearn AI</span>
+        <span class="brand-badge">ADMIN CONTROL CENTER</span>
+      </div>
     </div>
     <div class="nav-links">
-      <span style="font-size: 0.85rem; color: var(--text-muted);">Smart India Hackathon (SIH) Portal</span>
+      <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Smart India Hackathon (SIH) Suite</span>
     </div>
   </nav>
 
@@ -24,8 +27,8 @@
   <div class="creator-layout">
 
     <!-- LEFT SIDEBAR VERTICAL NAVIGATION -->
-    <div class="creator-sidebar">
-      <div class="sidebar-heading">Management Portal</div>
+    <aside class="creator-sidebar">
+      <div class="sidebar-heading">MAIN MENU</div>
 
       <button type="button" class="sidebar-btn active" id="tab-btn-roles" onclick="switchCreatorTab('roles')">
         <span>🏛️</span> Government Roles
@@ -39,7 +42,7 @@
         <span>📄</span> Syllabus PDF Ingestion
       </button>
 
-      <div class="sidebar-heading" style="margin-top: 1rem;">Quiz Engine</div>
+      <div class="sidebar-heading">QUIZ ENGINE</div>
 
       <button type="button" class="sidebar-btn" id="tab-btn-baseline-quiz" onclick="switchCreatorTab('baseline-quiz')">
         <span>✍️</span> Starting Baseline Quizzes
@@ -49,7 +52,7 @@
         <span>🏆</span> Intermediate Quizzes
       </button>
 
-      <div class="sidebar-heading" style="margin-top: 1rem;">Registry & Analytics</div>
+      <div class="sidebar-heading">REGISTRY & ANALYTICS</div>
 
       <button type="button" class="sidebar-btn" id="tab-btn-employees" onclick="switchCreatorTab('employees')">
         <span>👥</span> Registered Employees
@@ -58,10 +61,10 @@
       <button type="button" class="sidebar-btn" id="tab-btn-analytics" onclick="switchCreatorTab('analytics')">
         <span>📊</span> Department Analytics
       </button>
-    </div>
+    </aside>
 
     <!-- MAIN CONTENT AREA -->
-    <div class="creator-content">
+    <main class="creator-content">
 
       <!-- SECTION 1: DEFINE ROLES -->
       <div id="tab-content-roles">
@@ -72,45 +75,45 @@
             <form id="create-role-form" onsubmit="handleCreateRole(event)">
               
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Role Code / Unique ID</label>
-                <input type="text" id="role-id" placeholder="Role Code (e.g., ROLE_DIRECTOR_NAS)" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Code / Unique ID</label>
+                <input type="text" id="role-id" placeholder="Role Code (e.g., ROLE_DIRECTOR_NAS)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Role Title</label>
-                <input type="text" id="role-title" placeholder="Role Title" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Title</label>
+                <input type="text" id="role-title" placeholder="Role Title" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Department / Division</label>
-                <input type="text" id="role-dept" placeholder="Department / Division" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
+                <input type="text" id="role-dept" placeholder="Department / Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Eligibility Criteria</label>
-                <textarea id="role-eligibility" rows="2" placeholder="Required Educational Qualification & Standards" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;"></textarea>
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Eligibility Criteria</label>
+                <textarea id="role-eligibility" rows="2" placeholder="Required Educational Qualification & Standards" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Required Experience (Years)</label>
-                <input type="number" id="role-exp" min="0" placeholder="Years of Experience" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Required Experience (Years)</label>
+                <input type="number" id="role-exp" min="0" placeholder="Years of Experience" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1.5rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Description</label>
-                <textarea id="role-desc" rows="2" placeholder="Detailed Role Description and Key Job Responsibilities" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;"></textarea>
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Description</label>
+                <textarea id="role-desc" rows="2" placeholder="Detailed Role Description and Key Job Responsibilities" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
               </div>
 
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <h4 style="color: var(--accent-amber);">Required Competency Benchmark Targets</h4>
+                <h4 style="color: var(--accent-amber); font-size: 0.95rem;">Required Competency Benchmark Targets</h4>
                 <button type="button" class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="addCompetencyInputRow()">+ Add Competency</button>
               </div>
               
               <div id="competencies-container">
                 <div class="comp-row" style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-                  <input type="text" class="comp-code" placeholder="Code (e.g. COMP_NAS)" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
-                  <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
-                  <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="comp-code" placeholder="Code (e.g. COMP_NAS)" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+                  <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+                  <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
               </div>
 
@@ -134,40 +137,40 @@
           <div class="glass-card">
             <h3 class="text-gradient">🎓 Add iGOT Karmayogi Course</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
-              Index courses from <a href="https://igotkarmayogi.gov.in/#/" target="_blank" style="color: var(--accent-cyan);">igotkarmayogi.gov.in ↗</a> into the platform.
+              Index courses from <a href="https://igotkarmayogi.gov.in/#/" target="_blank" style="color: var(--primary); font-weight: 700;">igotkarmayogi.gov.in ↗</a> into the platform.
             </p>
 
             <form id="create-igot-course-form" onsubmit="handleCreateIGOTCourse(event)">
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Course ID</label>
-                <input type="text" id="igot-cid" placeholder="e.g. IGOT-STAT-105" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Course ID</label>
+                <input type="text" id="igot-cid" placeholder="e.g. IGOT-STAT-105" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Course Title</label>
-                <input type="text" id="igot-title" placeholder="Course Title" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Course Title</label>
+                <input type="text" id="igot-title" placeholder="Course Title" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Government Provider</label>
-                <input type="text" id="igot-provider" placeholder="e.g. National Statistical Systems Training Academy (NSSTA)" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Provider</label>
+                <input type="text" id="igot-provider" placeholder="e.g. National Statistical Systems Training Academy (NSSTA)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Target Competency Code</label>
-                <select id="igot-comp" required style="width: 100%; padding: 0.75rem; background: rgba(15,23,42,0.9); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
+                <select id="igot-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
                   <!-- Dynamic options -->
                 </select>
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">iGOT Portal Course URL</label>
-                <input type="url" id="igot-url" placeholder="https://igotkarmayogi.gov.in/..." required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">iGOT Portal Course URL</label>
+                <input type="url" id="igot-url" placeholder="https://igotkarmayogi.gov.in/..." required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
               </div>
 
               <div style="margin-bottom: 1.5rem;">
-                <label style="font-size: 0.85rem; color: var(--text-muted);">Description</label>
-                <textarea id="igot-desc" rows="2" placeholder="Course syllabus overview..." required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;"></textarea>
+                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Description</label>
+                <textarea id="igot-desc" rows="2" placeholder="Course syllabus overview..." required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Index iGOT Course to Database</button>
@@ -196,20 +199,20 @@
 
           <form id="upload-material-form" onsubmit="handleUploadMaterial(event)">
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Document Title</label>
-              <input type="text" id="mat-title" placeholder="Document Title" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Document Title</label>
+              <input type="text" id="mat-title" placeholder="Document Title" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Target Competency Code</label>
-              <select id="mat-comp" required style="width: 100%; padding: 0.75rem; background: rgba(15,23,42,0.9); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
+              <select id="mat-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
                 <!-- Dynamic options -->
               </select>
             </div>
 
-            <div style="margin-bottom: 1.5rem; border: 2px dashed var(--border-light); border-radius: 12px; padding: 2rem; text-align: center; cursor: pointer; background: rgba(255,255,255,0.02);">
+            <div style="margin-bottom: 1.5rem; border: 2px dashed #cbd5e1; border-radius: 14px; padding: 2.5rem; text-align: center; cursor: pointer; background: #f8fafc;">
               <div style="font-size: 2.5rem;">📁</div>
-              <p style="font-weight: 600; margin-top: 0.5rem;">Drag & drop PDF / DOCX file here</p>
+              <p style="font-weight: 700; margin-top: 0.5rem; color: #172033;">Drag & drop PDF / DOCX file here</p>
               <p style="font-size: 0.8rem; color: var(--text-muted);">or click to browse files from your machine</p>
               <input type="file" id="mat-file" style="margin-top: 1rem; color: var(--text-muted);">
             </div>
@@ -231,35 +234,35 @@
           
           <form onsubmit="handleCustomQuizSubmit(event, 'baseline')">
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Target Competency Code</label>
-              <select id="b-q-comp" required style="width: 100%; padding: 0.75rem; background: rgba(15,23,42,0.9); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
+              <select id="b-q-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
                 <!-- Dynamic options -->
               </select>
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Baseline Question Text</label>
-              <textarea id="b-q-text" rows="2" placeholder="e.g., What sampling methodology is used for NSO Socio-Economic surveys?" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;"></textarea>
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Baseline Question Text</label>
+              <textarea id="b-q-text" rows="2" placeholder="e.g., What sampling methodology is used for NSO Socio-Economic surveys?" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Options (Select Radio for Correct Answer)</label>
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Options (Select Radio for Correct Answer)</label>
               <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.3rem;">
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="b-correct-opt" value="0" checked>
-                  <input type="text" class="b-q-opt" placeholder="Option A" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="b-q-opt" placeholder="Option A" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="b-correct-opt" value="1">
-                  <input type="text" class="b-q-opt" placeholder="Option B" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="b-q-opt" placeholder="Option B" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="b-correct-opt" value="2">
-                  <input type="text" class="b-q-opt" placeholder="Option C" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="b-q-opt" placeholder="Option C" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="b-correct-opt" value="3">
-                  <input type="text" class="b-q-opt" placeholder="Option D" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="b-q-opt" placeholder="Option D" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
               </div>
             </div>
@@ -279,35 +282,35 @@
           
           <form onsubmit="handleCustomQuizSubmit(event, 'intermediate')">
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Target Competency Code</label>
-              <select id="i-q-comp" required style="width: 100%; padding: 0.75rem; background: rgba(15,23,42,0.9); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
+              <select id="i-q-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
                 <!-- Dynamic options -->
               </select>
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Intermediate Evaluation Question Text</label>
-              <textarea id="i-q-text" rows="2" placeholder="e.g., How is the design effect (Deff) calculated in complex survey sampling?" required style="width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; margin-top: 0.3rem;"></textarea>
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Intermediate Evaluation Question Text</label>
+              <textarea id="i-q-text" rows="2" placeholder="e.g., How is the design effect (Deff) calculated in complex survey sampling?" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; color: var(--text-muted);">Options (Select Radio for Correct Answer)</label>
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Options (Select Radio for Correct Answer)</label>
               <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.3rem;">
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="i-correct-opt" value="0" checked>
-                  <input type="text" class="i-q-opt" placeholder="Option A" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="i-q-opt" placeholder="Option A" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="i-correct-opt" value="1">
-                  <input type="text" class="i-q-opt" placeholder="Option B" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="i-q-opt" placeholder="Option B" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="i-correct-opt" value="2">
-                  <input type="text" class="i-q-opt" placeholder="Option C" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="i-q-opt" placeholder="Option C" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <input type="radio" name="i-correct-opt" value="3">
-                  <input type="text" class="i-q-opt" placeholder="Option D" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+                  <input type="text" class="i-q-opt" placeholder="Option D" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
                 </div>
               </div>
             </div>
@@ -328,7 +331,7 @@
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
               <thead>
-                <tr style="border-bottom: 1px solid var(--border-light); color: var(--primary);">
+                <tr style="border-bottom: 2px solid var(--border-light); color: var(--primary); background: #f8fafc;">
                   <th style="padding: 0.75rem;">Employee ID</th>
                   <th style="padding: 0.75rem;">Officer Name</th>
                   <th style="padding: 0.75rem;">Department</th>
@@ -350,21 +353,21 @@
       <div id="tab-content-analytics" class="hidden">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
           <div class="glass-card" style="text-align: center;">
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Registered Employees</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Registered Employees</p>
             <h2 style="font-size: 2.5rem; color: var(--primary);" id="stat-users">0</h2>
           </div>
           <div class="glass-card" style="text-align: center;">
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Active Government Roles</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Active Government Roles</p>
             <h2 style="font-size: 2.5rem; color: var(--accent-amber);" id="stat-roles">0</h2>
           </div>
           <div class="glass-card" style="text-align: center;">
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Uploaded Syllabus Documents</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Uploaded Syllabus Documents</p>
             <h2 style="font-size: 2.5rem; color: var(--accent-cyan);" id="stat-docs">0</h2>
           </div>
         </div>
 
         <div class="glass-card">
-          <h3>📊 Department Skill Readiness Overview</h3>
+          <h3 style="margin-bottom: 0.5rem;">📊 Department Skill Readiness Overview</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Average employee scores per statistical competency benchmark.</p>
           <div style="max-height: 350px;">
             <canvas id="analyticsChart"></canvas>
@@ -372,7 +375,7 @@
         </div>
       </div>
 
-    </div>
+    </main>
 
   </div>
 

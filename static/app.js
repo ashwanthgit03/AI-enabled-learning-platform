@@ -56,8 +56,8 @@ function switchAuthTab(mode) {
     regForm.classList.add('hidden');
     btnLogin.className = 'btn btn-primary';
     btnReg.className = 'btn btn-secondary';
-    title.innerText = "Government Employee Login";
-    subtitle.innerText = "Access the MoSPI AI Learning Portal";
+    title.innerText = "Government Officer Login";
+    subtitle.innerText = "Sign in to continue your competency learning journey";
   } else {
     loginForm.classList.add('hidden');
     regForm.classList.remove('hidden');
@@ -74,7 +74,7 @@ async function handleLoginSubmit(e) {
   const pass = document.getElementById('login-password').value;
   const errMsg = document.getElementById('auth-error-msg');
 
-  errMsg.innerHTML = '<span style="color: var(--accent);">⏳ Authenticating...</span>';
+  errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Authenticating...</span>';
 
   try {
     const res = await fetch('/api/v1/auth/login', {
@@ -95,10 +95,10 @@ async function handleLoginSubmit(e) {
       loadLearnerRoles();
       loadLiveUserProfile();
     } else {
-      errMsg.innerHTML = `<span style="color: var(--accent-rose);">❌ ${data.detail}</span>`;
+      errMsg.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
     }
   } catch (err) {
-    errMsg.innerHTML = '<span style="color: var(--accent-rose);">❌ Network error during login.</span>';
+    errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Network error during login.</span>';
   }
 }
 
@@ -110,7 +110,7 @@ async function handleRegisterSubmit(e) {
   const pass = document.getElementById('reg-password').value;
   const errMsg = document.getElementById('auth-error-msg');
 
-  errMsg.innerHTML = '<span style="color: var(--accent);">⏳ Creating account...</span>';
+  errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Creating account...</span>';
 
   try {
     const res = await fetch('/api/v1/auth/register', {
@@ -132,10 +132,10 @@ async function handleRegisterSubmit(e) {
       loadLearnerRoles();
       loadLiveUserProfile();
     } else {
-      errMsg.innerHTML = `<span style="color: var(--accent-rose);">❌ ${data.detail}</span>`;
+      errMsg.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
     }
   } catch (err) {
-    errMsg.innerHTML = '<span style="color: var(--accent-rose);">❌ Registration failed.</span>';
+    errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Registration failed.</span>';
   }
 }
 
@@ -210,11 +210,11 @@ function renderLearnerRolesGrid(roles) {
 
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <h3 style="color: #fff; font-size: 1.15rem;">${role.title}</h3>
-        <span style="font-size: 0.75rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px;">${role.department}</span>
+        <h3 style="color: #172033; font-size: 1.15rem;">${role.title}</h3>
+        <span style="font-size: 0.75rem; background: #eff6ff; color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700;">${role.department}</span>
       </div>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.6rem 0;">${role.description}</p>
-      <p style="font-size: 0.8rem; color: var(--accent-amber); margin-bottom: 0.8rem;">
+      <p style="font-size: 0.8rem; color: var(--accent-amber); margin-bottom: 0.8rem; font-weight: 600;">
         🎓 <strong>Eligibility Benchmark:</strong> ${role.eligibility}
       </p>
       <div style="margin-top: 0.5rem;">
@@ -262,7 +262,7 @@ async function proceedToBaselineQuiz() {
     selectedBaselineAnswers = {};
 
     const box = document.getElementById('baseline-quiz-box');
-    box.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: var(--accent);">Diagnostic Questions for ${data.role_title}</h3>`;
+    box.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: var(--primary);">Diagnostic Evaluation Questions for ${data.role_title}</h3>`;
 
     if (activeBaselineQuestions.length === 0) {
       box.innerHTML += '<p style="color: var(--text-muted);">No baseline diagnostic questions created yet for this role.</p>';
@@ -273,8 +273,8 @@ async function proceedToBaselineQuiz() {
       const qDiv = document.createElement('div');
       qDiv.className = 'question-card';
       qDiv.innerHTML = `
-        <p style="font-weight: 600; font-size: 1rem; color: #fff;">
-          <span style="color: var(--accent);">Q${idx + 1}.</span> [${q.competency_name}] ${q.question}
+        <p style="font-weight: 700; font-size: 1rem; color: #172033;">
+          <span style="color: var(--primary);">Q${idx + 1}.</span> [${q.competency_name}] ${q.question}
         </p>
         <div style="margin-top: 0.8rem;">
           ${q.options.map((opt, optIdx) => `
@@ -357,15 +357,17 @@ function renderRadarChart(gapAnalysis) {
           label: 'Required Benchmark (Target %)',
           data: targets,
           borderColor: '#06b6d4',
-          backgroundColor: 'rgba(6, 182, 212, 0.2)',
-          pointBackgroundColor: '#06b6d4'
+          backgroundColor: 'rgba(6, 182, 212, 0.15)',
+          pointBackgroundColor: '#06b6d4',
+          borderWidth: 2
         },
         {
           label: 'Current Employee Score (%)',
           data: currents,
-          borderColor: '#f43f5e',
-          backgroundColor: 'rgba(244, 63, 94, 0.25)',
-          pointBackgroundColor: '#f43f5e'
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.25)',
+          pointBackgroundColor: '#2563eb',
+          borderWidth: 3
         }
       ]
     },
@@ -374,16 +376,16 @@ function renderRadarChart(gapAnalysis) {
       maintainAspectRatio: false,
       scales: {
         r: {
-          angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-          grid: { color: 'rgba(255, 255, 255, 0.1)' },
-          pointLabels: { color: '#f8fafc', font: { size: 11 } },
-          ticks: { color: '#94a3b8', backdropColor: 'transparent' },
+          angleLines: { color: '#e2e8f0' },
+          grid: { color: '#f1f5f9' },
+          pointLabels: { color: '#172033', font: { size: 12, weight: '700' } },
+          ticks: { color: '#64748b', backdropColor: 'transparent' },
           min: 0,
           max: 100
         }
       },
       plugins: {
-        legend: { labels: { color: '#f8fafc' } }
+        legend: { labels: { color: '#172033', font: { weight: '600' } } }
       }
     }
   });
@@ -398,18 +400,18 @@ function renderGapCards(gapAnalysis) {
     card.className = 'glass-card';
     card.style.padding = '1rem 1.25rem';
 
-    const gapColor = gap.gap_score > 30 ? 'var(--accent-rose)' : (gap.gap_score > 5 ? 'var(--accent-amber)' : 'var(--accent-green)');
+    const gapColor = gap.gap_score > 30 ? 'var(--accent-red)' : (gap.gap_score > 5 ? 'var(--accent-amber)' : 'var(--accent-green)');
 
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <strong style="color: #fff; font-size: 1rem;">${gap.competency_name}</strong>
+        <strong style="color: #172033; font-size: 1rem;">${gap.competency_name}</strong>
         <span style="color: ${gapColor}; font-weight: 700; font-size: 0.9rem;">
           ${gap.gap_score > 0 ? `Gap: ${gap.gap_score}% Deficit` : '✅ Benchmark Achieved'}
         </span>
       </div>
       <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
         <span>Current Score: ${gap.current_score}%</span>
-        <span>Creator Target: ${gap.target_benchmark}%</span>
+        <span>Target Benchmark: ${gap.target_benchmark}%</span>
       </div>
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" style="width: ${(gap.current_score / gap.target_benchmark) * 100}%;"></div>
@@ -422,7 +424,7 @@ function renderGapCards(gapAnalysis) {
 async function fetchAndDisplayRecommendations() {
   switchStep(4);
   const container = document.getElementById('rec-cards-container');
-  container.innerHTML = '<p style="color: var(--accent);">⏳ Indexing iGOT Karmayogi Courses & Uploaded Syllabus Materials...</p>';
+  container.innerHTML = '<p style="color: var(--primary);">⏳ Indexing iGOT Karmayogi Courses & Uploaded Syllabus Materials...</p>';
 
   const formData = new FormData();
   formData.append('user_id', currentUserId);
@@ -436,7 +438,7 @@ async function fetchAndDisplayRecommendations() {
 
     container.innerHTML = '';
     if (data.recommendations.length === 0) {
-      container.innerHTML = '<div class="glass-card"><p style="color: var(--accent-green);">🎉 Congratulations! All competency benchmark targets have been met. No skill gaps detected.</p></div>';
+      container.innerHTML = '<div class="glass-card"><p style="color: var(--accent-green); font-weight: 700;">🎉 Congratulations! All competency benchmark targets have been met. No skill gaps detected.</p></div>';
       return;
     }
 
@@ -453,14 +455,14 @@ async function fetchAndDisplayRecommendations() {
         <div>
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem;">
             <span class="urgency-badge urgency-${rec.urgency}">${rec.urgency} DEFICIT</span>
-            <span style="font-size: 0.75rem; color: var(--accent); background: rgba(6,182,212,0.1); padding: 0.2rem 0.5rem; border-radius: 4px;">
-              ${isPDF ? '📄 Creator Document' : '🎓 iGOT Course'}
+            <span style="font-size: 0.75rem; color: var(--primary); background: #eff6ff; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700;">
+              ${isPDF ? '📄 Creator PDF Document' : '🎓 iGOT Course'}
             </span>
           </div>
 
-          <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.4rem;">${rec.title}</h3>
+          <h3 style="color: #172033; font-size: 1.1rem; margin-bottom: 0.4rem;">${rec.title}</h3>
           <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem;">${rec.provider}</p>
-          <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 1rem;">${rec.description}</p>
+          <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">${rec.description}</p>
         </div>
 
         <div>
@@ -477,7 +479,7 @@ async function fetchAndDisplayRecommendations() {
       container.appendChild(card);
     });
   } catch (err) {
-    container.innerHTML = '<p style="color: var(--accent-rose);">Failed to load recommendations.</p>';
+    container.innerHTML = '<p style="color: var(--accent-red);">Failed to load recommendations.</p>';
   }
 }
 
@@ -516,26 +518,26 @@ function launchCoursePlayer(courseId, title, compCode, igotUrl) {
   modalContent.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
       <div>
-        <h2 style="color: #fff;">${title}</h2>
-        <p style="color: var(--accent); font-size: 0.9rem; margin-top: 0.2rem;">iGOT Karmayogi Official Interactive Training Module</p>
+        <h2 style="color: #172033;">${title}</h2>
+        <p style="color: var(--primary); font-size: 0.9rem; font-weight: 700; margin-top: 0.2rem;">iGOT Karmayogi Official Interactive Training Module</p>
       </div>
-      <a href="${portalUrl}" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem; gap: 0.4rem; border: 1px solid var(--accent);">
+      <a href="${portalUrl}" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem; gap: 0.4rem;">
         🔗 Open Course on iGOT Portal ↗
       </a>
     </div>
     
-    <div style="background: rgba(15, 23, 42, 0.95); border-radius: 12px; border: 1px solid var(--border-light); padding: 1.5rem; margin-bottom: 1.5rem;">
-      <h4 style="color: #a5b4fc; margin-bottom: 0.5rem;">📘 Official Module Syllabus & Guidelines</h4>
-      <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.6;">
+    <div style="background: #f8fafc; border-radius: 12px; border: 1px solid #edf0f4; padding: 1.5rem; margin-bottom: 1.5rem;">
+      <h4 style="color: #1e3a8a; margin-bottom: 0.5rem;">📘 Official Module Syllabus & Guidelines</h4>
+      <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
         This module covers the core competencies required under the National Programme for Civil Services Capacity Building (iGOT Karmayogi Framework). Key topics include operational sampling guidelines, survey data estimation formulas, and data security standards.
       </p>
 
       <div style="display: flex; gap: 1rem; margin-top: 1.25rem;">
-        <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.8rem; border: 1px solid var(--border-light);">
+        <div style="flex: 1; background: #ffffff; border-radius: 8px; padding: 0.8rem; border: 1px solid #edf0f4;">
           <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">TARGET COMPETENCY</span>
-          <strong style="color: var(--accent);">${compCode}</strong>
+          <strong style="color: var(--primary);">${compCode}</strong>
         </div>
-        <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.8rem; border: 1px solid var(--border-light);">
+        <div style="flex: 1; background: #ffffff; border-radius: 8px; padding: 0.8rem; border: 1px solid #edf0f4;">
           <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">GOVERNMENT ISSUER</span>
           <strong style="color: var(--accent-green);">MoSPI / iGOT Karmayogi</strong>
         </div>
@@ -543,9 +545,9 @@ function launchCoursePlayer(courseId, title, compCode, igotUrl) {
     </div>
 
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-size: 0.85rem; color: var(--accent-green);">✅ Status: Course Enrolled & Syllabus Reviewed</span>
+      <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700;">✅ Status: Course Enrolled & Syllabus Reviewed</span>
       <button class="btn btn-success" onclick="closeCourseModalAndStartQuiz('${compCode}')">
-        Take Intermediate Quiz & Update Skill Profile ➔
+        Take Intermediate Evaluation Quiz & Update Skill Profile ➔
       </button>
     </div>
   `;
@@ -570,13 +572,13 @@ async function loadIntermediateQuiz(compCode) {
     selectedIntermediateAnswers = {};
 
     const box = document.getElementById('intermediate-quiz-box');
-    box.innerHTML = `<p style="color: var(--accent); font-weight: 600; margin-bottom: 1rem;">Testing comprehension for ${compCode}:</p>`;
+    box.innerHTML = `<p style="color: var(--primary); font-weight: 700; margin-bottom: 1rem;">Testing comprehension for ${compCode}:</p>`;
 
     activeIntermediateQuestions.forEach((q, idx) => {
       const qDiv = document.createElement('div');
       qDiv.className = 'question-card';
       qDiv.innerHTML = `
-        <p style="font-weight: 600; font-size: 0.95rem; color: #fff;">
+        <p style="font-weight: 700; font-size: 0.95rem; color: #172033;">
           Q${idx + 1}. ${q.question}
         </p>
         <div style="margin-top: 0.6rem;">
@@ -653,20 +655,20 @@ async function loadLiveUserProfile() {
 
     let html = `
       <div style="margin-bottom: 1rem;">
-        <h4 style="color: var(--accent);">${data.name}</h4>
+        <h4 style="color: var(--primary); font-size: 1.1rem;">${data.name}</h4>
         <p style="font-size: 0.85rem; color: var(--text-muted);">${data.role.title} (${data.role.department})</p>
       </div>
 
-      <h5 style="color: #fff; margin-bottom: 0.5rem;">Competency Status:</h5>
+      <h5 style="color: #172033; margin-bottom: 0.5rem; font-weight: 700;">Competency Status:</h5>
       <div style="display: flex; flex-direction: column; gap: 0.8rem;">
     `;
 
     data.competencies.forEach(c => {
       const isOk = c.gap <= 5.0;
       html += `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid ${isOk ? 'var(--accent-green)' : 'var(--border-light)'}; padding: 0.75rem; border-radius: 8px;">
+        <div style="background: #f8fafc; border: 1px solid ${isOk ? '#a7f3d0' : '#edf0f4'}; padding: 0.75rem; border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
-            <strong style="color: #fff;">${c.name}</strong>
+            <strong style="color: #172033;">${c.name}</strong>
             <span style="color: ${isOk ? 'var(--accent-green)' : 'var(--accent-amber)'}; font-weight: 700;">
               ${c.current_score}% / ${c.target_benchmark}% ${isOk ? '✅' : '(Gap: ' + c.gap + '%)'}
             </span>
@@ -678,17 +680,17 @@ async function loadLiveUserProfile() {
       `;
     });
 
-    html += `</div><h5 style="color: #fff; margin-top: 1.5rem; margin-bottom: 0.5rem;">Earned iGOT Badges:</h5>`;
+    html += `</div><h5 style="color: #172033; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Earned iGOT Badges:</h5>`;
 
     if (data.badges.length === 0) {
-      html += '<p style="font-size: 0.85rem; color: var(--text-muted);">No badges earned yet. Complete intermediate quizzes to earn badges.</p>';
+      html += '<p style="font-size: 0.85rem; color: var(--text-muted);">No badges earned yet. Complete intermediate evaluation quizzes to earn badges.</p>';
     } else {
       data.badges.forEach(b => {
         html += `
           <div class="badge-card">
             <div class="badge-icon">🏅</div>
             <div>
-              <strong style="color: #fff; font-size: 0.9rem;">${b.title}</strong>
+              <strong style="color: #172033; font-size: 0.9rem;">${b.title}</strong>
               <p style="font-size: 0.75rem; color: var(--text-muted);">Issued: ${new Date(b.issued_at).toLocaleDateString()}</p>
             </div>
           </div>

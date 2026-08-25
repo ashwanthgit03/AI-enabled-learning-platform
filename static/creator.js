@@ -39,9 +39,9 @@ function addCompetencyInputRow() {
   div.style.gap = "0.5rem";
   div.style.marginBottom = "0.5rem";
   div.innerHTML = `
-    <input type="text" class="comp-code" placeholder="Code (e.g. COMP_NAS)" required style="flex: 1; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
-    <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
-    <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light); color: #fff; border-radius: 6px;">
+    <input type="text" class="comp-code" placeholder="Code (e.g. COMP_NAS)" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+    <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+    <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
   `;
   container.appendChild(div);
 }
@@ -73,11 +73,11 @@ function renderCreatorRoleList(roles) {
     card.style.padding = "1rem 1.25rem";
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <h4 style="color: #fff; font-size: 1.05rem;">${r.title}</h4>
-        <span style="font-size: 0.75rem; background: rgba(16,185,129,0.15); color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px;">${r.department}</span>
+        <h4 style="color: #172033; font-size: 1.05rem;">${r.title}</h4>
+        <span style="font-size: 0.75rem; background: #eff6ff; color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${r.department}</span>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0;">${r.description}</p>
-      <p style="font-size: 0.8rem; color: var(--accent-amber);">Eligibility: ${r.eligibility}</p>
+      <p style="font-size: 0.8rem; color: var(--accent-amber); font-weight: 600;">Eligibility: ${r.eligibility}</p>
       <div style="margin-top: 0.5rem;">
         ${r.required_competencies.map(c => `
           <span class="competency-tag" style="font-size: 0.75rem;">${c.name} (${c.target_score}%)</span>
@@ -191,12 +191,12 @@ function renderIGOTCourseList(courses) {
     card.style.padding = "1rem";
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <h4 style="color: #fff; font-size: 1rem;">${c.title}</h4>
-        <span style="font-size: 0.75rem; background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); padding: 0.2rem 0.5rem; border-radius: 4px;">${c.competency_code}</span>
+        <h4 style="color: #172033; font-size: 1rem;">${c.title}</h4>
+        <span style="font-size: 0.75rem; background: #e0f2fe; color: #0284c7; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${c.competency_code}</span>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0;">${c.provider}</p>
-      <p style="font-size: 0.8rem; color: var(--text-main); margin-bottom: 0.6rem;">${c.description}</p>
-      <a href="${c.igot_url}" target="_blank" style="font-size: 0.75rem; color: var(--accent-cyan); text-decoration: underline;">
+      <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.6rem;">${c.description}</p>
+      <a href="${c.igot_url}" target="_blank" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: underline;">
         🔗 ${c.igot_url} ↗
       </a>
     `;
@@ -261,7 +261,7 @@ async function handleUploadMaterial(e) {
   }
 
   const status = document.getElementById("upload-status");
-  status.innerHTML = '<span style="color: var(--primary);">⏳ Processing document and generating AI evaluation questions...</span>';
+  status.innerHTML = '<span style="color: var(--primary); font-weight: 700;">⏳ Processing document and generating AI evaluation questions...</span>';
 
   try {
     const res = await fetch("/api/v1/creator/upload-material", {
@@ -271,13 +271,13 @@ async function handleUploadMaterial(e) {
     const data = await res.json();
 
     if (res.ok) {
-      status.innerHTML = `<span style="color: var(--primary);">✅ ${data.message}</span>`;
+      status.innerHTML = `<span style="color: var(--accent-green); font-weight: 700;">✅ ${data.message}</span>`;
       document.getElementById("upload-material-form").reset();
     } else {
-      status.innerHTML = `<span style="color: var(--accent-rose);">❌ ${data.detail}</span>`;
+      status.innerHTML = `<span style="color: var(--accent-red); font-weight: 700;">❌ ${data.detail}</span>`;
     }
   } catch (err) {
-    status.innerHTML = '<span style="color: var(--accent-rose);">❌ Upload failed.</span>';
+    status.innerHTML = '<span style="color: var(--accent-red); font-weight: 700;">❌ Upload failed.</span>';
   }
 }
 
@@ -329,16 +329,16 @@ async function loadCreatorEmployees() {
 
     data.employees.forEach(emp => {
       const tr = document.createElement('tr');
-      tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      tr.style.borderBottom = '1px solid #edf0f4';
       const regDate = emp.created_at !== 'N/A' ? new Date(emp.created_at).toLocaleDateString() : 'N/A';
 
       tr.innerHTML = `
-        <td style="padding: 0.75rem;"><code style="color: var(--accent-cyan);">${emp.user_id}</code></td>
-        <td style="padding: 0.75rem; font-weight: 600; color: #fff;">${emp.name}</td>
+        <td style="padding: 0.75rem;"><code style="color: var(--primary); font-weight: 700;">${emp.user_id}</code></td>
+        <td style="padding: 0.75rem; font-weight: 700; color: #172033;">${emp.name}</td>
         <td style="padding: 0.75rem; color: var(--text-muted);">${emp.department}</td>
-        <td style="padding: 0.75rem; color: var(--accent-amber);">${emp.selected_role_title}</td>
+        <td style="padding: 0.75rem; color: var(--accent-amber); font-weight: 600;">${emp.selected_role_title}</td>
         <td style="padding: 0.75rem;">${emp.enrolled_count} Courses</td>
-        <td style="padding: 0.75rem;"><span style="background: rgba(16, 185, 129, 0.2); color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px;">🏅 ${emp.badge_count} Badges</span></td>
+        <td style="padding: 0.75rem;"><span style="background: #ecfdf5; color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">🏅 ${emp.badge_count} Badges</span></td>
         <td style="padding: 0.75rem; color: var(--text-muted); font-size: 0.8rem;">${regDate}</td>
       `;
       tbody.appendChild(tr);
@@ -373,8 +373,8 @@ async function loadAnalytics() {
         datasets: [{
           label: "Department Average Competency Score (%)",
           data: scores.length > 0 ? scores : [45, 60, 30],
-          backgroundColor: "rgba(16, 185, 129, 0.6)",
-          borderColor: "#10b981",
+          backgroundColor: "rgba(37, 99, 235, 0.75)",
+          borderColor: "#2563eb",
           borderWidth: 1,
           borderRadius: 6
         }]
@@ -383,11 +383,11 @@ async function loadAnalytics() {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: { min: 0, max: 100, ticks: { color: "#94a3b8" }, grid: { color: "rgba(255,255,255,0.05)" } },
-          x: { ticks: { color: "#f8fafc" }, grid: { display: false } }
+          y: { min: 0, max: 100, ticks: { color: "#64748b" }, grid: { color: "#edf0f4" } },
+          x: { ticks: { color: "#172033", font: { weight: "600" } }, grid: { display: false } }
         },
         plugins: {
-          legend: { labels: { color: "#f8fafc" } }
+          legend: { labels: { color: "#172033", font: { weight: "600" } } }
         }
       }
     });
