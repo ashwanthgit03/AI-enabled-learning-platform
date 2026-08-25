@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Top Glass Navbar (Isolated Admin Suite - No Switcher to Learner Portal) -->
+  <!-- Top Glass Navbar (Isolated Admin Suite) -->
   <nav class="navbar">
     <div class="nav-brand">
       <span style="font-size: 1.5rem;">🤖</span>
@@ -29,14 +29,20 @@
 
     <!-- LEFT SIDEBAR VERTICAL NAVIGATION -->
     <aside class="creator-sidebar">
-      <div class="sidebar-heading">MAIN MENU</div>
+      <div class="sidebar-heading">ROLE & COMPETENCY MANAGEMENT</div>
 
-      <button type="button" class="sidebar-btn active" id="tab-btn-roles" onclick="switchCreatorTab('roles')">
-        <span>🏛️</span> Government Roles
+      <button type="button" class="sidebar-btn active" id="tab-btn-create-role" onclick="switchCreatorTab('create-role')">
+        <span>➕</span> Create New Role
       </button>
 
+      <button type="button" class="sidebar-btn" id="tab-btn-active-roles" onclick="switchCreatorTab('active-roles')">
+        <span>📜</span> Active Government Roles
+      </button>
+
+      <div class="sidebar-heading">COURSE CATALOG</div>
+
       <button type="button" class="sidebar-btn" id="tab-btn-igot" onclick="switchCreatorTab('igot')">
-        <span>🎓</span> iGOT Courses
+        <span>🎓</span> iGOT Courses (100)
       </button>
 
       <button type="button" class="sidebar-btn" id="tab-btn-upload" onclick="switchCreatorTab('upload')">
@@ -67,72 +73,85 @@
     <!-- MAIN CONTENT AREA -->
     <main class="creator-content">
 
-      <!-- SECTION 1: DEFINE ROLES -->
-      <div id="tab-content-roles">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-          
-          <div class="glass-card">
-            <h3 style="margin-bottom: 1.25rem;" class="text-gradient">➕ Define New Government Role</h3>
-            <form id="create-role-form" onsubmit="handleCreateRole(event)">
-              
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Code / Unique ID</label>
-                <input type="text" id="role-id" placeholder="Role Code" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Title</label>
-                <input type="text" id="role-title" placeholder="Role Title" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
-                <input type="text" id="role-dept" placeholder="Department / Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Eligibility Criteria</label>
-                <textarea id="role-eligibility" rows="2" placeholder="Required Educational Qualification & Standards" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Required Experience (Years)</label>
-                <input type="number" id="role-exp" min="0" placeholder="Years of Experience" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1.5rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Description</label>
-                <textarea id="role-desc" rows="2" placeholder="Detailed Role Description and Key Job Responsibilities" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
-              </div>
-
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <h4 style="color: var(--accent-amber); font-size: 0.95rem;">Required Competency Benchmark Targets</h4>
-                <button type="button" class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="addCompetencyInputRow()">+ Add Competency</button>
-              </div>
-              
-              <div id="competencies-container">
-                <div class="comp-row" style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-                  <input type="text" class="comp-code" placeholder="Competency Code" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
-                  <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
-                  <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; justify-content: center;">Publish Role to Learner Portal</button>
-            </form>
-          </div>
-
-          <div class="glass-card">
-            <h3 style="margin-bottom: 1.25rem;">📜 Active Government Roles Defined</h3>
-            <div id="creator-role-list" style="display: flex; flex-direction: column; gap: 1rem;">
-              <!-- Rendered dynamically -->
+      <!-- SECTION 1: CREATE NEW ROLE -->
+      <div id="tab-content-create-role">
+        <div class="glass-card" style="max-width: 750px; margin: 0 auto;">
+          <h3 style="margin-bottom: 1.25rem;" class="text-gradient">➕ Define New Government Role</h3>
+          <form id="create-role-form" onsubmit="handleCreateRole(event)">
+            
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Code / Unique ID</label>
+              <input type="text" id="role-id" placeholder="Role Code (e.g. ROLE_CUSTOM_101)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
             </div>
-          </div>
 
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Title</label>
+              <input type="text" id="role-title" placeholder="Role Title (e.g. Senior Statistical Officer)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
+              <input type="text" id="role-dept" placeholder="Department / Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Eligibility Criteria</label>
+              <textarea id="role-eligibility" rows="2" placeholder="Required Educational Qualification & Standards" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Required Experience (Years)</label>
+              <input type="number" id="role-exp" min="0" placeholder="Years of Experience" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Description</label>
+              <textarea id="role-desc" rows="2" placeholder="Detailed Role Description and Key Job Responsibilities" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <h4 style="color: var(--accent-amber); font-size: 0.95rem;">Required Competency Benchmark Targets</h4>
+              <button type="button" class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="addCompetencyInputRow()">+ Add Competency</button>
+            </div>
+            
+            <div id="competencies-container">
+              <div class="comp-row" style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <input type="text" class="comp-code" placeholder="Competency Code" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+                <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+                <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center; padding: 0.9rem;">Publish Role to Learner Portal ➔</button>
+          </form>
         </div>
       </div>
 
-      <!-- SECTION 2: MANAGE iGOT COURSES -->
+      <!-- SECTION 2: DEDICATED ACTIVE GOVERNMENT ROLES PAGE -->
+      <div id="tab-content-active-roles" class="hidden">
+        <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h2 class="text-gradient" style="font-size: 1.6rem;">📜 Active Government Roles Defined</h2>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.2rem;">
+                View, search, edit eligibility criteria, and modify target competency benchmarks across all registered government positions.
+              </p>
+            </div>
+            <button class="btn btn-primary" onclick="switchCreatorTab('create-role')">➕ Define New Government Role</button>
+          </div>
+        </div>
+
+        <!-- SEARCH BAR FOR ACTIVE ROLES -->
+        <div style="margin-bottom: 1.5rem;">
+          <input type="text" id="creator-role-search" oninput="filterCreatorRoles(this.value)" placeholder="🔍 Search Active Roles by Job Title, Department, or Competency..." style="width: 100%; padding: 0.9rem 1.2rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 12px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
+        </div>
+
+        <div class="role-grid" id="creator-role-list">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- SECTION 3: MANAGE iGOT COURSES -->
       <div id="tab-content-igot" class="hidden">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
           <div class="glass-card">
@@ -190,7 +209,7 @@
         </div>
       </div>
 
-      <!-- SECTION 3: UPLOAD PDF -->
+      <!-- SECTION 4: UPLOAD PDF -->
       <div id="tab-content-upload" class="hidden">
         <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
           <h3 class="text-gradient">📄 Upload Training Document & Auto-Generate AI Quizzes</h3>
@@ -225,7 +244,7 @@
         </div>
       </div>
 
-      <!-- SECTION 4: STARTING BASELINE QUIZ BUILDER -->
+      <!-- SECTION 5: STARTING BASELINE QUIZ BUILDER -->
       <div id="tab-content-baseline-quiz" class="hidden">
         <div class="glass-card" style="max-width: 750px; margin: 0 auto;">
           <h3 class="text-gradient">✍️ Starting Baseline Quiz Builder</h3>
@@ -273,7 +292,7 @@
         </div>
       </div>
 
-      <!-- SECTION 5: INTERMEDIATE QUIZ BUILDER -->
+      <!-- SECTION 6: INTERMEDIATE QUIZ BUILDER -->
       <div id="tab-content-intermediate-quiz" class="hidden">
         <div class="glass-card" style="max-width: 750px; margin: 0 auto;">
           <h3 class="text-gradient-amber">🏆 Intermediate Post-Course Quiz Builder</h3>
@@ -321,7 +340,7 @@
         </div>
       </div>
 
-      <!-- SECTION 6: REGISTERED EMPLOYEES -->
+      <!-- SECTION 7: REGISTERED EMPLOYEES -->
       <div id="tab-content-employees" class="hidden">
         <div class="glass-card">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
@@ -355,7 +374,7 @@
         </div>
       </div>
 
-      <!-- SECTION 7: DEPARTMENT ANALYTICS -->
+      <!-- SECTION 8: DEPARTMENT ANALYTICS -->
       <div id="tab-content-analytics" class="hidden">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
           <div class="glass-card" style="text-align: center;">

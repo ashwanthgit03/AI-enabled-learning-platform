@@ -3675,7 +3675,7 @@
       "department": "Financial & Banking service",
       "password": "ashu@2006",
       "created_at": "2026-08-25T11:01:46.896543",
-      "selected_role_id": "ROLE_JOB_016",
+      "selected_role_id": "ROLE_JOB_003",
       "current_scores": {
         "COMP_GOVERNANCE": 0.0,
         "COMP_FINANCE": 0.0,

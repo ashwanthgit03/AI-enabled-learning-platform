@@ -55,7 +55,7 @@ function refreshAllCreatorData() {
 }
 
 function switchCreatorTab(tabName) {
-  const tabs = ['roles', 'igot', 'upload', 'baseline-quiz', 'intermediate-quiz', 'employees', 'analytics'];
+  const tabs = ['create-role', 'active-roles', 'igot', 'upload', 'baseline-quiz', 'intermediate-quiz', 'employees', 'analytics'];
   tabs.forEach(t => {
     const btn = document.getElementById(`tab-btn-${t}`);
     const content = document.getElementById(`tab-content-${t}`);
@@ -70,6 +70,7 @@ function switchCreatorTab(tabName) {
     }
   });
 
+  if (tabName === 'active-roles') loadCreatorRoles();
   if (tabName === 'analytics') loadCreatorAnalytics();
   if (tabName === 'employees') loadCreatorEmployees();
 }
@@ -86,38 +87,66 @@ async function loadCreatorRoles() {
   }
 }
 
+function filterCreatorRoles(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) {
+    renderCreatorRoles(creatorRoles);
+    return;
+  }
+
+  const filtered = creatorRoles.filter(r => {
+    const titleMatch = r.title.toLowerCase().includes(q);
+    const deptMatch = r.department.toLowerCase().includes(q);
+    const descMatch = r.description.toLowerCase().includes(q);
+    const compMatch = r.required_competencies.some(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+    return titleMatch || deptMatch || descMatch || compMatch;
+  });
+
+  renderCreatorRoles(filtered);
+}
+
 function renderCreatorRoles(roles) {
   const container = document.getElementById('creator-role-list');
   container.innerHTML = '';
 
   if (roles.length === 0) {
-    container.innerHTML = '<p style="color: var(--text-muted);">No government roles created yet.</p>';
+    container.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No matching active government roles found.</p>';
     return;
   }
 
   roles.forEach(role => {
     const card = document.createElement('div');
     card.className = 'glass-card';
-    card.style.padding = '1.2rem';
+    card.style.padding = '1.25rem';
+    card.style.display = 'flex';
+    card.style.flexDirection = 'column';
+    card.style.justifyContent = 'space-between';
 
     card.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <div>
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
           <h4 style="color: #172033; font-size: 1.1rem;">${role.title}</h4>
-          <span style="font-size: 0.75rem; color: var(--primary); background: #eff6ff; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${role.department}</span>
+          <span style="font-size: 0.75rem; color: var(--primary); background: #eff6ff; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700;">${role.department}</span>
         </div>
-        <button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="openEditRoleModal('${role.id}')">
-          ✏️ Edit & Modify Benchmarks
-        </button>
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.6rem;">${role.description}</p>
+        
+        <p style="font-size: 0.8rem; color: var(--accent-amber); font-weight: 600; margin-bottom: 0.8rem;">
+          🎓 <strong>Eligibility Benchmark:</strong> ${role.eligibility}
+        </p>
+
+        <div style="margin-bottom: 1rem;">
+          <strong style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Target Competency Benchmarks:</strong>
+          ${role.required_competencies.map(c => `
+            <span class="competency-tag">${c.name} (${c.target_score}%)</span>
+          `).join('')}
+        </div>
       </div>
 
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">${role.description}</p>
-      
-      <div style="margin-top: 0.5rem;">
-        <strong style="font-size: 0.8rem; color: var(--accent-amber); display: block; margin-bottom: 0.3rem;">Target Competency Benchmarks:</strong>
-        ${role.required_competencies.map(c => `
-          <span class="competency-tag">${c.name} (${c.target_score}%)</span>
-        `).join('')}
+      <div style="border-top: 1px solid var(--border-light); padding-top: 0.75rem; text-align: right;">
+        <button class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="openEditRoleModal('${role.id}')">
+          ✏️ Edit & Modify Benchmarks
+        </button>
       </div>
     `;
     container.appendChild(card);
@@ -178,6 +207,7 @@ async function handleCreateRole(e) {
       showFancyPopup("Role Created", data.message, "success");
       document.getElementById('create-role-form').reset();
       loadCreatorRoles();
+      switchCreatorTab('active-roles');
     } else {
       showFancyPopup("Error Creating Role", data.detail, "error");
     }
