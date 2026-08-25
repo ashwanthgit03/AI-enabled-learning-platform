@@ -388,6 +388,50 @@
   <!-- FANCY NOTIFICATION MODAL CONTAINER -->
   <div id="fancy-modal-container" class="hidden"></div>
 
+  <!-- EDIT ROLE & COMPETENCIES MODAL -->
+  <div id="edit-role-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); z-index: 2500; display: flex; align-items: center; justify-content: center;">
+    <div class="glass-card" style="width: 95%; max-width: 650px; background: #ffffff; border: 1px solid #edf0f4; padding: 2rem; border-radius: 20px; box-shadow: 0 25px 70px rgba(15, 23, 42, 0.2); max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 class="text-gradient" id="edit-role-modal-title">✏️ Modify Government Role & Competency Benchmarks</h3>
+        <button onclick="closeEditRoleModal()" style="background: none; border: none; font-size: 1.5rem; color: #64748b; cursor: pointer;">✕</button>
+      </div>
+
+      <form id="edit-role-form" onsubmit="handleSaveRoleEdit(event)">
+        <input type="hidden" id="edit-role-id">
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Role Title</label>
+          <input type="text" id="edit-role-title" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
+          <input type="text" id="edit-role-dept" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Eligibility Criteria</label>
+          <textarea id="edit-role-eligibility" rows="2" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <label style="font-size: 0.85rem; font-weight: 700; color: #ea580c;">Target Competency Benchmarks (% Target)</label>
+            <button type="button" class="btn btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="addEditCompetencyRow()">+ Add Competency</button>
+          </div>
+          <div id="edit-competencies-container" style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <!-- Dynamically populated for editing -->
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" style="flex: 1; justify-content: center;" onclick="closeEditRoleModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex: 2; justify-content: center;">Save Role Changes 💾</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="/static/creator.js"></script>
 </body>
 </html>

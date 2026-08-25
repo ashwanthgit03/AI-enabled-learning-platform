@@ -2,36 +2,21 @@
   "roles": [
     {
       "id": "ROLE_JOB_001",
-      "title": "Indian Administrative Service (IAS)",
-      "department": "Central/State Civil Services",
-      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "title": "Indian Administrative Service (IAS - Senior Cadre)",
+      "department": "Department of Personnel and Training (DoPT)",
+      "eligibility": "Master's Degree + Union Public Service Commission Civil Services Examination",
       "experience_years": 1,
       "description": "Official position responsibilities for Indian Administrative Service (IAS) within the Central/State Civil Services.",
       "required_competencies": [
         {
           "code": "COMP_GOVERNANCE",
           "name": "Governance & Civil Service Rules",
-          "target_score": 85
+          "target_score": 90.0
         },
         {
           "code": "COMP_FINANCE",
           "name": "Financial Rules & Procurement",
-          "target_score": 80
-        },
-        {
-          "code": "COMP_DATA_ANALYTICS",
-          "name": "Data Analytics & Decision Making",
-          "target_score": 75
-        },
-        {
-          "code": "COMP_IT",
-          "name": "e-Governance & Information Technology",
-          "target_score": 80
-        },
-        {
-          "code": "COMP_MANAGEMENT",
-          "name": "Public Leadership & Management",
-          "target_score": 85
+          "target_score": 85.0
         }
       ]
     },
@@ -3683,5 +3668,26 @@
       "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
     }
   ],
-  "users": {}
+  "users": {
+    "ashu_101": {
+      "user_id": "ashu_101",
+      "name": "Ashwanth S",
+      "department": "Financial & Banking service",
+      "password": "ashu@2006",
+      "created_at": "2026-08-25T11:01:46.896543",
+      "selected_role_id": "ROLE_JOB_016",
+      "current_scores": {
+        "COMP_GOVERNANCE": 0.0,
+        "COMP_FINANCE": 0.0,
+        "COMP_DATA_ANALYTICS": 0.0,
+        "COMP_IT": 0.0,
+        "COMP_MANAGEMENT": 0.0
+      },
+      "enrolled_courses": [
+        "IGOT-COURSE-001"
+      ],
+      "completed_courses": [],
+      "badges": []
+    }
+  }
 }

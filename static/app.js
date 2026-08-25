@@ -304,7 +304,10 @@ async function selectRole(roleId) {
   const selectedCard = document.getElementById(`role-card-${roleId}`);
   if (selectedCard) selectedCard.classList.add('selected');
 
-  document.getElementById('btn-to-step2').disabled = false;
+  const btnBottom = document.getElementById('btn-to-step2');
+  const btnTop = document.getElementById('btn-to-step2-top');
+  if (btnBottom) btnBottom.disabled = false;
+  if (btnTop) btnTop.disabled = false;
 
   try {
     await fetch('/api/v1/learner/select-role', {
@@ -527,7 +530,7 @@ async function fetchAndDisplayRecommendations() {
 
     container.innerHTML = '';
     if (!data.recommendations || data.recommendations.length === 0) {
-      container.innerHTML = '<div class="glass-card"><p style="color: var(--accent-green); font-weight: 700;">🎉 Congratulations! All competency benchmark targets have been met. No skill gaps detected.</p></div>';
+      container.innerHTML = '<div class="glass-card" style="padding: 2rem; text-align: center;"><h3 style="color: var(--accent-green);">🎉 Excellent Work! All Competency Benchmarks Achieved</h3><p style="color: var(--text-muted); margin-top: 0.5rem;">No knowledge gaps detected for your selected government role.</p></div>';
       return;
     }
 
@@ -536,20 +539,21 @@ async function fetchAndDisplayRecommendations() {
       card.className = 'glass-card';
       card.style.display = 'flex';
       card.style.flexDirection = 'column';
-      card.style.justifySpaceBetween = 'space-between';
+      card.style.justifyContent = 'space-between';
 
       const isPDF = rec.type === 'CREATOR_DOCUMENT_PDF';
 
       card.innerHTML = `
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem;">
-            <span class="urgency-badge urgency-${rec.urgency}">${rec.urgency} DEFICIT</span>
-            <span style="font-size: 0.75rem; color: var(--primary); background: #eff6ff; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700;">
-              ${isPDF ? '📄 Creator PDF Document' : '🎓 iGOT Course'}
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.4rem;">
+            <span class="urgency-badge urgency-${rec.urgency}">${rec.urgency} DEFICIT (${rec.gap_score}% GAP)</span>
+            <span style="font-size: 0.75rem; color: #16a34a; background: #ecfdf5; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700; border: 1px solid #a7f3d0;">
+              🤖 Semantic Match: ${rec.relevance_score || 90}%
             </span>
           </div>
 
           <h3 style="color: #172033; font-size: 1.1rem; margin-bottom: 0.4rem;">${rec.title}</h3>
+          <p style="font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 0.4rem;">⚠️ Recommended for: ${rec.target_competency}</p>
           <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem;">${rec.provider}</p>
           <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">${rec.description}</p>
         </div>

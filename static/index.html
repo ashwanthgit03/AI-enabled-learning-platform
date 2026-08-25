@@ -62,18 +62,21 @@
       <div id="step-content-1">
         <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div>
+            <div style="flex: 1;">
               <h2 class="text-gradient" style="font-size: 1.6rem;">Step 1: Select Your Government Role & Check Eligibility</h2>
               <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
-                Choose your target statistical role. The platform evaluates your baseline skills against official Creator benchmark standards.
+                Choose your target government role from below or search. The platform evaluates your baseline skills against official Creator benchmark standards.
               </p>
             </div>
+            <button class="btn btn-primary" onclick="proceedToBaselineQuiz()" id="btn-to-step2-top" disabled style="padding: 0.85rem 1.6rem; font-size: 1rem; border-radius: 12px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">
+              Proceed to Diagnostic Assessment ➔
+            </button>
           </div>
         </div>
 
         <!-- LIVE ROLE SEARCH & FILTER BAR -->
-        <div style="margin-bottom: 1.5rem; position: relative;">
-          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="Search by Government Role Title, Department, or Skill Keyword..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
+        <div style="margin-bottom: 1.5rem;">
+          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Police, IAS, Tax, Food, Statistical)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
         </div>
 
         <div class="role-grid" id="learner-role-grid">

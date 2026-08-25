@@ -1,10 +1,14 @@
-// Creator / Admin Suite Application Engine (Left Sidebar Layout)
-let rolesData = [];
-let igotCoursesData = [];
+// Creator & Admin Control Center Logic Engine
+let creatorRoles = [];
+let creatorCourses = [];
 let analyticsChartInstance = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-  refreshAllCreatorData();
+  loadCreatorRoles();
+  loadCreatorCourses();
+  loadCompetencyOptions();
+  loadCreatorEmployees();
+  loadCreatorAnalytics();
 });
 
 // Fancy Glassmorphic Popup Modal Engine
@@ -43,9 +47,11 @@ function closeFancyPopup() {
 
 function refreshAllCreatorData() {
   loadCreatorRoles();
-  loadIGOTCourses();
+  loadCreatorCourses();
+  loadCompetencyOptions();
   loadCreatorEmployees();
-  loadAnalytics();
+  loadCreatorAnalytics();
+  showFancyPopup("Database Refreshed", "All registries and roles refreshed successfully.", "success");
 }
 
 function switchCreatorTab(tabName) {
@@ -64,299 +70,383 @@ function switchCreatorTab(tabName) {
     }
   });
 
+  if (tabName === 'analytics') loadCreatorAnalytics();
   if (tabName === 'employees') loadCreatorEmployees();
-  if (tabName === 'analytics') loadAnalytics();
-  if (tabName === 'igot') loadIGOTCourses();
-}
-
-function addCompetencyInputRow() {
-  const container = document.getElementById("competencies-container");
-  const div = document.createElement("div");
-  div.className = "comp-row";
-  div.style.display = "flex";
-  div.style.gap = "0.5rem";
-  div.style.marginBottom = "0.5rem";
-  div.innerHTML = `
-    <input type="text" class="comp-code" placeholder="Competency Code" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
-    <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
-    <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
-  `;
-  container.appendChild(div);
 }
 
 async function loadCreatorRoles() {
   try {
     const res = await fetch('/api/v1/creator/roles');
     const data = await res.json();
-    rolesData = data.roles || [];
-    renderCreatorRoleList(rolesData);
-    populateCompetencyDropdowns(rolesData);
+    creatorRoles = data.roles || [];
+    renderCreatorRoles(creatorRoles);
+    loadCompetencyOptions();
   } catch (err) {
     console.error("Failed to load roles:", err);
   }
 }
 
-function renderCreatorRoleList(roles) {
-  const list = document.getElementById("creator-role-list");
-  list.innerHTML = '';
+function renderCreatorRoles(roles) {
+  const container = document.getElementById('creator-role-list');
+  container.innerHTML = '';
 
   if (roles.length === 0) {
-    list.innerHTML = '<p style="color: var(--text-muted);">No roles defined yet.</p>';
+    container.innerHTML = '<p style="color: var(--text-muted);">No government roles created yet.</p>';
     return;
   }
 
-  roles.forEach(r => {
-    const card = document.createElement("div");
-    card.className = "glass-card";
-    card.style.padding = "1rem 1.25rem";
+  roles.forEach(role => {
+    const card = document.createElement('div');
+    card.className = 'glass-card';
+    card.style.padding = '1.2rem';
+
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <h4 style="color: #172033; font-size: 1.05rem;">${r.title}</h4>
-        <span style="font-size: 0.75rem; background: #eff6ff; color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${r.department}</span>
+        <div>
+          <h4 style="color: #172033; font-size: 1.1rem;">${role.title}</h4>
+          <span style="font-size: 0.75rem; color: var(--primary); background: #eff6ff; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${role.department}</span>
+        </div>
+        <button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="openEditRoleModal('${role.id}')">
+          ✏️ Edit & Modify Benchmarks
+        </button>
       </div>
-      <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0;">${r.description}</p>
-      <p style="font-size: 0.8rem; color: var(--accent-amber); font-weight: 600;">Eligibility: ${r.eligibility}</p>
+
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">${role.description}</p>
+      
       <div style="margin-top: 0.5rem;">
-        ${r.required_competencies.map(c => `
-          <span class="competency-tag" style="font-size: 0.75rem;">${c.name} (${c.target_score}%)</span>
+        <strong style="font-size: 0.8rem; color: var(--accent-amber); display: block; margin-bottom: 0.3rem;">Target Competency Benchmarks:</strong>
+        ${role.required_competencies.map(c => `
+          <span class="competency-tag">${c.name} (${c.target_score}%)</span>
         `).join('')}
       </div>
     `;
-    list.appendChild(card);
+    container.appendChild(card);
   });
 }
 
-function populateCompetencyDropdowns(roles) {
-  const dropdownIds = ['igot-comp', 'mat-comp', 'b-q-comp', 'i-q-comp'];
-  const compMap = new Map();
+function addCompetencyInputRow() {
+  const container = document.getElementById('competencies-container');
+  const div = document.createElement('div');
+  div.className = 'comp-row';
+  div.style.display = 'flex';
+  div.style.gap = '0.5rem';
+  div.style.marginBottom = '0.5rem';
 
-  roles.forEach(r => {
-    r.required_competencies.forEach(c => {
-      compMap.set(c.code, c.name);
-    });
-  });
-
-  dropdownIds.forEach(id => {
-    const select = document.getElementById(id);
-    if (!select) return;
-    select.innerHTML = '';
-
-    if (compMap.size === 0) {
-      select.innerHTML = '<option value="COMP_GOVERNANCE">General Data Governance</option>';
-      return;
-    }
-
-    compMap.forEach((name, code) => {
-      const opt = document.createElement('option');
-      opt.value = code;
-      opt.innerText = `${name} (${code})`;
-      select.appendChild(opt);
-    });
-  });
+  div.innerHTML = `
+    <input type="text" class="comp-code" placeholder="Competency Code" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+    <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+    <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+    <button type="button" onclick="this.parentElement.remove()" style="background: none; border: none; color: red; cursor: pointer; font-weight: bold;">✕</button>
+  `;
+  container.appendChild(div);
 }
 
 async function handleCreateRole(e) {
   e.preventDefault();
-  const id = document.getElementById("role-id").value.trim();
-  const title = document.getElementById("role-title").value.trim();
-  const department = document.getElementById("role-dept").value.trim();
-  const eligibility = document.getElementById("role-eligibility").value.trim();
-  const experience_years = parseInt(document.getElementById("role-exp").value);
-  const description = document.getElementById("role-desc").value.trim();
-
-  const compRows = document.querySelectorAll("#competencies-container .comp-row");
-  const required_competencies = [];
+  
+  const compRows = document.querySelectorAll('#competencies-container .comp-row');
+  const requiredCompetencies = [];
 
   compRows.forEach(row => {
-    const code = row.querySelector(".comp-code").value.trim();
-    const name = row.querySelector(".comp-name").value.trim();
-    const target_score = parseFloat(row.querySelector(".comp-target").value);
-    if (code && name && target_score) {
-      required_competencies.push({ code, name, target_score });
+    const code = row.querySelector('.comp-code').value.trim();
+    const name = row.querySelector('.comp-name').value.trim();
+    const target = parseFloat(row.querySelector('.comp-target').value);
+    if (code && name && !isNaN(target)) {
+      requiredCompetencies.push({ code, name, target_score: target });
     }
   });
 
-  if (required_competencies.length === 0) {
-    showFancyPopup("Validation Error", "Please add at least one required competency target.", "error");
-    return;
-  }
-
-  const payload = { id, title, department, eligibility, experience_years, description, required_competencies };
+  const payload = {
+    id: document.getElementById('role-id').value.trim(),
+    title: document.getElementById('role-title').value.trim(),
+    department: document.getElementById('role-dept').value.trim(),
+    eligibility: document.getElementById('role-eligibility').value.trim(),
+    experience_years: parseInt(document.getElementById('role-exp').value),
+    description: document.getElementById('role-desc').value.trim(),
+    required_competencies: requiredCompetencies
+  };
 
   try {
-    const res = await fetch("/api/v1/creator/roles", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/v1/creator/roles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     const data = await res.json();
 
     if (res.ok) {
-      showFancyPopup("Role Published!", `Government Role '${title}' published successfully to Learner Portal!`, "success", () => {
-        document.getElementById("create-role-form").reset();
-        loadCreatorRoles();
-      });
+      showFancyPopup("Role Created", data.message, "success");
+      document.getElementById('create-role-form').reset();
+      loadCreatorRoles();
     } else {
-      showFancyPopup("Publish Error", data.detail, "error");
+      showFancyPopup("Error Creating Role", data.detail, "error");
     }
   } catch (err) {
-    showFancyPopup("Network Error", "Failed to publish role.", "error");
+    showFancyPopup("Error", "Failed to communicate with server.", "error");
   }
 }
 
-async function loadIGOTCourses() {
+// EDIT ROLE MODAL LOGIC
+function openEditRoleModal(roleId) {
+  const role = creatorRoles.find(r => r.id === roleId);
+  if (!role) return;
+
+  document.getElementById('edit-role-id').value = role.id;
+  document.getElementById('edit-role-title').value = role.title;
+  document.getElementById('edit-role-dept').value = role.department;
+  document.getElementById('edit-role-eligibility').value = role.eligibility;
+
+  const container = document.getElementById('edit-competencies-container');
+  container.innerHTML = '';
+
+  role.required_competencies.forEach(comp => {
+    const div = document.createElement('div');
+    div.className = 'edit-comp-row';
+    div.style.display = 'flex';
+    div.style.gap = '0.5rem';
+
+    div.innerHTML = `
+      <input type="text" class="edit-comp-code" value="${comp.code}" placeholder="Code" required style="flex: 1; padding: 0.5rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 6px;">
+      <input type="text" class="edit-comp-name" value="${comp.name}" placeholder="Name" required style="flex: 2; padding: 0.5rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 6px;">
+      <input type="number" class="edit-comp-target" min="1" max="100" value="${comp.target_score}" placeholder="Target %" required style="width: 90px; padding: 0.5rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 6px;">
+      <button type="button" onclick="this.parentElement.remove()" style="background: none; border: none; color: red; cursor: pointer; font-weight: bold;">✕</button>
+    `;
+    container.appendChild(div);
+  });
+
+  document.getElementById('edit-role-modal').classList.remove('hidden');
+}
+
+function closeEditRoleModal() {
+  document.getElementById('edit-role-modal').classList.add('hidden');
+}
+
+function addEditCompetencyRow() {
+  const container = document.getElementById('edit-competencies-container');
+  const div = document.createElement('div');
+  div.className = 'edit-comp-row';
+  div.style.display = 'flex';
+  div.style.gap = '0.5rem';
+
+  div.innerHTML = `
+    <input type="text" class="edit-comp-code" placeholder="Code" required style="flex: 1; padding: 0.5rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 6px;">
+    <input type="text" class="edit-comp-name" placeholder="Name" required style="flex: 2; padding: 0.5rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 6px;">
+    <input type="number" class="edit-comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 6px;">
+    <button type="button" onclick="this.parentElement.remove()" style="background: none; border: none; color: red; cursor: pointer; font-weight: bold;">✕</button>
+  `;
+  container.appendChild(div);
+}
+
+async function handleSaveRoleEdit(e) {
+  e.preventDefault();
+  const roleId = document.getElementById('edit-role-id').value;
+
+  const compRows = document.querySelectorAll('#edit-competencies-container .edit-comp-row');
+  const requiredCompetencies = [];
+
+  compRows.forEach(row => {
+    const code = row.querySelector('.edit-comp-code').value.trim();
+    const name = row.querySelector('.edit-comp-name').value.trim();
+    const target = parseFloat(row.querySelector('.edit-comp-target').value);
+    if (code && name && !isNaN(target)) {
+      requiredCompetencies.push({ code, name, target_score: target });
+    }
+  });
+
+  const payload = {
+    title: document.getElementById('edit-role-title').value.trim(),
+    department: document.getElementById('edit-role-dept').value.trim(),
+    eligibility: document.getElementById('edit-role-eligibility').value.trim(),
+    required_competencies: requiredCompetencies
+  };
+
+  try {
+    const res = await fetch(`/api/v1/creator/roles/${roleId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      closeEditRoleModal();
+      showFancyPopup("Role Updated", data.message, "success");
+      loadCreatorRoles();
+    } else {
+      showFancyPopup("Update Error", data.detail, "error");
+    }
+  } catch (err) {
+    showFancyPopup("Error", "Failed to update role.", "error");
+  }
+}
+
+async function loadCreatorCourses() {
   try {
     const res = await fetch('/api/v1/igot/catalog');
     const data = await res.json();
-    igotCoursesData = data.courses || [];
-    renderIGOTCourseList(igotCoursesData);
+    creatorCourses = data.courses || [];
+    renderCreatorCourses(creatorCourses);
   } catch (err) {
     console.error("Failed to load iGOT catalog:", err);
   }
 }
 
-function renderIGOTCourseList(courses) {
-  const list = document.getElementById("igot-course-list");
-  list.innerHTML = '';
+function renderCreatorCourses(courses) {
+  const container = document.getElementById('igot-course-list');
+  container.innerHTML = '';
 
   if (courses.length === 0) {
-    list.innerHTML = '<p style="color: var(--text-muted);">No iGOT courses indexed yet.</p>';
+    container.innerHTML = '<p style="color: var(--text-muted);">No iGOT courses indexed.</p>';
     return;
   }
 
   courses.forEach(c => {
-    const card = document.createElement("div");
-    card.className = "glass-card";
-    card.style.padding = "1rem";
+    const card = document.createElement('div');
+    card.className = 'glass-card';
+    card.style.padding = '1rem';
+
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
         <h4 style="color: #172033; font-size: 1rem;">${c.title}</h4>
-        <span style="font-size: 0.75rem; background: #e0f2fe; color: #0284c7; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${c.competency_code}</span>
+        <span style="font-size: 0.75rem; background: #ecfdf5; color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${c.competency_code}</span>
       </div>
-      <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.4rem 0;">${c.provider}</p>
-      <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.6rem;">${c.description}</p>
-      <a href="${c.igot_url}" target="_blank" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: underline;">
-        🔗 ${c.igot_url} ↗
-      </a>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">${c.provider}</p>
+      <a href="${c.igot_url}" target="_blank" style="font-size: 0.8rem; color: var(--primary); display: inline-block; margin-top: 0.5rem;">🔗 View Direct iGOT Course Link ↗</a>
     `;
-    list.appendChild(card);
+    container.appendChild(card);
+  });
+}
+
+function loadCompetencyOptions() {
+  const compSet = new Set();
+  creatorRoles.forEach(r => {
+    r.required_competencies.forEach(c => compSet.add(c.code));
+  });
+
+  const selectors = ['igot-comp', 'mat-comp', 'b-q-comp', 'i-q-comp'];
+  selectors.forEach(sId => {
+    const select = document.getElementById(sId);
+    if (!select) return;
+    select.innerHTML = '';
+    compSet.forEach(code => {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.innerText = code;
+      select.appendChild(opt);
+    });
   });
 }
 
 async function handleCreateIGOTCourse(e) {
   e.preventDefault();
-  const course_id = document.getElementById("igot-cid").value.trim();
-  const title = document.getElementById("igot-title").value.trim();
-  const provider = document.getElementById("igot-provider").value.trim();
-  const competency_code = document.getElementById("igot-comp").value;
-  const igot_url = document.getElementById("igot-url").value.trim();
-  const description = document.getElementById("igot-desc").value.trim();
-
-  const payload = { course_id, title, provider, competency_code, igot_url, description };
+  const payload = {
+    course_id: document.getElementById('igot-cid').value.trim(),
+    title: document.getElementById('igot-title').value.trim(),
+    provider: document.getElementById('igot-provider').value.trim(),
+    competency_code: document.getElementById('igot-comp').value,
+    igot_url: document.getElementById('igot-url').value.trim(),
+    description: document.getElementById('igot-desc').value.trim()
+  };
 
   try {
-    const res = await fetch("/api/v1/creator/igot/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/v1/creator/igot/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     const data = await res.json();
-
     if (res.ok) {
-      showFancyPopup("iGOT Course Indexed!", `Course '${title}' indexed to database!`, "success", () => {
-        document.getElementById("create-igot-course-form").reset();
-        loadIGOTCourses();
-      });
+      showFancyPopup("Course Indexed", data.message, "success");
+      document.getElementById('create-igot-course-form').reset();
+      loadCreatorCourses();
     } else {
-      showFancyPopup("Index Error", data.detail, "error");
+      showFancyPopup("Error", data.detail, "error");
     }
   } catch (err) {
-    showFancyPopup("Network Error", "Failed to index course.", "error");
+    showFancyPopup("Error", "Failed to add course.", "error");
   }
 }
 
 async function triggerLiveScrape() {
-  showFancyPopup("Initiating Web Scraper", "Fetching live training courses from igotkarmayogi.gov.in...", "info");
   try {
     const res = await fetch('/api/v1/igot/scrape-refresh', { method: 'POST' });
     const data = await res.json();
-    showFancyPopup("Scrape Complete!", data.message, "success", () => {
-      loadIGOTCourses();
-    });
+    showFancyPopup("Scraper Finished", data.message, "success");
+    loadCreatorCourses();
   } catch (err) {
-    showFancyPopup("Scrape Error", "Scrape failed or timed out.", "error");
+    showFancyPopup("Error", "Failed to trigger live scraper.", "error");
   }
 }
 
 async function handleUploadMaterial(e) {
   e.preventDefault();
-  const title = document.getElementById("mat-title").value.trim();
-  const comp = document.getElementById("mat-comp").value;
-  const fileInput = document.getElementById("mat-file");
+  const title = document.getElementById('mat-title').value.trim();
+  const comp = document.getElementById('mat-comp').value;
+  const fileInput = document.getElementById('mat-file');
 
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("associated_competency", comp);
-  if (fileInput.files[0]) {
-    formData.append("file", fileInput.files[0]);
+  formData.append('title', title);
+  formData.append('associated_competency', comp);
+  if (fileInput.files.length > 0) {
+    formData.append('file', fileInput.files[0]);
   }
 
-  const status = document.getElementById("upload-status");
-  status.innerHTML = '<span style="color: var(--primary); font-weight: 700;">⏳ Processing document and generating AI RAG evaluation questions...</span>';
+  const statusDiv = document.getElementById('upload-status');
+  statusDiv.innerHTML = '<span style="color: var(--primary);">⏳ Ingesting document & generating RAG MCQs...</span>';
 
   try {
-    const res = await fetch("/api/v1/creator/upload-material", {
-      method: "POST",
+    const res = await fetch('/api/v1/creator/upload-material', {
+      method: 'POST',
       body: formData
     });
     const data = await res.json();
-
     if (res.ok) {
-      status.innerHTML = `<span style="color: var(--accent-green); font-weight: 700;">✅ ${data.message}</span>`;
-      showFancyPopup("Document Ingested & AI Quiz Generated!", data.message, "success", () => {
-        document.getElementById("upload-material-form").reset();
-      });
+      statusDiv.innerHTML = `<span style="color: var(--accent-green);">✅ ${data.message}</span>`;
+      showFancyPopup("PDF Ingestion & RAG Complete", data.message, "success");
+      document.getElementById('upload-material-form').reset();
     } else {
-      status.innerHTML = `<span style="color: var(--accent-red); font-weight: 700;">❌ ${data.detail}</span>`;
-      showFancyPopup("Upload Error", data.detail, "error");
+      statusDiv.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
     }
   } catch (err) {
-    status.innerHTML = '<span style="color: var(--accent-red); font-weight: 700;">❌ Upload failed.</span>';
+    statusDiv.innerHTML = '<span style="color: var(--accent-red);">❌ Upload failed.</span>';
   }
 }
 
-async function handleCustomQuizSubmit(e, quizType) {
+async function handleCustomQuizSubmit(e, type) {
   e.preventDefault();
-  const prefix = quizType === 'baseline' ? 'b' : 'i';
+  const compCode = document.getElementById(type === 'baseline' ? 'b-q-comp' : 'i-q-comp').value;
+  const question = document.getElementById(type === 'baseline' ? 'b-q-text' : 'i-q-text').value.trim();
   
-  const competency_code = document.getElementById(`${prefix}-q-comp`).value;
-  const question = document.getElementById(`${prefix}-q-text`).value.trim();
+  const optInputs = document.querySelectorAll(type === 'baseline' ? '.b-q-opt' : '.i-q-opt');
+  const options = Array.from(optInputs).map(inp => inp.value.trim());
 
-  const optInputs = document.querySelectorAll(`.${prefix}-q-opt`);
-  const options = Array.from(optInputs).map(i => i.value.trim());
+  const radios = document.getElementsByName(type === 'baseline' ? 'b-correct-opt' : 'i-correct-opt');
+  let answer = 0;
+  radios.forEach(r => { if (r.checked) answer = parseInt(r.value); });
 
-  const checkedRadio = document.querySelector(`input[name="${prefix}-correct-opt"]:checked`);
-  const answer = parseInt(checkedRadio.value);
-
-  const payload = { competency_code, quiz_type: quizType, question, options, answer };
+  const payload = {
+    competency_code: compCode,
+    quiz_type: type,
+    question: question,
+    options: options,
+    answer: answer
+  };
 
   try {
-    const res = await fetch("/api/v1/creator/quiz/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/v1/creator/quiz/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     const data = await res.json();
-
     if (res.ok) {
-      showFancyPopup("Quiz Question Saved!", `Custom ${quizType.toUpperCase()} question added to ${competency_code}!`, "success", () => {
-        e.target.reset();
-      });
+      showFancyPopup("Quiz Question Saved", data.message, "success");
+      e.target.reset();
     } else {
-      showFancyPopup("Question Error", data.detail, "error");
+      showFancyPopup("Error", data.detail, "error");
     }
   } catch (err) {
-    showFancyPopup("Network Error", "Failed to add question.", "error");
+    showFancyPopup("Error", "Failed to save question.", "error");
   }
 }
 
@@ -364,102 +454,103 @@ async function loadCreatorEmployees() {
   try {
     const res = await fetch('/api/v1/creator/employees');
     const data = await res.json();
-    const tbody = document.getElementById('creator-employee-tbody');
-    tbody.innerHTML = '';
-
-    if (!data.employees || data.employees.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" style="padding: 1.5rem; color: var(--text-muted); text-align: center;">No government employees registered yet.</td></tr>';
-      return;
-    }
-
-    data.employees.forEach(emp => {
-      const tr = document.createElement('tr');
-      tr.style.borderBottom = '1px solid #edf0f4';
-
-      tr.innerHTML = `
-        <td style="padding: 0.75rem;"><code style="color: var(--primary); font-weight: 700;">${emp.user_id}</code></td>
-        <td style="padding: 0.75rem; font-weight: 700; color: #172033;">${emp.name}</td>
-        <td style="padding: 0.75rem; color: var(--text-muted);">${emp.department}</td>
-        <td style="padding: 0.75rem; color: var(--accent-amber); font-weight: 600;">${emp.selected_role_title}</td>
-        <td style="padding: 0.75rem;">${emp.enrolled_count} Courses</td>
-        <td style="padding: 0.75rem;"><span style="background: #ecfdf5; color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">🏅 ${emp.badge_count} Badges</span></td>
-        <td style="padding: 0.75rem;">
-          <button class="btn btn-danger" style="padding: 0.3rem 0.75rem; font-size: 0.75rem; border-radius: 6px;" onclick="deleteEmployee('${emp.user_id}', '${emp.name.replace(/'/g, "\\'")}')">
-            🗑️ Revoke Access
-          </button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
+    renderCreatorEmployeeTable(data.employees || []);
   } catch (err) {
     console.error("Failed to load registered employees:", err);
   }
 }
 
+function renderCreatorEmployeeTable(employees) {
+  const tbody = document.getElementById('creator-employee-tbody');
+  tbody.innerHTML = '';
+
+  if (employees.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="padding: 1.5rem; text-align: center; color: var(--text-muted);">No government officers registered yet.</td></tr>';
+    return;
+  }
+
+  employees.forEach(emp => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid var(--border-light)';
+
+    tr.innerHTML = `
+      <td style="padding: 0.75rem; font-weight: 700; color: var(--primary);">${emp.user_id}</td>
+      <td style="padding: 0.75rem; font-weight: 600; color: #172033;">${emp.name}</td>
+      <td style="padding: 0.75rem; color: var(--text-muted);">${emp.department}</td>
+      <td style="padding: 0.75rem; color: var(--accent-amber); font-weight: 600;">${emp.selected_role_title}</td>
+      <td style="padding: 0.75rem;">${emp.enrolled_count} courses</td>
+      <td style="padding: 0.75rem;">🏅 ${emp.badge_count} badges</td>
+      <td style="padding: 0.75rem;">
+        <button class="btn btn-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteEmployee('${emp.user_id}', '${emp.name.replace(/'/g, "\\'")}')">
+          🗑️ Revoke Access
+        </button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
 async function deleteEmployee(userId, name) {
-  if (!confirm(`Are you sure you want to revoke platform access and delete employee account '${name}' (${userId})?`)) return;
+  if (!confirm(`Are you sure you want to revoke access and delete account for Officer ${name} (${userId})?`)) return;
 
   try {
     const res = await fetch(`/api/v1/creator/employee/${userId}`, { method: 'DELETE' });
     const data = await res.json();
-
     if (res.ok) {
-      showFancyPopup("Access Revoked!", `Employee '${name}' (${userId}) account deleted successfully and platform access revoked.`, "success", () => {
-        loadCreatorEmployees();
-        loadAnalytics();
-      });
+      showFancyPopup("Access Revoked", data.message, "success");
+      loadCreatorEmployees();
     } else {
-      showFancyPopup("Delete Error", data.detail, "error");
+      showFancyPopup("Error", data.detail, "error");
     }
   } catch (err) {
-    showFancyPopup("Network Error", "Failed to delete employee account.", "error");
+    showFancyPopup("Error", "Failed to delete employee account.", "error");
   }
 }
 
-async function loadAnalytics() {
+async function loadCreatorAnalytics() {
   try {
-    const res = await fetch("/api/v1/creator/analytics");
+    const res = await fetch('/api/v1/creator/analytics');
     const data = await res.json();
 
-    document.getElementById("stat-users").innerText = data.total_employees || 0;
-    document.getElementById("stat-roles").innerText = data.total_active_roles || 0;
-    document.getElementById("stat-docs").innerText = data.total_uploaded_materials || 0;
+    document.getElementById('stat-users').innerText = data.total_employees;
+    document.getElementById('stat-roles').innerText = data.total_active_roles;
+    document.getElementById('stat-docs').innerText = data.total_uploaded_materials;
 
-    const avgs = data.department_competency_averages || {};
-    const labels = Object.keys(avgs);
-    const scores = Object.values(avgs);
-
-    const ctx = document.getElementById("analyticsChart").getContext("2d");
-    if (analyticsChartInstance) {
-      analyticsChartInstance.destroy();
-    }
-
-    analyticsChartInstance = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: labels.length > 0 ? labels : ["Sampling", "Data Analytics", "Governance"],
-        datasets: [{
-          label: "Department Average Competency Score (%)",
-          data: scores.length > 0 ? scores : [45, 60, 30],
-          backgroundColor: "rgba(37, 99, 235, 0.75)",
-          borderColor: "#2563eb",
-          borderWidth: 1,
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: { min: 0, max: 100, ticks: { color: "#64748b" }, grid: { color: "#edf0f4" } },
-          x: { ticks: { color: "#172033", font: { weight: "600" } }, grid: { display: false } }
-        },
-        plugins: {
-          legend: { labels: { color: "#172033", font: { weight: "600" } } }
-        }
-      }
-    });
+    renderAnalyticsChart(data.department_competency_averages);
   } catch (err) {
     console.error("Failed to load analytics:", err);
   }
+}
+
+function renderAnalyticsChart(averages) {
+  const labels = Object.keys(averages);
+  const values = Object.values(averages);
+
+  const ctx = document.getElementById('analyticsChart').getContext('2d');
+  if (analyticsChartInstance) {
+    analyticsChartInstance.destroy();
+  }
+
+  analyticsChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels.length ? labels : ['COMP_GOVERNANCE', 'COMP_FINANCE', 'COMP_DATA_ANALYTICS'],
+      datasets: [{
+        label: 'Average Employee Benchmark Score (%)',
+        data: values.length ? values : [75, 60, 85],
+        backgroundColor: 'rgba(37, 99, 235, 0.65)',
+        borderColor: '#2563eb',
+        borderWidth: 2,
+        borderRadius: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { min: 0, max: 100, ticks: { color: '#64748b' } },
+        x: { ticks: { color: '#172033', font: { weight: '700' } } }
+      }
+    }
+  });
 }

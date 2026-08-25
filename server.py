@@ -1,6 +1,6 @@
 """
 AI-Enabled Personalized Learning Platform for India's Official Statistical System
-Smart India Hackathon (SIH) - Full Stack Server with RAG Quiz Engine
+Smart India Hackathon (SIH) - Full Stack Server with RAG & Semantic Recommendation Engine
 Powering: 
  1. Creator / Admin Portal (/creator)
  2. Learner / Government Employee Portal (/)
@@ -18,14 +18,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from pydantic import BaseModel, Field
 
-# Import iGOT Scraper Module & RAG Quiz Engine
+# Import Scraper, RAG Engine & Semantic Recommendation Engine
 from igot_scraper import IGOTKarmayogiScraper
 from rag_quiz_engine import RAGQuizGeneratorEngine
+from semantic_recommendation_engine import SemanticRecommendationEngine
 
 app = FastAPI(
     title="GovLearn AI Platform (SIH)",
     description="Full-stack AI learning platform with Creator Portal & Learner Portal connecting to iGOT Karmayogi ecosystem.",
-    version="3.3.0"
+    version="3.4.0"
 )
 
 # Enable CORS for cross-origin requests
@@ -44,6 +45,7 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 DB_FILE = os.path.join(DATA_DIR, "db.json")
 
 rag_engine = RAGQuizGeneratorEngine()
+semantic_engine = SemanticRecommendationEngine()
 
 # Helper functions for JSON database persistence
 def read_db() -> Dict[str, Any]:
@@ -84,6 +86,14 @@ class CreateRoleRequest(BaseModel):
     experience_years: int
     description: str
     required_competencies: List[CompetencyRequirement]
+
+class UpdateRoleRequest(BaseModel):
+    title: Optional[str] = None
+    department: Optional[str] = None
+    eligibility: Optional[str] = None
+    experience_years: Optional[int] = None
+    description: Optional[str] = None
+    required_competencies: Optional[List[CompetencyRequirement]] = None
 
 class CreateIGOTCourseRequest(BaseModel):
     course_id: str
@@ -276,7 +286,7 @@ def login_user(req: LoginRequest):
     }
 
 # -------------------------------------------------------------------
-# CREATOR PORTAL APIs
+# CREATOR PORTAL APIs (WITH MODIFY ROLE & COMPETENCY REQUIREMENTS)
 # -------------------------------------------------------------------
 @app.get("/api/v1/creator/roles", tags=["Creator Portal"])
 def get_all_creator_roles():
@@ -299,6 +309,51 @@ def create_role(req: CreateRoleRequest):
     write_db(db)
     
     return {"status": "SUCCESS", "message": f"Role '{req.title}' created successfully by Creator.", "role": new_role}
+
+@app.put("/api/v1/creator/roles/{role_id}", tags=["Creator Portal"])
+def update_role(role_id: str, req: UpdateRoleRequest):
+    """
+    Creator endpoint to modify an existing government role, eligibility criteria,
+    and target competency benchmark levels (%).
+    """
+    db = read_db()
+    roles = db.get("roles", [])
+    
+    role = next((r for r in roles if r["id"] == role_id), None)
+    if not role:
+        raise HTTPException(status_code=404, detail=f"Role with ID '{role_id}' not found.")
+        
+    if req.title is not None:
+        role["title"] = req.title.strip()
+    if req.department is not None:
+        role["department"] = req.department.strip()
+    if req.eligibility is not None:
+        role["eligibility"] = req.eligibility.strip()
+    if req.experience_years is not None:
+        role["experience_years"] = req.experience_years
+    if req.description is not None:
+        role["description"] = req.description.strip()
+    if req.required_competencies is not None:
+        role["required_competencies"] = [c.dict() for c in req.required_competencies]
+        
+    db["roles"] = roles
+    write_db(db)
+    
+    return {"status": "SUCCESS", "message": f"Role '{role['title']}' ({role_id}) updated successfully by Creator.", "role": role}
+
+@app.delete("/api/v1/creator/roles/{role_id}", tags=["Creator Portal"])
+def delete_role(role_id: str):
+    """Creator endpoint to delete a role from the platform."""
+    db = read_db()
+    roles = db.get("roles", [])
+    
+    new_roles = [r for r in roles if r["id"] != role_id]
+    if len(new_roles) == len(roles):
+        raise HTTPException(status_code=404, detail=f"Role with ID '{role_id}' not found.")
+        
+    db["roles"] = new_roles
+    write_db(db)
+    return {"status": "SUCCESS", "message": f"Role '{role_id}' deleted successfully."}
 
 @app.post("/api/v1/creator/igot/add", tags=["Creator Portal"])
 def add_igot_course(req: CreateIGOTCourseRequest):
@@ -499,7 +554,7 @@ def refresh_igot_courses():
     }
 
 # -------------------------------------------------------------------
-# LEARNER PORTAL APIs
+# LEARNER PORTAL APIs (SEMANTIC GAP-BASED RECOMMENDATIONS)
 # -------------------------------------------------------------------
 @app.get("/api/v1/learner/roles", tags=["Learner Portal"])
 def get_learner_roles():
@@ -694,8 +749,9 @@ def submit_baseline_quiz(req: BaselineSubmitRequest):
 @app.post("/api/v1/learner/recommendations", tags=["Learner Portal"])
 def get_recommendations_and_igot_scraping(user_id: str = Form(...)):
     """
-    Dynamically indexes iGOT Karmayogi web catalog and creator materials,
-    matching identified competency gaps to recommend courses.
+    STRICT SEMANTIC GAP RECOMMENDATION ENGINE:
+    Calculates gaps and uses Semantic Vector Search to recommend ONLY courses
+    matching identified competency deficits (gap_score > 5.0).
     """
     db = read_db()
     users = db.get("users", {})
@@ -723,67 +779,39 @@ def get_recommendations_and_igot_scraping(user_id: str = Form(...)):
         raise HTTPException(status_code=404, detail="Role not found.")
         
     current_scores = user.get("current_scores", {})
-    recommendations = []
+    gap_analysis = []
     
     for comp in role["required_competencies"]:
         comp_code = comp["code"]
         comp_name = comp["name"]
         target = comp["target_score"]
         current = current_scores.get(comp_code, 0.0)
-        gap = max(0.0, target - current)
+        gap = max(0.0, round(target - current, 1))
         
-        if gap <= 5.0:
-            continue
-            
-        matching_igot = [c for c in igot_courses if c.get("competency_code") == comp_code]
-        if not matching_igot:
-            matching_igot = igot_courses[:3]
-            
-        for course in matching_igot:
-            recommendations.append({
-                "id": course["course_id"],
-                "type": "iGOT_KARMAYOGI_COURSE",
-                "title": course["title"],
-                "provider": course["provider"],
-                "target_competency": comp_name,
-                "competency_code": comp_code,
-                "gap_score": gap,
-                "urgency": "HIGH" if gap >= 30.0 else "MEDIUM",
-                "duration": course["duration"],
-                "rating": course["rating"],
-                "action_url": course["igot_url"],
-                "embed_video_url": course.get("embed_video_url", ""),
-                "description": course["description"],
-                "is_enrolled": course["course_id"] in user.get("enrolled_courses", [])
-            })
-            
-        matching_docs = [d for d in creator_materials if d.get("associated_competency") == comp_code]
-        for doc in matching_docs:
-            recommendations.append({
-                "id": doc["id"],
-                "type": "CREATOR_DOCUMENT_PDF",
-                "title": doc["title"],
-                "provider": "MoSPI Creator Module (Internal Document)",
-                "target_competency": comp_name,
-                "competency_code": comp_code,
-                "gap_score": gap,
-                "urgency": "HIGH" if gap >= 30.0 else "MEDIUM",
-                "duration": "Self-paced",
-                "rating": 5.0,
-                "action_url": f"/static/docs/{doc['id']}",
-                "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI",
-                "description": doc["summary"],
-                "is_enrolled": True
-            })
-
-    recommendations.sort(key=lambda x: x["gap_score"], reverse=True)
+        gap_analysis.append({
+            "competency_code": comp_code,
+            "competency_name": comp_name,
+            "current_score": current,
+            "target_benchmark": target,
+            "gap_score": gap
+        })
+        
+    # Run Semantic Recommendation Engine
+    targeted_recommendations = semantic_engine.recommend_targeted_courses(
+        user_role_title=role["title"],
+        user_dept=role["department"],
+        gap_analysis=gap_analysis,
+        all_courses=igot_courses,
+        creator_materials=creator_materials,
+        enrolled_course_ids=user.get("enrolled_courses", [])
+    )
 
     return {
         "status": "success",
         "user_id": user_id,
         "role_title": role["title"],
-        "total_recommendations": len(recommendations),
-        "recommendations": recommendations
+        "total_recommendations": len(targeted_recommendations),
+        "recommendations": targeted_recommendations
     }
 
 @app.post("/api/v1/learner/igot/enroll", tags=["Learner Portal"])
