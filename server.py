@@ -25,7 +25,7 @@ from rag_quiz_engine import RAGQuizGeneratorEngine
 app = FastAPI(
     title="GovLearn AI Platform (SIH)",
     description="Full-stack AI learning platform with Creator Portal & Learner Portal connecting to iGOT Karmayogi ecosystem.",
-    version="3.2.0"
+    version="3.3.0"
 )
 
 # Enable CORS for cross-origin requests
@@ -65,6 +65,7 @@ class RegisterRequest(BaseModel):
     name: str = Field(..., example="Ashwanth Kumar")
     department: str = Field(..., example="Price Statistics Division")
     password: str = Field(..., example="pass123")
+    job_role_id: Optional[str] = None
 
 class LoginRequest(BaseModel):
     user_id: str = Field(..., example="ashw_101")
@@ -205,6 +206,7 @@ def register_user(req: RegisterRequest):
     """
     db = read_db()
     users = db.get("users", {})
+    roles = db.get("roles", [])
     
     uid = req.user_id.strip()
     name = req.name.strip()
@@ -236,7 +238,7 @@ def register_user(req: RegisterRequest):
         "department": dept,
         "password": req.password,
         "created_at": datetime.datetime.now().isoformat(),
-        "selected_role_id": None,
+        "selected_role_id": req.job_role_id or (roles[0]["id"] if roles else None),
         "current_scores": {},
         "enrolled_courses": [],
         "completed_courses": [],
@@ -568,6 +570,25 @@ def get_baseline_quiz(role_id: str):
                 "options": q["options"],
                 "source": q.get("source", "Creator Benchmark")
             })
+
+    # If no custom questions, generate baseline questions for competencies
+    if not questions:
+        for idx, comp in enumerate(role["required_competencies"]):
+            code = comp["code"]
+            name = comp["name"]
+            questions.append({
+                "id": f"Q_AUTO_BASE_{code}_1",
+                "competency_code": code,
+                "competency_name": name,
+                "question": f"Diagnostic Check for {name}: Which procedure standard is mandated under government rules?",
+                "options": [
+                    f"Standard Operating Procedure for {name}",
+                    "Manual ad-hoc execution without audit trail",
+                    "Unverified third-party process",
+                    "Non-compliant delegation"
+                ],
+                "source": "Creator Benchmark"
+            })
             
     return {
         "status": "success",
@@ -715,6 +736,9 @@ def get_recommendations_and_igot_scraping(user_id: str = Form(...)):
             continue
             
         matching_igot = [c for c in igot_courses if c.get("competency_code") == comp_code]
+        if not matching_igot:
+            matching_igot = igot_courses[:3]
+            
         for course in matching_igot:
             recommendations.append({
                 "id": course["course_id"],

@@ -1,67 +1,2417 @@
 {
   "roles": [
     {
-      "id": "ROLE_JSO",
-      "title": "Junior Statistical Officer (JSO)",
-      "department": "National Statistical Office (NSO)",
-      "eligibility": "Bachelor's Degree in Statistics/Mathematics with minimum 60% marks in Class 12th Mathematics.",
-      "experience_years": 0,
-      "description": "Responsible for field data collection, sample survey execution, and preliminary data processing.",
+      "id": "ROLE_JOB_001",
+      "title": "Indian Administrative Service (IAS)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Indian Administrative Service (IAS) within the Central/State Civil Services.",
       "required_competencies": [
         {
-          "code": "COMP_SAMPLING",
-          "name": "Sampling Techniques & Survey Design",
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
           "target_score": 80
         },
         {
           "code": "COMP_DATA_ANALYTICS",
-          "name": "Data Processing & Coding (Python/R)",
+          "name": "Data Analytics & Decision Making",
           "target_score": 75
         },
         {
-          "code": "COMP_GOVERNANCE",
-          "name": "Data Security & GIGW Compliance",
-          "target_score": 70
-        }
-      ]
-    },
-    {
-      "id": "ROLE_PRICE_STAT",
-      "title": "Director of Price Statistics",
-      "department": "Price Statistics Division (PSD)",
-      "eligibility": "Master's Degree in Economics/Statistics + 5 years experience in Price Index compilation.",
-      "experience_years": 5,
-      "description": "Oversees CPI (Urban/Rural) compilation, WPI updates, base year revisions, and price trend analysis.",
-      "required_competencies": [
-        {
-          "code": "COMP_INDEX_NUMBERS",
-          "name": "Index Numbers & CPI/WPI Methodology",
-          "target_score": 90
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
         },
         {
-          "code": "COMP_ECON_STATS",
-          "name": "National Accounts & Macroeconomic Indicators",
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
           "target_score": 85
         }
       ]
     },
     {
-      "id": "ROLE_DATA_ANALYST",
-      "title": "Senior Data Analytics Officer",
-      "department": "Digital & IT Division - MoSPI",
-      "eligibility": "B.Tech/M.Sc in Computer Science or Statistics with 3+ years experience in Big Data.",
-      "experience_years": 3,
-      "description": "Builds automated data pipelines, dashboards, machine learning models, and large-scale census processing.",
+      "id": "ROLE_JOB_002",
+      "title": "Indian Police Service (IPS)",
+      "department": "Police & Home Affairs Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Indian Police Service (IPS) within the Police & Home Affairs Department.",
       "required_competencies": [
         {
-          "code": "COMP_DATA_ANALYTICS",
-          "name": "Data Processing & Coding (Python/R)",
-          "target_score": 90
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
         },
         {
-          "code": "COMP_SAMPLING",
-          "name": "Sampling Techniques & Survey Design",
-          "target_score": 70
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_003",
+      "title": "Indian Foreign Service (IFS - Diplomacy)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Indian Foreign Service (IFS - Diplomacy) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_004",
+      "title": "Indian Forest Service (IFoS)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Indian Forest Service (IFoS) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_005",
+      "title": "Indian Revenue Service (IRS - Income Tax)",
+      "department": "Revenue & Taxation Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Indian Revenue Service (IRS - Income Tax) within the Revenue & Taxation Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_006",
+      "title": "Indian Audit and Accounts Service (IA&AS)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Indian Audit and Accounts Service (IA&AS) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_007",
+      "title": "Forest Range Officer (State PSC)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Forest Range Officer (State PSC) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_008",
+      "title": "Food Safety Officer / Food Inspector (FSSAI/State)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Food Safety Officer / Food Inspector (FSSAI/State) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_009",
+      "title": "Assistant Section Officer (Central Ministries)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Section Officer (Central Ministries) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_010",
+      "title": "Income Tax Inspector",
+      "department": "Revenue & Taxation Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Income Tax Inspector within the Revenue & Taxation Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_011",
+      "title": "Central Government Assistant (UDC/Clerk)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Central Government Assistant (UDC/Clerk) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_012",
+      "title": "Sub-Inspector (CBI/State Police)",
+      "department": "Police & Home Affairs Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Sub-Inspector (CBI/State Police) within the Police & Home Affairs Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_013",
+      "title": "Assistant Enforcement Officer (ED)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Enforcement Officer (ED) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_014",
+      "title": "Probationary Officer (Banking - SBI/IBPS)",
+      "department": "Financial & Banking Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Probationary Officer (Banking - SBI/IBPS) within the Financial & Banking Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_015",
+      "title": "RBI Grade B Officer",
+      "department": "Financial & Banking Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for RBI Grade B Officer within the Financial & Banking Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_016",
+      "title": "NABARD Grade A Officer",
+      "department": "Financial & Banking Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for NABARD Grade A Officer within the Financial & Banking Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_017",
+      "title": "SEBI Officer / Grade A",
+      "department": "Financial & Banking Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for SEBI Officer / Grade A within the Financial & Banking Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_018",
+      "title": "LIC AAO / AO",
+      "department": "Financial & Banking Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for LIC AAO / AO within the Financial & Banking Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_019",
+      "title": "Examiner/Assistant (FCI)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Examiner/Assistant (FCI) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_020",
+      "title": "Scientific Assistant / Technician (DRDO/ISRO)",
+      "department": "Scientific & Research Laboratories",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Scientific Assistant / Technician (DRDO/ISRO) within the Scientific & Research Laboratories.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_021",
+      "title": "Scientist/Engineer 'SC' (ISRO/DRDO)",
+      "department": "Scientific & Research Laboratories",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Scientist/Engineer 'SC' (ISRO/DRDO) within the Scientific & Research Laboratories.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_022",
+      "title": "Scientific Assistant 'C' (BARC)",
+      "department": "Scientific & Research Laboratories",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Scientific Assistant 'C' (BARC) within the Scientific & Research Laboratories.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_023",
+      "title": "Junior Research Fellow / Project Assistant (CSIR)",
+      "department": "Scientific & Research Laboratories",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Junior Research Fellow / Project Assistant (CSIR) within the Scientific & Research Laboratories.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_024",
+      "title": "State Agriculture Officer",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for State Agriculture Officer within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_025",
+      "title": "Drug Inspector",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Drug Inspector within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_026",
+      "title": "Food Analyst (Government Labs)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Food Analyst (Government Labs) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_027",
+      "title": "Forest Guard / Ranger (State)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Forest Guard / Ranger (State) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_028",
+      "title": "Block Development Officer (BDO)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Block Development Officer (BDO) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_029",
+      "title": "Assistant Conservator of Forest (ACF)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Conservator of Forest (ACF) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_030",
+      "title": "Inspector of Taxes (State VAT/ GST Dept)",
+      "department": "Revenue & Taxation Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Inspector of Taxes (State VAT/ GST Dept) within the Revenue & Taxation Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_031",
+      "title": "Excise Inspector",
+      "department": "Revenue & Taxation Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Excise Inspector within the Revenue & Taxation Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_032",
+      "title": "Assistant Superintendent (Prisons)",
+      "department": "Police & Home Affairs Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Superintendent (Prisons) within the Police & Home Affairs Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_033",
+      "title": "Assistant Director (Fisheries/Agriculture)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Director (Fisheries/Agriculture) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_034",
+      "title": "Forest Officer (IFS/State)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Forest Officer (IFS/State) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_035",
+      "title": "Assistant Officer (EPFO)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Officer (EPFO) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_036",
+      "title": "Social Security Assistant (ESIC)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Social Security Assistant (ESIC) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_037",
+      "title": "Legal Researcher / Law Officer (Government)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Legal Researcher / Law Officer (Government) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_038",
+      "title": "Assistant Engineer (State PWD)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Engineer (State PWD) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_039",
+      "title": "Research Officer (ICMR/ICAR/CSIR)",
+      "department": "Scientific & Research Laboratories",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Research Officer (ICMR/ICAR/CSIR) within the Scientific & Research Laboratories.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_040",
+      "title": "Assistant Forester (Forest Dept.)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Forester (Forest Dept.) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_041",
+      "title": "Agricultural Officer (Banking - NABARD/IBPS)",
+      "department": "Financial & Banking Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Agricultural Officer (Banking - NABARD/IBPS) within the Financial & Banking Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_042",
+      "title": "Municipal Commissioner (State cadre senior)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Municipal Commissioner (State cadre senior) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_043",
+      "title": "Assistant Conservator (Wildlife Dept.)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Conservator (Wildlife Dept.) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_044",
+      "title": "Customs Examiner / Preventive Officer",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Customs Examiner / Preventive Officer within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_045",
+      "title": "Customs Inspector",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Customs Inspector within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_046",
+      "title": "Assistant Director (Mineral/Geology)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Director (Mineral/Geology) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_047",
+      "title": "Block Programme Officer (Rural Development)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Block Programme Officer (Rural Development) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_048",
+      "title": "Assistant Professor (Government Colleges)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Professor (Government Colleges) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_049",
+      "title": "Lecturer (Polytechnic/ITI)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Lecturer (Polytechnic/ITI) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_050",
+      "title": "District Statistical Officer",
+      "department": "Ministry of Statistics and Programme Implementation (MoSPI)",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for District Statistical Officer within the Ministry of Statistics and Programme Implementation (MoSPI).",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_051",
+      "title": "Assistant Chemist (Government Labs)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Chemist (Government Labs) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_052",
+      "title": "Public Prosecutor (State)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Public Prosecutor (State) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_053",
+      "title": "Assistant Conservator (Soil/Agri Dept.)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Conservator (Soil/Agri Dept.) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_054",
+      "title": "Assistant Director (Town Planning)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Director (Town Planning) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_055",
+      "title": "Deputy Ranger / Wildlife Warden",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Deputy Ranger / Wildlife Warden within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_056",
+      "title": "Inspector (Railways)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Inspector (Railways) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_057",
+      "title": "Assistant Station Master (Railways)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Station Master (Railways) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_058",
+      "title": "Junior Technical Associate (Railways)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Junior Technical Associate (Railways) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_059",
+      "title": "Assistant Public Prosecutor (Central/State)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Public Prosecutor (Central/State) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_060",
+      "title": "Research Scientist (Agriculture/Forestry)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Research Scientist (Agriculture/Forestry) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_061",
+      "title": "Sub Divisional Magistrate (SDM)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Sub Divisional Magistrate (SDM) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_062",
+      "title": "Deputy Conservator (Forest Dept.)",
+      "department": "Forest & Environment Department",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Deputy Conservator (Forest Dept.) within the Forest & Environment Department.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_063",
+      "title": "Assistant (State High Court Clerk/Assistant)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant (State High Court Clerk/Assistant) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_064",
+      "title": "Senior Scientific Assistant (NPCIL)",
+      "department": "Scientific & Research Laboratories",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Senior Scientific Assistant (NPCIL) within the Scientific & Research Laboratories.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_065",
+      "title": "Scientist/Officer (Atomic Energy/DAE)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Scientist/Officer (Atomic Energy/DAE) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_066",
+      "title": "State Food Safety Officer (State Food Dept.)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for State Food Safety Officer (State Food Dept.) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_067",
+      "title": "Assistant Conservator (Coast Guard/Marine)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Assistant Conservator (Coast Guard/Marine) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_068",
+      "title": "Research Assistant (NGOs/Govt Projects)",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for Research Assistant (NGOs/Govt Projects) within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
+        }
+      ]
+    },
+    {
+      "id": "ROLE_JOB_069",
+      "title": "State Administrative Officer",
+      "department": "Central/State Civil Services",
+      "eligibility": "Bachelor's/Master's Degree in relevant discipline with Union/State Public Service Commission qualification.",
+      "experience_years": 1,
+      "description": "Official position responsibilities for State Administrative Officer within the Central/State Civil Services.",
+      "required_competencies": [
+        {
+          "code": "COMP_GOVERNANCE",
+          "name": "Governance & Civil Service Rules",
+          "target_score": 85
+        },
+        {
+          "code": "COMP_FINANCE",
+          "name": "Financial Rules & Procurement",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_DATA_ANALYTICS",
+          "name": "Data Analytics & Decision Making",
+          "target_score": 75
+        },
+        {
+          "code": "COMP_IT",
+          "name": "e-Governance & Information Technology",
+          "target_score": 80
+        },
+        {
+          "code": "COMP_MANAGEMENT",
+          "name": "Public Leadership & Management",
+          "target_score": 85
         }
       ]
     }
@@ -69,54 +2419,6 @@
   "quizzes": {
     "COMP_SAMPLING": {
       "baseline": [
-        {
-          "id": "Q_RAG_BASE_COMP_SAMPLING_1",
-          "question": "According to syllabus document 'MoSPI Advanced Sampling Manual 2026': What is the primary objective of sample selection for COMP_SAMPLING?",
-          "options": [
-            "To eliminate all non-sampling errors manually",
-            "To collect non-random convenience data without stratification",
-            "To minimize sampling variance and ensure representative data collection",
-            "To bypass official NSO field verification guidelines"
-          ],
-          "answer": 2,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_BASE_COMP_SAMPLING_2",
-          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
-          "options": [
-            "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Deterministic manual imputation without audit trail",
-            "Horvitz-Thompson weighted estimation formula for probability sampling",
-            "Arbitrary non-probabilistic index scaling"
-          ],
-          "answer": 2,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_BASE_COMP_SAMPLING_1",
-          "question": "According to syllabus document 'MoSPI Advanced Sampling Manual 2026': What is the primary objective of sample selection for COMP_SAMPLING?",
-          "options": [
-            "To eliminate all non-sampling errors manually",
-            "To collect non-random convenience data without stratification",
-            "To minimize sampling variance and ensure representative data collection",
-            "To bypass official NSO field verification guidelines"
-          ],
-          "answer": 2,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_BASE_COMP_SAMPLING_2",
-          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
-          "options": [
-            "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Deterministic manual imputation without audit trail",
-            "Horvitz-Thompson weighted estimation formula for probability sampling",
-            "Arbitrary non-probabilistic index scaling"
-          ],
-          "answer": 2,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
         {
           "id": "Q_RAG_BASE_COMP_SAMPLING_1",
           "question": "According to syllabus document 'MoSPI Advanced Sampling Manual 2026': What is the primary objective of sample selection for COMP_SAMPLING?",
@@ -166,118 +2468,1210 @@
           ],
           "answer": 3,
           "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_INT_COMP_SAMPLING_1",
-          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
-          "options": [
-            "Horvitz-Thompson weighted estimation formula for probability sampling",
-            "Deterministic manual imputation without audit trail",
-            "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Arbitrary non-probabilistic index scaling"
-          ],
-          "answer": 0,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_INT_COMP_SAMPLING_2",
-          "question": "Based on 'MoSPI Advanced Sampling Manual 2026': What protocol must be followed prior to publishing public microdata?",
-          "options": [
-            "Storing raw field survey schedules without encryption",
-            "Discarding baseline survey metadata without backup",
-            "Publishing unmasked personally identifiable information (PII)",
-            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols"
-          ],
-          "answer": 3,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_INT_COMP_SAMPLING_1",
-          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
-          "options": [
-            "Horvitz-Thompson weighted estimation formula for probability sampling",
-            "Deterministic manual imputation without audit trail",
-            "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Arbitrary non-probabilistic index scaling"
-          ],
-          "answer": 0,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
-        },
-        {
-          "id": "Q_RAG_INT_COMP_SAMPLING_2",
-          "question": "Based on 'MoSPI Advanced Sampling Manual 2026': What protocol must be followed prior to publishing public microdata?",
-          "options": [
-            "Storing raw field survey schedules without encryption",
-            "Discarding baseline survey metadata without backup",
-            "Publishing unmasked personally identifiable information (PII)",
-            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols"
-          ],
-          "answer": 3,
-          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
         }
       ]
     }
   },
   "igot_courses": [
     {
-      "course_id": "IGOT-STAT-001",
-      "title": "Advanced Survey Sampling & Field Data Estimation",
-      "provider": "National Statistical Systems Training Academy (NSSTA), MoSPI",
-      "competency_code": "COMP_SAMPLING",
-      "competency_name": "Sampling Techniques & Survey Design",
-      "duration": "10 Hours",
-      "rating": 4.9,
-      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
-      "description": "Official NSSTA training module covering Stratified Random Sampling, Cluster Sampling, and Multi-Stage Survey Designs in NSO socio-economic surveys.",
+      "course_id": "IGOT-COURSE-001",
+      "title": "Noting & Drafting",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Office Procedure & Secretariat Administration",
+      "duration": "3 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885663737225216120/overview",
+      "description": "Office Procedure & Secretariat Administration. Official training module indexed from iGOT Karmayogi national portal.",
       "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
     },
     {
-      "course_id": "IGOT-STAT-002",
-      "title": "National Accounts Statistics & GDP Estimation Methodology",
-      "provider": "Central Statistics Office (CSO), MoSPI",
-      "competency_code": "COMP_ECON_STATS",
-      "competency_name": "National Accounts & Macroeconomic Indicators",
-      "duration": "16 Hours",
-      "rating": 4.8,
-      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
-      "description": "Comprehensive CSO guide on Gross Value Added (GVA), Gross Domestic Product (GDP), input-output tables, and sector-wise economic estimation.",
-      "embed_video_url": "https://www.youtube.com/embed/Y63w40V6F64"
-    },
-    {
-      "course_id": "IGOT-STAT-003",
-      "title": "Python & R for Official Data Processing & Analytics",
-      "provider": "MoSPI Digital Capacity Division & NITI Aayog",
-      "competency_code": "COMP_DATA_ANALYTICS",
-      "competency_name": "Data Processing & Coding (Python/R)",
-      "duration": "12 Hours",
-      "rating": 4.9,
-      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
-      "description": "Hands-on data cleaning using Pandas, exploratory data analysis, and automated report generation for official government statisticians.",
-      "embed_video_url": "https://www.youtube.com/embed/rfscVS0vtbw"
-    },
-    {
-      "course_id": "IGOT-STAT-004",
-      "title": "Index Numbers: Consumer Price Index (CPI) & WPI Calculation",
-      "provider": "Price Statistics Division (PSD), MoSPI",
-      "competency_code": "COMP_INDEX_NUMBERS",
-      "competency_name": "Index Numbers & CPI/WPI Methodology",
-      "duration": "8 Hours",
-      "rating": 4.7,
-      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
-      "description": "Methodology for Laspeyres price index formula, base year updating, weighting diagrams, and item basket selection for CPI urban and rural.",
-      "embed_video_url": "https://www.youtube.com/embed/sU-L0cK1tE8"
-    },
-    {
-      "course_id": "IGOT-STAT-005",
-      "title": "Data Governance, Security & GIGW Compliance in Government Systems",
-      "provider": "DARPG & Ministry of Electronics and IT (MeitY)",
+      "course_id": "IGOT-COURSE-002",
+      "title": "Office Procedure (CSMOP)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
       "competency_code": "COMP_GOVERNANCE",
-      "competency_name": "Data Security & GIGW Compliance",
+      "competency_name": "Manual of Office Procedure Compliance",
+      "duration": "4 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_11388577943541761722/overview",
+      "description": "Manual of Office Procedure Compliance. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-003",
+      "title": "General Financial Rules (GFR)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "Financial Management & Procurement Rules",
+      "duration": "5 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_1138856751158652928124/overview",
+      "description": "Financial Management & Procurement Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-004",
+      "title": "Code of Conduct for Govt Employees",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Ethics, Conduct & Civil Service Rules",
+      "duration": "6 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885674236542976126/overview",
+      "description": "Ethics, Conduct & Civil Service Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-005",
+      "title": "Prevention of Sexual Harassment (POSH)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Gender Equality & Workplace Ethics",
+      "duration": "7 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_11388577051281408128/overview",
+      "description": "Gender Equality & Workplace Ethics. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-006",
+      "title": "Public Procurement Framework for GoI",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "Government Procurement & Tendering Rules",
+      "duration": "8 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885680128182208130/overview",
+      "description": "Government Procurement & Tendering Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-007",
+      "title": "Effective Communication",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_COMMUNICATION",
+      "competency_name": "Interpersonal Skills & Public Speaking",
+      "duration": "9 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885683204988928132/overview",
+      "description": "Interpersonal Skills & Public Speaking. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-008",
+      "title": "Data-Driven Decision Making",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Evidence-Based Policy & Statistical Analysis",
+      "duration": "10 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_11388568628182208134/overview",
+      "description": "Evidence-Based Policy & Statistical Analysis. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-009",
+      "title": "Basics of Public Policy Research",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_POLICY",
+      "competency_name": "Public Policy Analysis & Evaluation",
+      "duration": "3 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885689358655488136/overview",
+      "description": "Public Policy Analysis & Evaluation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-010",
+      "title": "Introduction to Emerging Technologies",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "AI, IoT & Emerging Tech in Public Sector",
+      "duration": "4 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885702135680138/overview",
+      "description": "AI, IoT & Emerging Tech in Public Sector. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-011",
+      "title": "Stress Management",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Workplace Stress & Wellness",
+      "duration": "5 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885695512322048140/overview",
+      "description": "Workplace Stress & Wellness. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-012",
+      "title": "Advanced Excel",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Data Processing & Excel Formulas",
+      "duration": "6 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885698589155328142/overview",
+      "description": "Data Processing & Excel Formulas. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-013",
+      "title": "Advanced PowerPoint",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_COMMUNICATION",
+      "competency_name": "Presentation Design & Briefing Techniques",
+      "duration": "7 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885701605988800144/overview",
+      "description": "Presentation Design & Briefing Techniques. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-014",
+      "title": "Yoga Break at Workplace",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Employee Health & Workplace Fitness",
+      "duration": "8 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885704742812883146/overview",
+      "description": "Employee Health & Workplace Fitness. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-015",
+      "title": "Formulation of Public Policies",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_POLICY",
+      "competency_name": "Strategic Policy Formulation",
+      "duration": "9 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885689358655488136/overview",
+      "description": "Strategic Policy Formulation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-016",
+      "title": "Reform Initiatives of Govt of India",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Administrative Reforms & Governance",
+      "duration": "10 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885695512322048140/overview",
+      "description": "Administrative Reforms & Governance. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-017",
+      "title": "Orientation Module on Mission LiFE",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "Lifestyle for Environment & Sustainability",
+      "duration": "3 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885708181965516148/overview",
+      "description": "Lifestyle for Environment & Sustainability. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-018",
+      "title": "Personal & Organizational Values",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Leadership & Values in Administration",
+      "duration": "4 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885710968448000150/overview",
+      "description": "Leadership & Values in Administration. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-019",
+      "title": "Ways of Enhancing Presentation Skills",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_COMMUNICATION",
+      "competency_name": "Public Briefing & Effective Presentations",
+      "duration": "5 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885713973321728152/overview",
+      "description": "Public Briefing & Effective Presentations. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-020",
+      "title": "Right to Information (RTI) Act 2005 Overview",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "RTI Compliance & Public Transparency",
+      "duration": "6 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885717050155008154/overview",
+      "description": "RTI Compliance & Public Transparency. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-021",
+      "title": "Government e-Marketplace (GeM) Buyer Registration",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "GeM Procurement & Buyer Setup",
+      "duration": "7 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885720120882828156/overview",
+      "description": "GeM Procurement & Buyer Setup. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-022",
+      "title": "GeM Direct Purchase and Bidding Procedures",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "GeM Bidding, Reverse Auction & Invoicing",
+      "duration": "8 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885723203821568158/overview",
+      "description": "GeM Bidding, Reverse Auction & Invoicing. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-023",
+      "title": "Central Civil Services (Pension) Rules Overview",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "CCS Pension Rules & Retirement Benefits",
+      "duration": "9 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885726280654848160/overview",
+      "description": "CCS Pension Rules & Retirement Benefits. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-024",
+      "title": "National Pension System (NPS) Administration",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "NPS Processing & Government Contributions",
+      "duration": "10 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885729357488128162/overview",
+      "description": "NPS Processing & Government Contributions. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-025",
+      "title": "Treasury and Accounts Rules in Government",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "Government Accounting & Treasury Rules",
+      "duration": "3 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885732434321408164/overview",
+      "description": "Government Accounting & Treasury Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-026",
+      "title": "Preparation of Annual Financial Statements",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "Budgeting & Financial Accounting",
+      "duration": "4 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885735511154688166/overview",
+      "description": "Budgeting & Financial Accounting. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-027",
+      "title": "Audit & Internal Control Mechanisms",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "CAG Audit, Internal Audit & Compliance",
       "duration": "5 Hours",
       "rating": 4.6,
-      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
-      "description": "Guidelines for Indian Government Websites (GIGW 3.0), data privacy protocols, and secure microdata handling in public administrative systems.",
-      "embed_video_url": "https://www.youtube.com/embed/X9Xh_s-z-88"
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885738587987968168/overview",
+      "description": "CAG Audit, Internal Audit & Compliance. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-028",
+      "title": "Delegation of Financial Powers Rules (DFPR)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "Financial Sanctions & Delegated Powers",
+      "duration": "6 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885741664822124170/overview",
+      "description": "Financial Sanctions & Delegated Powers. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-029",
+      "title": "Travelling Allowance (TA) and Daily Allowance Rules",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "TA/DA Calculation & Claim Rules",
+      "duration": "7 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885744741645425172/overview",
+      "description": "TA/DA Calculation & Claim Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-030",
+      "title": "Leave Travel Concession (LTC) Rules",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "LTC Guidelines & Entitlements",
+      "duration": "8 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885747818487808174/overview",
+      "description": "LTC Guidelines & Entitlements. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-031",
+      "title": "Medical Attendance Rules (CS-MA) Overview",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "Medical Reimbursements & CS-MA Rules",
+      "duration": "9 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885750895321088176/overview",
+      "description": "Medical Reimbursements & CS-MA Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-032",
+      "title": "Central Government Health Scheme (CGHS) Guidelines",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "CGHS Benefits & Healthcare Entitlements",
+      "duration": "10 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885753972154368178/overview",
+      "description": "CGHS Benefits & Healthcare Entitlements. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-033",
+      "title": "Pay Fixation Principles under 7th CPC",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_FINANCE",
+      "competency_name": "7th Pay Commission Fixation Rules",
+      "duration": "3 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885757048987648180/overview",
+      "description": "7th Pay Commission Fixation Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-034",
+      "title": "Modified Assured Career Progression (MACP) Scheme",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Financial Upgradations & MACP Guidelines",
+      "duration": "4 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885760125820928182/overview",
+      "description": "Financial Upgradations & MACP Guidelines. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-035",
+      "title": "Central Civil Services (Leave) Rules Overview",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Earned Leave, Medical Leave & Maternity Leave Rules",
+      "duration": "5 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885763202654208184/overview",
+      "description": "Earned Leave, Medical Leave & Maternity Leave Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-036",
+      "title": "Maintenance of Service Books & Personal Files",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Service Verification & Employee Records",
+      "duration": "6 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885766279487488186/overview",
+      "description": "Service Verification & Employee Records. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-037",
+      "title": "APAR (Annual Performance Assessment Report) Writing",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Performance Appraisal & Grading",
+      "duration": "7 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885769356320768188/overview",
+      "description": "Performance Appraisal & Grading. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-038",
+      "title": "e-HRMS Module Usage for Government Employees",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "Electronic Human Resource Management System",
+      "duration": "8 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885772433154048190/overview",
+      "description": "Electronic Human Resource Management System. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-039",
+      "title": "Public Grievance Redressal Mechanisms (CPGRAMS)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "CPGRAMS Disposal & Grievance Auditing",
+      "duration": "9 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885775509987328192/overview",
+      "description": "CPGRAMS Disposal & Grievance Auditing. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-040",
+      "title": "Citizen's Charter Implementation & Standards",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Service Delivery Standards & Public Charter",
+      "duration": "10 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885778586820608194/overview",
+      "description": "Service Delivery Standards & Public Charter. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-041",
+      "title": "e-Office File Management System Basics",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "Paperless Governance & e-File Handling",
+      "duration": "3 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885784740487168198/overview",
+      "description": "Paperless Governance & e-File Handling. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-042",
+      "title": "e-File Creation, Movement and Approval",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "Digital File Signatures & Approval Workflows",
+      "duration": "4 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885787817320448200/overview",
+      "description": "Digital File Signatures & Approval Workflows. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-043",
+      "title": "Cyber Hygiene Practices for Government Officials",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_SECURITY",
+      "competency_name": "Workplace Password Security & Malware Prevention",
+      "duration": "5 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885790894153728202/overview",
+      "description": "Workplace Password Security & Malware Prevention. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-044",
+      "title": "Information Security & Data Protection Guidelines",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_SECURITY",
+      "competency_name": "Data Privacy, Microdata Protection & DPDP Act",
+      "duration": "6 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885793970988008204/overview",
+      "description": "Data Privacy, Microdata Protection & DPDP Act. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-045",
+      "title": "Artificial Intelligence in Public Service Delivery",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "AI Applications in Public Governance",
+      "duration": "7 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885797047820288206/overview",
+      "description": "AI Applications in Public Governance. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-046",
+      "title": "Data Analytics for Evidence-Based Policy",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Statistical Data Analysis & Insights",
+      "duration": "8 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885800124655368208/overview",
+      "description": "Statistical Data Analysis & Insights. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-047",
+      "title": "Cloud Computing Basics for Public Administration",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "MeitY MeghRaj Cloud & Infrastructure",
+      "duration": "9 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885803201488648210/overview",
+      "description": "MeitY MeghRaj Cloud & Infrastructure. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-048",
+      "title": "Blockchain Technology Fundamentals in Governance",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "Smart Contracts & Distributed Ledger in Govt",
+      "duration": "10 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885806278322018212/overview",
+      "description": "Smart Contracts & Distributed Ledger in Govt. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-049",
+      "title": "Digital India Stack - Aadhaar, UPI & DigiLocker",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "Public Digital Platforms & API Integration",
+      "duration": "3 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885809355155308214/overview",
+      "description": "Public Digital Platforms & API Integration. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-050",
+      "title": "National e-Governance Plan (NeGP) Overview",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "Mission Mode Projects & Digital Infrastructure",
+      "duration": "4 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885812431988608216/overview",
+      "description": "Mission Mode Projects & Digital Infrastructure. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-051",
+      "title": "Basics of Cybersecurity Laws & IT Act 2000",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_SECURITY",
+      "competency_name": "IT Act Compliance & Cyber Offenses",
+      "duration": "5 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885815508822008218/overview",
+      "description": "IT Act Compliance & Cyber Offenses. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-052",
+      "title": "Phishing & Email Security Awareness",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_SECURITY",
+      "competency_name": "Email Phishing & Threat Mitigation",
+      "duration": "6 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885818585655308220/overview",
+      "description": "Email Phishing & Threat Mitigation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-053",
+      "title": "Mobile & Device Security at Workplace",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_SECURITY",
+      "competency_name": "BYOD & Endpoint Security",
+      "duration": "7 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885821662486528222/overview",
+      "description": "BYOD & Endpoint Security. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-054",
+      "title": "Introduction to Python Programming for Data Analysis",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Python, Pandas & Data Cleaning",
+      "duration": "8 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885824739319808224/overview",
+      "description": "Python, Pandas & Data Cleaning. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-055",
+      "title": "Basic Excel Formulas & Functions",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "VLOOKUP, INDEX-MATCH & Pivot Tables",
+      "duration": "9 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885827816153088226/overview",
+      "description": "VLOOKUP, INDEX-MATCH & Pivot Tables. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-056",
+      "title": "Data Visualization using Power BI Basics",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Power BI Dashboards & Executive Reports",
+      "duration": "10 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885830892986368228/overview",
+      "description": "Power BI Dashboards & Executive Reports. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-057",
+      "title": "Electronic Signature (e-Sign) Integration Guidelines",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_IT",
+      "competency_name": "e-Sign Standards & Aadhaar Authentication",
+      "duration": "3 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885833969819048230/overview",
+      "description": "e-Sign Standards & Aadhaar Authentication. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-058",
+      "title": "Government Website Compliance Guidelines (GIGW)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "GIGW 3.0 Compliance & Accessibility",
+      "duration": "4 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885837046652928232/overview",
+      "description": "GIGW 3.0 Compliance & Accessibility. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-059",
+      "title": "Open Government Data (OGD) Portal Integration",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DATA_ANALYTICS",
+      "competency_name": "Public Datasets & Open Data Standards",
+      "duration": "5 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885840123486208234/overview",
+      "description": "Public Datasets & Open Data Standards. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-060",
+      "title": "Digital Accessibility & Assistive Technologies",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "WCAG 2.1 Accessibility for PwD",
+      "duration": "6 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885843200319488236/overview",
+      "description": "WCAG 2.1 Accessibility for PwD. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-061",
+      "title": "Basics of Disaster Management (NIDM)",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "NIDM Framework & Emergency Response",
+      "duration": "7 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885707819655168148/overview",
+      "description": "NIDM Framework & Emergency Response. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-062",
+      "title": "Flood Risk Management & Response",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "Flood Rescue, Evacuation & Relief",
+      "duration": "8 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885846277152768238/overview",
+      "description": "Flood Rescue, Evacuation & Relief. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-063",
+      "title": "Earthquake Risk Mitigation & Preparedness",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "Seismic Safety & Structural Audits",
+      "duration": "9 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885849353986048240/overview",
+      "description": "Seismic Safety & Structural Audits. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-064",
+      "title": "Cyclone Preparedness & Early Warning Systems",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "IMD Early Warning & Coastal Evacuation",
+      "duration": "10 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885852430819328242/overview",
+      "description": "IMD Early Warning & Coastal Evacuation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-065",
+      "title": "Heatwave Action Planning & Guidelines",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "Heat Resilient Infrastructure & First Aid",
+      "duration": "3 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885855507652608244/overview",
+      "description": "Heat Resilient Infrastructure & First Aid. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-066",
+      "title": "Landslide Mitigation & Slope Stabilization",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "Hilly Terrain Risk Mitigation",
+      "duration": "4 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885858584485888246/overview",
+      "description": "Hilly Terrain Risk Mitigation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-067",
+      "title": "Forest Fire Response and Management",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "Forest Fire Containment & Satellite Alerting",
+      "duration": "5 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885861661319168248/overview",
+      "description": "Forest Fire Containment & Satellite Alerting. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-068",
+      "title": "Community Based Disaster Risk Management",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "Aapda Mitra Volunteers & Local Response",
+      "duration": "6 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885864738152448250/overview",
+      "description": "Aapda Mitra Volunteers & Local Response. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-069",
+      "title": "Industrial & Chemical Disaster Safety",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "HAZMAT Protocols & Chemical Leakage Containment",
+      "duration": "7 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885867814985728252/overview",
+      "description": "HAZMAT Protocols & Chemical Leakage Containment. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-070",
+      "title": "Incident Response System (IRS) Architecture",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_DISASTER_MGMT",
+      "competency_name": "NDMA Incident Command & Coordination",
+      "duration": "8 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885870891819008254/overview",
+      "description": "NDMA Incident Command & Coordination. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-071",
+      "title": "Climate Change Adaptation in Governance",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "National Action Plan on Climate Change",
+      "duration": "9 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885873968652288256/overview",
+      "description": "National Action Plan on Climate Change. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-072",
+      "title": "Environmental Impact Assessment (EIA) Basics",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "EIA Notification Rules & Clearances",
+      "duration": "10 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885877045485568258/overview",
+      "description": "EIA Notification Rules & Clearances. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-073",
+      "title": "Sustainable Development Goals (SDGs) & Localisation",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "NITI Aayog SDG India Index & Targets",
+      "duration": "3 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885880122318848260/overview",
+      "description": "NITI Aayog SDG India Index & Targets. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-074",
+      "title": "Solid Waste Management Rules & Implementation",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "SWM Rules 2016 & Waste Segregation",
+      "duration": "4 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885883199152128262/overview",
+      "description": "SWM Rules 2016 & Waste Segregation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-075",
+      "title": "E-Waste Management Rules & Disposal Guidelines",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "E-Waste Recycling & EPR Certificates",
+      "duration": "5 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885886275985408264/overview",
+      "description": "E-Waste Recycling & EPR Certificates. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-076",
+      "title": "Renewable Energy Initiatives & Policy Framework",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_ENVIRONMENT",
+      "competency_name": "Solar, Wind & Bioenergy Schemes",
+      "duration": "6 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885889352818688266/overview",
+      "description": "Solar, Wind & Bioenergy Schemes. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-077",
+      "title": "Ayushman Bharat Digital Mission (ABDM) Overview",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_HEALTH",
+      "competency_name": "ABHA Health Accounts & Tele-consultation",
+      "duration": "7 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885892429651968268/overview",
+      "description": "ABHA Health Accounts & Tele-consultation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-078",
+      "title": "Public Health Administration & Hygiene Standards",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_HEALTH",
+      "competency_name": "Epidemic Control & Healthcare Delivery",
+      "duration": "8 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885895506485248270/overview",
+      "description": "Epidemic Control & Healthcare Delivery. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-079",
+      "title": "Mental Health Awareness & Support in Workplace",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_HEALTH",
+      "competency_name": "Workplace Well-being & Counseling",
+      "duration": "9 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885898583318528272/overview",
+      "description": "Workplace Well-being & Counseling. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-080",
+      "title": "First Aid & Emergency Medical Care Basics",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_HEALTH",
+      "competency_name": "CPR, Trauma Care & Emergency Triage",
+      "duration": "10 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885901660151808274/overview",
+      "description": "CPR, Trauma Care & Emergency Triage. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-081",
+      "title": "Integrity and Anti-Corruption Measures",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Prevention of Corruption Act & CVC Rules",
+      "duration": "3 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885904736985088276/overview",
+      "description": "Prevention of Corruption Act & CVC Rules. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-082",
+      "title": "Vigilance Awareness & Disciplinary Matters",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Departmental Inquiries & Major Penalties",
+      "duration": "4 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885907813818368278/overview",
+      "description": "Departmental Inquiries & Major Penalties. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-083",
+      "title": "Emotional Intelligence for Civil Servants",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Self-Awareness & Empathy in Public Service",
+      "duration": "5 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885910890651648280/overview",
+      "description": "Self-Awareness & Empathy in Public Service. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-084",
+      "title": "Team Building and Collaborative Governance",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Cross-Departmental Collaboration",
+      "duration": "6 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885913967484928282/overview",
+      "description": "Cross-Departmental Collaboration. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-085",
+      "title": "Problem Solving & Analytical Thinking",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Root Cause Analysis & Critical Decision Making",
+      "duration": "7 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885917044318208284/overview",
+      "description": "Root Cause Analysis & Critical Decision Making. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-086",
+      "title": "Leadership Strategies for Public Managers",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Public Sector Leadership & Vision",
+      "duration": "8 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885920121151488286/overview",
+      "description": "Public Sector Leadership & Vision. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-087",
+      "title": "Strategic Communication & Public Relations",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_COMMUNICATION",
+      "competency_name": "Press Releases, Social Media & Media Handling",
+      "duration": "9 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885923197984768288/overview",
+      "description": "Press Releases, Social Media & Media Handling. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-088",
+      "title": "Conflict Management & Resolution Techniques",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Dispute Resolution & Stakeholder Consensus",
+      "duration": "10 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885926274818048290/overview",
+      "description": "Dispute Resolution & Stakeholder Consensus. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-089",
+      "title": "Negotiation Skills for Public Officials",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Bilateral & Multilateral Contract Negotiation",
+      "duration": "3 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885929351651328292/overview",
+      "description": "Bilateral & Multilateral Contract Negotiation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-090",
+      "title": "Time Management & Prioritization Skills",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Task Prioritization & Deadline Management",
+      "duration": "4 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885932428484608294/overview",
+      "description": "Task Prioritization & Deadline Management. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-091",
+      "title": "Public Policy Evaluation & Impact Assessment",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_POLICY",
+      "competency_name": "Impact Metrics & Third-Party Evaluation",
+      "duration": "5 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885935505317888296/overview",
+      "description": "Impact Metrics & Third-Party Evaluation. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-092",
+      "title": "Gender Sensitization in Governance",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Gender Responsive Budgeting & Policies",
+      "duration": "6 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885938582151168298/overview",
+      "description": "Gender Responsive Budgeting & Policies. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-093",
+      "title": "Social Audit Principles & Best Practices",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Community Auditing of Govt Schemes",
+      "duration": "7 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885941658984448300/overview",
+      "description": "Community Auditing of Govt Schemes. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-094",
+      "title": "Rights of Persons with Disabilities (RPwD) Act",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Disability Rights & Barrier-Free Infrastructure",
+      "duration": "8 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885944735817728302/overview",
+      "description": "Disability Rights & Barrier-Free Infrastructure. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-095",
+      "title": "Customer Experience & Service Quality Standards",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_GOVERNANCE",
+      "competency_name": "Public Service Delivery Metrics (Sevottam)",
+      "duration": "9 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885947812650108304/overview",
+      "description": "Public Service Delivery Metrics (Sevottam). Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-096",
+      "title": "Viksit Bharat 2047 Strategy & Vision",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_POLICY",
+      "competency_name": "India @ 2047 Vision & Economic Goals",
+      "duration": "10 Hours",
+      "rating": 4.5,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885950889484288306/overview",
+      "description": "India @ 2047 Vision & Economic Goals. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-097",
+      "title": "Innovation in Government & Design Thinking",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Design Thinking for Public Service Re-engineering",
+      "duration": "3 Hours",
+      "rating": 4.6,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885953966317568308/overview",
+      "description": "Design Thinking for Public Service Re-engineering. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-098",
+      "title": "Project Management Fundamentals for Public Sector",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Gantt Charts, CPM/PERT & Project Monitoring",
+      "duration": "4 Hours",
+      "rating": 4.7,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885957043150848310/overview",
+      "description": "Gantt Charts, CPM/PERT & Project Monitoring. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-099",
+      "title": "Risk Management Framework in Government Projects",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_MANAGEMENT",
+      "competency_name": "Risk Identification & Mitigation Matrix",
+      "duration": "5 Hours",
+      "rating": 4.8,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885960119984128312/overview",
+      "description": "Risk Identification & Mitigation Matrix. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
+    },
+    {
+      "course_id": "IGOT-COURSE-100",
+      "title": "Effective Meeting Management & Minute Writing",
+      "provider": "iGOT Karmayogi / DoPT / Capacity Building Commission (CBC)",
+      "competency_code": "COMP_COMMUNICATION",
+      "competency_name": "Agenda Setting & Minute Drafting Standards",
+      "duration": "6 Hours",
+      "rating": 4.9,
+      "igot_url": "https://portal.igotkarmayogi.gov.in/app/toc/do_113885963196817408314/overview",
+      "description": "Agenda Setting & Minute Drafting Standards. Official training module indexed from iGOT Karmayogi national portal.",
+      "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
     }
   ],
   "creator_uploaded_materials": [
@@ -285,21 +3679,7 @@
       "id": "DOC-101",
       "title": "MoSPI Advanced Sampling Manual 2026",
       "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T10:11:23.877324",
-      "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-102",
-      "title": "MoSPI Advanced Sampling Manual 2026",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T10:15:22.014736",
-      "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-103",
-      "title": "MoSPI Advanced Sampling Manual 2026",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T10:20:05.407877",
+      "uploaded_at": "2026-08-25T10:57:43.704810",
       "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
     }
   ],

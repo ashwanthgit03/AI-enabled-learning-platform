@@ -67,6 +67,7 @@ function checkAuthSession() {
     }
   } else {
     showAuthModal();
+    loadLearnerRoles();
   }
 }
 
@@ -98,7 +99,7 @@ function switchAuthTab(mode) {
     btnLogin.className = 'btn btn-secondary';
     btnReg.className = 'btn btn-success';
     title.innerText = "Register New Government Officer";
-    subtitle.innerText = "Account info will be saved permanently in Creator Portal";
+    subtitle.innerText = "Select your official job title from dropdown during registration";
   }
 }
 
@@ -144,6 +145,7 @@ async function handleRegisterSubmit(e) {
   const uid = document.getElementById('reg-user-id').value.trim();
   const dept = document.getElementById('reg-dept').value.trim();
   const pass = document.getElementById('reg-password').value;
+  const selectedJobId = document.getElementById('reg-job-role').value;
   const errMsg = document.getElementById('auth-error-msg');
 
   // Validate User ID Regex Format
@@ -153,19 +155,25 @@ async function handleRegisterSubmit(e) {
     return;
   }
 
+  if (!selectedJobId) {
+    errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Please select your official Government Job Title from the dropdown.</span>';
+    return;
+  }
+
   errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Registering account...</span>';
 
   try {
     const res = await fetch('/api/v1/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: uid, name: name, department: dept, password: pass })
+      body: JSON.stringify({ user_id: uid, name: name, department: dept, password: pass, job_role_id: selectedJobId })
     });
     const data = await res.json();
 
     if (res.ok) {
       activeUser = data.user;
       currentUserId = activeUser.user_id;
+      selectedRoleId = selectedJobId;
       localStorage.setItem("mospi_active_user", JSON.stringify(activeUser));
 
       document.getElementById('auth-modal').classList.add('hidden');
@@ -173,6 +181,7 @@ async function handleRegisterSubmit(e) {
 
       showFancyPopup("Registration Successful!", `Account created for ${data.user.name} (${data.user.user_id}). Profile saved to Creator Portal.`, 'success', () => {
         loadLearnerRoles();
+        selectRole(selectedJobId);
         loadLiveUserProfile();
       });
     } else {
@@ -215,9 +224,22 @@ async function loadLearnerRoles() {
     const data = await res.json();
     allLearnerRoles = data.roles || [];
     renderLearnerRolesGrid(allLearnerRoles);
+    populateJobRoleDropdown(allLearnerRoles);
   } catch (err) {
     console.error("Failed to load roles:", err);
   }
+}
+
+function populateJobRoleDropdown(roles) {
+  const selectBox = document.getElementById('reg-job-role');
+  if (!selectBox) return;
+  selectBox.innerHTML = '<option value="" disabled selected>-- Select your Government Job Title --</option>';
+  roles.forEach(role => {
+    const opt = document.createElement('option');
+    opt.value = role.id;
+    opt.textContent = `${role.title} (${role.department})`;
+    selectBox.appendChild(opt);
+  });
 }
 
 function filterLearnerRoles(query) {
