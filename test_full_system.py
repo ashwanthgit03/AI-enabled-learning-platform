@@ -40,6 +40,19 @@ def run_tests():
     # Attach X-Creator-Token header to admin requests
     admin_headers = {"X-Creator-Token": creator_token}
 
+    # Test Creator Adding Custom Question for a Specific Government Job Position (IAS)
+    custom_q_payload = {
+        "role_id": "ROLE_JOB_001",
+        "competency_code": "COMP_GOVERNANCE",
+        "quiz_type": "baseline",
+        "question": "IAS Special Executive Procedure: How are inter-departmental policy directives approved?",
+        "options": ["Cabinet Secretariat Sign-off", "Oral communication", "Draft memo", "No approval needed"],
+        "answer": 0
+    }
+    r_add_q = session.post(f"{BASE_URL}/api/v1/creator/quiz/add", json=custom_q_payload, headers=admin_headers)
+    print(f"2b. Creator Custom Question Added for Position 'ROLE_JOB_001': HTTP {r_add_q.status_code} - {r_add_q.json().get('message')}")
+    assert r_add_q.status_code == 200
+
     # 3. Serving Officer Registration Test
     reg_payload = {
         "user_id": "ashw_101",

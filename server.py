@@ -124,6 +124,7 @@ class EnrollRequest(BaseModel):
     course_id: str
 
 class AddQuizQuestionRequest(BaseModel):
+    role_id: Optional[str] = None
     competency_code: str
     quiz_type: str = Field(..., example="baseline")
     question: str
@@ -487,6 +488,8 @@ def add_custom_quiz_question(req: AddQuizQuestionRequest):
     
     new_question = {
         "id": new_q_id,
+        "role_id": req.role_id,
+        "competency_code": req.competency_code,
         "question": req.question,
         "options": req.options,
         "answer": req.answer
@@ -496,7 +499,8 @@ def add_custom_quiz_question(req: AddQuizQuestionRequest):
     db["quizzes"] = quizzes
     write_db(db)
     
-    return {"status": "SUCCESS", "message": f"Custom question added to {req.competency_code} {req.quiz_type} quiz.", "question": new_question}
+    msg_role = f" for role '{req.role_id}'" if req.role_id else ""
+    return {"status": "SUCCESS", "message": f"Custom question added to {req.competency_code} {req.quiz_type} quiz{msg_role}.", "question": new_question}
 
 @app.get("/api/v1/creator/employees", tags=["Creator Portal"])
 def get_registered_employees():
@@ -663,15 +667,20 @@ def get_baseline_quiz(role_id: str):
         comp_name = comp["name"]
         comp_quizzes = quizzes.get(comp_code, {}).get("baseline", [])
         
-        if comp_quizzes:
-            for q in comp_quizzes:
+        # Prioritize questions created specifically for this role_id
+        role_quizzes = [q for q in comp_quizzes if q.get("role_id") == role_id]
+        generic_quizzes = [q for q in comp_quizzes if not q.get("role_id")]
+        active_quizzes = (role_quizzes + generic_quizzes) if role_quizzes else comp_quizzes
+        
+        if active_quizzes:
+            for q in active_quizzes:
                 questions.append({
                     "id": q["id"],
                     "competency_code": comp_code,
                     "competency_name": comp_name,
                     "question": q["question"],
                     "options": q["options"],
-                    "source": q.get("source", "Creator Benchmark")
+                    "source": q.get("source", "Creator Job Benchmark" if q.get("role_id") else "Creator Benchmark")
                 })
         else:
             # Generate specific diagnostic check question for this role competency

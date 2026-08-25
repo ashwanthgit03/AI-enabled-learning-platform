@@ -427,6 +427,8 @@ function renderCreatorCourses(courses) {
 }
 
 function loadCompetencyOptions() {
+  populateQuizJobRoleDropdowns();
+
   const compSet = new Set();
   creatorRoles.forEach(r => {
     r.required_competencies.forEach(c => compSet.add(c.code));
@@ -443,6 +445,48 @@ function loadCompetencyOptions() {
       opt.innerText = code;
       select.appendChild(opt);
     });
+  });
+}
+
+function populateQuizJobRoleDropdowns() {
+  const bSelect = document.getElementById('b-q-job-role');
+  const iSelect = document.getElementById('i-q-job-role');
+  
+  if (!bSelect || !iSelect) return;
+
+  const optionsHtml = '<option value="">-- All Positions / Search Job Position --</option>' +
+    creatorRoles.map(r => `<option value="${r.id}">${r.title} (${r.department})</option>`).join('');
+
+  bSelect.innerHTML = optionsHtml;
+  iSelect.innerHTML = optionsHtml;
+}
+
+function onCreatorQuizJobChange(quizType, selectedRoleId) {
+  const compSelectId = quizType === 'baseline' ? 'b-q-comp' : 'i-q-comp';
+  const compSelect = document.getElementById(compSelectId);
+  if (!compSelect) return;
+
+  compSelect.innerHTML = '';
+
+  let availableComps = [];
+  if (selectedRoleId) {
+    const roleObj = creatorRoles.find(r => r.id === selectedRoleId);
+    if (roleObj && roleObj.required_competencies) {
+      availableComps = roleObj.required_competencies.map(c => ({ code: c.code, name: c.name }));
+    }
+  } else {
+    const compMap = new Map();
+    creatorRoles.forEach(r => {
+      r.required_competencies.forEach(c => compMap.set(c.code, c.name));
+    });
+    availableComps = Array.from(compMap.entries()).map(([code, name]) => ({ code, name }));
+  }
+
+  availableComps.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.code;
+    opt.innerText = `${c.code} - ${c.name}`;
+    compSelect.appendChild(opt);
   });
 }
 
@@ -523,6 +567,8 @@ async function handleUploadMaterial(e) {
 
 async function handleCustomQuizSubmit(e, type) {
   e.preventDefault();
+  const selectedJobEl = document.getElementById(type === 'baseline' ? 'b-q-job-role' : 'i-q-job-role');
+  const selectedRoleId = selectedJobEl ? selectedJobEl.value : '';
   const compCode = document.getElementById(type === 'baseline' ? 'b-q-comp' : 'i-q-comp').value;
   const question = document.getElementById(type === 'baseline' ? 'b-q-text' : 'i-q-text').value.trim();
   
@@ -534,6 +580,7 @@ async function handleCustomQuizSubmit(e, type) {
   radios.forEach(r => { if (r.checked) answer = parseInt(r.value); });
 
   const payload = {
+    role_id: selectedRoleId || null,
     competency_code: compCode,
     quiz_type: type,
     question: question,
@@ -551,6 +598,7 @@ async function handleCustomQuizSubmit(e, type) {
     if (res.ok) {
       showFancyPopup("Quiz Question Saved", data.message, "success");
       e.target.reset();
+      onCreatorQuizJobChange(type, '');
     } else {
       showFancyPopup("Error", data.detail, "error");
     }

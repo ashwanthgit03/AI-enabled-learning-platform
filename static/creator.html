@@ -250,10 +250,19 @@
         <div class="glass-card" style="max-width: 750px; margin: 0 auto;">
           <h3 class="text-gradient">✍️ Starting Baseline Quiz Builder</h3>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-            Create diagnostic baseline assessment questions that employees take in Step 2 to establish their initial competency score.
+            Select a specific government job position or competency to create diagnostic baseline assessment questions for Step 2.
           </p>
           
           <form onsubmit="handleCustomQuizSubmit(event, 'baseline')">
+            
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Select Government Job Position / Cadre (Filter Competencies)</label>
+              <select id="b-q-job-role" onchange="onCreatorQuizJobChange('baseline', this.value)" style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 10px; color: #172033; margin-top: 0.3rem; font-weight: 600;">
+                <option value="">-- All Positions / Search Job Position --</option>
+                <!-- Dynamic options -->
+              </select>
+            </div>
+
             <div style="margin-bottom: 1rem;">
               <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
               <select id="b-q-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
@@ -298,10 +307,19 @@
         <div class="glass-card" style="max-width: 750px; margin: 0 auto;">
           <h3 class="text-gradient-amber">🏆 Intermediate Post-Course Quiz Builder</h3>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-            Create post-learning evaluation questions that test comprehension after completing an iGOT module to update skill profiles & issue badges.
+            Select a specific government job position or competency to create post-learning evaluation questions.
           </p>
           
           <form onsubmit="handleCustomQuizSubmit(event, 'intermediate')">
+            
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Select Government Job Position / Cadre (Filter Competencies)</label>
+              <select id="i-q-job-role" onchange="onCreatorQuizJobChange('intermediate', this.value)" style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 10px; color: #172033; margin-top: 0.3rem; font-weight: 600;">
+                <option value="">-- All Positions / Search Job Position --</option>
+                <!-- Dynamic options -->
+              </select>
+            </div>
+
             <div style="margin-bottom: 1rem;">
               <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
               <select id="i-q-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
