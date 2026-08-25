@@ -166,61 +166,15 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
+.btn-danger {
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+}
+
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-/* Learner Step Horizontal Bar */
-.step-bar {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-}
-
-.step-item {
-  flex: 1;
-  min-width: 140px;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  padding: 0.8rem 1rem;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  box-shadow: var(--shadow-sm);
-}
-
-.step-item.active {
-  background: #eff6ff;
-  border-color: #93c5fd;
-  color: var(--primary);
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.12);
-}
-
-.step-number {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-muted);
-}
-
-.step-item.active .step-number {
-  background: var(--primary);
-  color: #ffffff;
 }
 
 /* Creator Portal Left Sidebar Layout */
@@ -413,4 +367,42 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+/* Fancy Glassmorphic Modal & Notification System */
+.fancy-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease;
+}
+
+.fancy-modal-box {
+  background: #ffffff;
+  border: 1px solid #edf0f4;
+  border-radius: 24px;
+  padding: 2.2rem;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.2);
+  text-align: center;
+  animation: scaleUp 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

@@ -18,7 +18,8 @@
         <span class="brand-badge">ADMIN CONTROL CENTER</span>
       </div>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" style="display: flex; align-items: center; gap: 1rem;">
+      <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="refreshAllCreatorData()">🔄 Refresh Database & Registries</button>
       <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Smart India Hackathon (SIH) Suite</span>
     </div>
   </nav>
@@ -267,7 +268,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Save Baseline Diagnostic Question</button>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; justify-content: center;">Save Baseline Diagnostic Question</button>
           </form>
         </div>
       </div>
@@ -323,10 +324,15 @@
       <!-- SECTION 6: REGISTERED EMPLOYEES -->
       <div id="tab-content-employees" class="hidden">
         <div class="glass-card">
-          <h3 class="text-gradient">👥 Registered Government Employee Database</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-            Once an employee registers in the Learner Portal, their user account details are saved permanently in the Creator Registry.
-          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+              <h3 class="text-gradient">👥 Registered Government Employee Database</h3>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem;">
+                Manage registered officers, review competency badges, or revoke employee access.
+              </p>
+            </div>
+            <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;" onclick="loadCreatorEmployees()">🔄 Refresh Employee Registry</button>
+          </div>
 
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
@@ -338,7 +344,7 @@
                   <th style="padding: 0.75rem;">Active Role Chosen</th>
                   <th style="padding: 0.75rem;">Enrolled Courses</th>
                   <th style="padding: 0.75rem;">Badges Earned</th>
-                  <th style="padding: 0.75rem;">Registration Date</th>
+                  <th style="padding: 0.75rem;">Actions</th>
                 </tr>
               </thead>
               <tbody id="creator-employee-tbody">
@@ -351,7 +357,7 @@
 
       <!-- SECTION 7: DEPARTMENT ANALYTICS -->
       <div id="tab-content-analytics" class="hidden">
-        <div style="display: grid; flex-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
           <div class="glass-card" style="text-align: center;">
             <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Registered Employees</p>
             <h2 style="font-size: 2.5rem; color: var(--primary);" id="stat-users">0</h2>
@@ -378,6 +384,9 @@
     </main>
 
   </div>
+
+  <!-- FANCY NOTIFICATION MODAL CONTAINER -->
+  <div id="fancy-modal-container" class="hidden"></div>
 
   <script src="/static/creator.js"></script>
 </body>

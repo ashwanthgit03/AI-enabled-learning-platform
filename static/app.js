@@ -16,6 +16,40 @@ document.addEventListener("DOMContentLoaded", () => {
   checkAuthSession();
 });
 
+// Fancy Glassmorphic Popup Modal Engine
+function showFancyPopup(title, message, type = 'success', onClose = null) {
+  const container = document.getElementById('fancy-modal-container');
+  if (!container) return;
+
+  const icon = type === 'success' ? '🎉' : (type === 'error' ? '❌' : 'ℹ️');
+  const borderColor = type === 'success' ? '#a7f3d0' : (type === 'error' ? '#fca5a5' : '#bfdbfe');
+  const titleColor = type === 'success' ? '#16a34a' : (type === 'error' ? '#dc2626' : '#2563eb');
+
+  container.className = 'fancy-modal-overlay';
+  container.innerHTML = `
+    <div class="fancy-modal-box" style="border: 2px solid ${borderColor};">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">${icon}</div>
+      <h3 style="color: ${titleColor}; font-size: 1.4rem; margin-bottom: 0.6rem;">${title}</h3>
+      <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">${message}</p>
+      <button class="btn btn-primary" style="padding: 0.75rem 2rem; border-radius: 12px; justify-content: center; width: 100%;" onclick="closeFancyPopup()">OK, Continue</button>
+    </div>
+  `;
+
+  window._fancyOnClose = onClose;
+}
+
+function closeFancyPopup() {
+  const container = document.getElementById('fancy-modal-container');
+  if (container) {
+    container.className = 'hidden';
+    container.innerHTML = '';
+  }
+  if (typeof window._fancyOnClose === 'function') {
+    window._fancyOnClose();
+    window._fancyOnClose = null;
+  }
+}
+
 function checkAuthSession() {
   const savedUser = localStorage.getItem("mospi_active_user");
   if (savedUser) {
@@ -92,8 +126,10 @@ async function handleLoginSubmit(e) {
       document.getElementById('auth-modal').classList.add('hidden');
       document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;
       
-      loadLearnerRoles();
-      loadLiveUserProfile();
+      showFancyPopup("Welcome Back!", `Successfully signed in as Officer ${activeUser.name} (${activeUser.user_id}).`, 'success', () => {
+        loadLearnerRoles();
+        loadLiveUserProfile();
+      });
     } else {
       errMsg.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
     }
@@ -110,7 +146,14 @@ async function handleRegisterSubmit(e) {
   const pass = document.getElementById('reg-password').value;
   const errMsg = document.getElementById('auth-error-msg');
 
-  errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Creating account...</span>';
+  // Validate User ID Regex Format
+  const uidPattern = /^[a-zA-Z]{4,10}[_]?[0-9]+$/;
+  if (!uidPattern.test(uid)) {
+    errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Invalid ID Format! Must start with 4-10 letters of your name followed by numbers/underscores (e.g. ashw_101 or priya_2026).</span>';
+    return;
+  }
+
+  errMsg.innerHTML = '<span style="color: var(--primary);">⏳ Registering account...</span>';
 
   try {
     const res = await fetch('/api/v1/auth/register', {
@@ -121,7 +164,6 @@ async function handleRegisterSubmit(e) {
     const data = await res.json();
 
     if (res.ok) {
-      alert(`🎉 Registration Successful!\nAccount created for ${data.user.name} (${data.user.user_id}). Saved to Creator Portal.`);
       activeUser = data.user;
       currentUserId = activeUser.user_id;
       localStorage.setItem("mospi_active_user", JSON.stringify(activeUser));
@@ -129,10 +171,13 @@ async function handleRegisterSubmit(e) {
       document.getElementById('auth-modal').classList.add('hidden');
       document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;
 
-      loadLearnerRoles();
-      loadLiveUserProfile();
+      showFancyPopup("Registration Successful!", `Account created for ${data.user.name} (${data.user.user_id}). Profile saved to Creator Portal.`, 'success', () => {
+        loadLearnerRoles();
+        loadLiveUserProfile();
+      });
     } else {
       errMsg.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
+      showFancyPopup("Registration Error", data.detail, 'error');
     }
   } catch (err) {
     errMsg.innerHTML = '<span style="color: var(--accent-red);">❌ Registration failed.</span>';
@@ -265,7 +310,7 @@ async function proceedToBaselineQuiz() {
     box.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: var(--primary);">Diagnostic Evaluation Questions for ${data.role_title}</h3>`;
 
     if (activeBaselineQuestions.length === 0) {
-      box.innerHTML += '<p style="color: var(--text-muted);">No baseline diagnostic questions created yet for this role.</p>';
+      box.innerHTML += '<p style="color: var(--text-muted);">No baseline diagnostic questions created yet for this role. Creator can upload syllabus PDF or add questions.</p>';
       return;
     }
 
@@ -317,8 +362,9 @@ function selectBaselineAnswer(qId, optIdx) {
 }
 
 async function submitBaselineQuiz() {
-  if (Object.keys(selectedBaselineAnswers).length < activeBaselineQuestions.length) {
-    if (!confirm("You have unanswered questions. Submit diagnostic quiz anyway?")) return;
+  if (activeBaselineQuestions.length > 0 && Object.keys(selectedBaselineAnswers).length < activeBaselineQuestions.length) {
+    showFancyPopup("Unanswered Questions", "Please answer all diagnostic baseline questions before submitting.", "info");
+    return;
   }
 
   const payload = {
@@ -341,7 +387,7 @@ async function submitBaselineQuiz() {
       switchStep(3);
     }
   } catch (err) {
-    alert("Failed to grade baseline quiz.");
+    showFancyPopup("Submission Error", "Failed to grade baseline quiz.", "error");
   }
 }
 
@@ -647,11 +693,12 @@ async function submitIntermediateQuiz() {
     const data = await res.json();
 
     if (res.ok) {
-      alert(`🎉 Intermediate Quiz Passed! Score: ${data.quiz_score}%\nCompetency level boosted from ${data.previous_competency_score}% to ${data.updated_competency_score}%!`);
-      loadLiveUserProfile();
+      showFancyPopup("Intermediate Quiz Passed!", `Score: ${data.quiz_score}%\nCompetency level boosted from ${data.previous_competency_score}% to ${data.updated_competency_score}%!`, "success", () => {
+        loadLiveUserProfile();
+      });
     }
   } catch (err) {
-    alert("Failed to submit intermediate quiz.");
+    showFancyPopup("Submission Error", "Failed to submit intermediate quiz.", "error");
   }
 }
 

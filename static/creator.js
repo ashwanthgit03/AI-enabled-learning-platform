@@ -4,11 +4,49 @@ let igotCoursesData = [];
 let analyticsChartInstance = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+  refreshAllCreatorData();
+});
+
+// Fancy Glassmorphic Popup Modal Engine
+function showFancyPopup(title, message, type = 'success', onClose = null) {
+  const container = document.getElementById('fancy-modal-container');
+  if (!container) return;
+
+  const icon = type === 'success' ? '🎉' : (type === 'error' ? '❌' : 'ℹ️');
+  const borderColor = type === 'success' ? '#a7f3d0' : (type === 'error' ? '#fca5a5' : '#bfdbfe');
+  const titleColor = type === 'success' ? '#16a34a' : (type === 'error' ? '#dc2626' : '#2563eb');
+
+  container.className = 'fancy-modal-overlay';
+  container.innerHTML = `
+    <div class="fancy-modal-box" style="border: 2px solid ${borderColor};">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">${icon}</div>
+      <h3 style="color: ${titleColor}; font-size: 1.4rem; margin-bottom: 0.6rem;">${title}</h3>
+      <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">${message}</p>
+      <button class="btn btn-primary" style="padding: 0.75rem 2rem; border-radius: 12px; justify-content: center; width: 100%;" onclick="closeFancyPopup()">OK, Continue</button>
+    </div>
+  `;
+
+  window._fancyOnClose = onClose;
+}
+
+function closeFancyPopup() {
+  const container = document.getElementById('fancy-modal-container');
+  if (container) {
+    container.className = 'hidden';
+    container.innerHTML = '';
+  }
+  if (typeof window._fancyOnClose === 'function') {
+    window._fancyOnClose();
+    window._fancyOnClose = null;
+  }
+}
+
+function refreshAllCreatorData() {
   loadCreatorRoles();
   loadIGOTCourses();
   loadCreatorEmployees();
   loadAnalytics();
-});
+}
 
 function switchCreatorTab(tabName) {
   const tabs = ['roles', 'igot', 'upload', 'baseline-quiz', 'intermediate-quiz', 'employees', 'analytics'];
@@ -39,7 +77,7 @@ function addCompetencyInputRow() {
   div.style.gap = "0.5rem";
   div.style.marginBottom = "0.5rem";
   div.innerHTML = `
-    <input type="text" class="comp-code" placeholder="Code (e.g. COMP_NAS)" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
+    <input type="text" class="comp-code" placeholder="Competency Code" required style="flex: 1; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
     <input type="text" class="comp-name" placeholder="Competency Name" required style="flex: 2; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
     <input type="number" class="comp-target" min="1" max="100" placeholder="Target %" required style="width: 90px; padding: 0.5rem 0.75rem; background: #f8fafc; border: 1px solid #dbe2ea; color: #172033; border-radius: 6px;">
   `;
@@ -139,7 +177,7 @@ async function handleCreateRole(e) {
   });
 
   if (required_competencies.length === 0) {
-    alert("Please add at least one required competency target.");
+    showFancyPopup("Validation Error", "Please add at least one required competency target.", "error");
     return;
   }
 
@@ -154,14 +192,15 @@ async function handleCreateRole(e) {
     const data = await res.json();
 
     if (res.ok) {
-      alert(`🎉 Role '${title}' published successfully to Learner Portal!`);
-      document.getElementById("create-role-form").reset();
-      loadCreatorRoles();
+      showFancyPopup("Role Published!", `Government Role '${title}' published successfully to Learner Portal!`, "success", () => {
+        document.getElementById("create-role-form").reset();
+        loadCreatorRoles();
+      });
     } else {
-      alert(`Error: ${data.detail}`);
+      showFancyPopup("Publish Error", data.detail, "error");
     }
   } catch (err) {
-    alert("Failed to publish role.");
+    showFancyPopup("Network Error", "Failed to publish role.", "error");
   }
 }
 
@@ -224,26 +263,28 @@ async function handleCreateIGOTCourse(e) {
     const data = await res.json();
 
     if (res.ok) {
-      alert(`🎉 iGOT Course '${title}' indexed to database!`);
-      document.getElementById("create-igot-course-form").reset();
-      loadIGOTCourses();
+      showFancyPopup("iGOT Course Indexed!", `Course '${title}' indexed to database!`, "success", () => {
+        document.getElementById("create-igot-course-form").reset();
+        loadIGOTCourses();
+      });
     } else {
-      alert(`Error: ${data.detail}`);
+      showFancyPopup("Index Error", data.detail, "error");
     }
   } catch (err) {
-    alert("Failed to index course.");
+    showFancyPopup("Network Error", "Failed to index course.", "error");
   }
 }
 
 async function triggerLiveScrape() {
-  alert("⏳ Scrape request initiated! Fetching live training courses from igotkarmayogi.gov.in...");
+  showFancyPopup("Initiating Web Scraper", "Fetching live training courses from igotkarmayogi.gov.in...", "info");
   try {
     const res = await fetch('/api/v1/igot/scrape-refresh', { method: 'POST' });
     const data = await res.json();
-    alert(`✅ Scrape Complete!\n${data.message}`);
-    loadIGOTCourses();
+    showFancyPopup("Scrape Complete!", data.message, "success", () => {
+      loadIGOTCourses();
+    });
   } catch (err) {
-    alert("Scrape failed or timed out.");
+    showFancyPopup("Scrape Error", "Scrape failed or timed out.", "error");
   }
 }
 
@@ -261,7 +302,7 @@ async function handleUploadMaterial(e) {
   }
 
   const status = document.getElementById("upload-status");
-  status.innerHTML = '<span style="color: var(--primary); font-weight: 700;">⏳ Processing document and generating AI evaluation questions...</span>';
+  status.innerHTML = '<span style="color: var(--primary); font-weight: 700;">⏳ Processing document and generating AI RAG evaluation questions...</span>';
 
   try {
     const res = await fetch("/api/v1/creator/upload-material", {
@@ -272,9 +313,12 @@ async function handleUploadMaterial(e) {
 
     if (res.ok) {
       status.innerHTML = `<span style="color: var(--accent-green); font-weight: 700;">✅ ${data.message}</span>`;
-      document.getElementById("upload-material-form").reset();
+      showFancyPopup("Document Ingested & AI Quiz Generated!", data.message, "success", () => {
+        document.getElementById("upload-material-form").reset();
+      });
     } else {
       status.innerHTML = `<span style="color: var(--accent-red); font-weight: 700;">❌ ${data.detail}</span>`;
+      showFancyPopup("Upload Error", data.detail, "error");
     }
   } catch (err) {
     status.innerHTML = '<span style="color: var(--accent-red); font-weight: 700;">❌ Upload failed.</span>';
@@ -305,13 +349,14 @@ async function handleCustomQuizSubmit(e, quizType) {
     const data = await res.json();
 
     if (res.ok) {
-      alert(`🎉 Custom ${quizType.toUpperCase()} question saved successfully!`);
-      e.target.reset();
+      showFancyPopup("Quiz Question Saved!", `Custom ${quizType.toUpperCase()} question added to ${competency_code}!`, "success", () => {
+        e.target.reset();
+      });
     } else {
-      alert(`Error: ${data.detail}`);
+      showFancyPopup("Question Error", data.detail, "error");
     }
   } catch (err) {
-    alert("Failed to add question.");
+    showFancyPopup("Network Error", "Failed to add question.", "error");
   }
 }
 
@@ -323,14 +368,13 @@ async function loadCreatorEmployees() {
     tbody.innerHTML = '';
 
     if (!data.employees || data.employees.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" style="padding: 1rem; color: var(--text-muted); text-align: center;">No government employees registered yet.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7" style="padding: 1.5rem; color: var(--text-muted); text-align: center;">No government employees registered yet.</td></tr>';
       return;
     }
 
     data.employees.forEach(emp => {
       const tr = document.createElement('tr');
       tr.style.borderBottom = '1px solid #edf0f4';
-      const regDate = emp.created_at !== 'N/A' ? new Date(emp.created_at).toLocaleDateString() : 'N/A';
 
       tr.innerHTML = `
         <td style="padding: 0.75rem;"><code style="color: var(--primary); font-weight: 700;">${emp.user_id}</code></td>
@@ -339,12 +383,36 @@ async function loadCreatorEmployees() {
         <td style="padding: 0.75rem; color: var(--accent-amber); font-weight: 600;">${emp.selected_role_title}</td>
         <td style="padding: 0.75rem;">${emp.enrolled_count} Courses</td>
         <td style="padding: 0.75rem;"><span style="background: #ecfdf5; color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">🏅 ${emp.badge_count} Badges</span></td>
-        <td style="padding: 0.75rem; color: var(--text-muted); font-size: 0.8rem;">${regDate}</td>
+        <td style="padding: 0.75rem;">
+          <button class="btn btn-danger" style="padding: 0.3rem 0.75rem; font-size: 0.75rem; border-radius: 6px;" onclick="deleteEmployee('${emp.user_id}', '${emp.name.replace(/'/g, "\\'")}')">
+            🗑️ Revoke Access
+          </button>
+        </td>
       `;
       tbody.appendChild(tr);
     });
   } catch (err) {
     console.error("Failed to load registered employees:", err);
+  }
+}
+
+async function deleteEmployee(userId, name) {
+  if (!confirm(`Are you sure you want to revoke platform access and delete employee account '${name}' (${userId})?`)) return;
+
+  try {
+    const res = await fetch(`/api/v1/creator/employee/${userId}`, { method: 'DELETE' });
+    const data = await res.json();
+
+    if (res.ok) {
+      showFancyPopup("Access Revoked!", `Employee '${name}' (${userId}) account deleted successfully and platform access revoked.`, "success", () => {
+        loadCreatorEmployees();
+        loadAnalytics();
+      });
+    } else {
+      showFancyPopup("Delete Error", data.detail, "error");
+    }
+  } catch (err) {
+    showFancyPopup("Network Error", "Failed to delete employee account.", "error");
   }
 }
 

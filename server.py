@@ -9,6 +9,7 @@ Location: C:/Users/DELL/Desktop/SIH
 
 import json
 import os
+import re
 import datetime
 from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, status
@@ -24,7 +25,7 @@ from rag_quiz_engine import RAGQuizGeneratorEngine
 app = FastAPI(
     title="GovLearn AI Platform (SIH)",
     description="Full-stack AI learning platform with Creator Portal & Learner Portal connecting to iGOT Karmayogi ecosystem.",
-    version="3.0.0"
+    version="3.1.0"
 )
 
 # Enable CORS for cross-origin requests
@@ -60,13 +61,13 @@ def write_db(data: Dict[str, Any]):
 # PYDANTIC SCHEMAS
 # -------------------------------------------------------------------
 class RegisterRequest(BaseModel):
-    user_id: str = Field(..., example="EMP-102")
-    name: str = Field(..., example="Priya Sharma")
+    user_id: str = Field(..., example="ashw_101")
+    name: str = Field(..., example="Ashwanth Kumar")
     department: str = Field(..., example="Price Statistics Division")
     password: str = Field(..., example="pass123")
 
 class LoginRequest(BaseModel):
-    user_id: str = Field(..., example="EMP-102")
+    user_id: str = Field(..., example="ashw_101")
     password: str = Field(..., example="pass123")
 
 class CompetencyRequirement(BaseModel):
@@ -197,18 +198,42 @@ def serve_document_viewer(doc_id: str):
 # -------------------------------------------------------------------
 @app.post("/api/v1/auth/register", tags=["Authentication"])
 def register_user(req: RegisterRequest):
-    """Registers a new government employee and persists account in database."""
+    """
+    Registers a new government employee.
+    Validates User ID format: Starts with 4-10 letters (matching officer's name) followed by numbers/underscores (e.g. ashw_101).
+    Ensures duplicate officer names and departments cannot be re-registered.
+    """
     db = read_db()
     users = db.get("users", {})
     
     uid = req.user_id.strip()
+    name = req.name.strip()
+    dept = req.department.strip()
+
+    # User ID format regex: 4 to 10 letters followed by underscore and/or digits
+    uid_pattern = r'^[a-zA-Z]{4,10}[_]?[0-9]+$'
+    if not re.match(uid_pattern, uid):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid User ID format '{uid}'. User ID must start with 4-10 letters of your name followed by numbers/underscores (e.g. ashw_101 or priya_2026)."
+        )
+
+    # Check if User ID already exists
     if uid in users:
-        raise HTTPException(status_code=400, detail=f"User ID '{uid}' already registered. Please login instead.")
+        raise HTTPException(status_code=400, detail=f"User ID '{uid}' is already taken. Please choose a different Employee ID.")
+
+    # Check if exact same officer name & department already exists
+    for existing_uid, u in users.items():
+        if u.get("name", "").strip().lower() == name.lower() and u.get("department", "").strip().lower() == dept.lower():
+            raise HTTPException(
+                status_code=400,
+                detail=f"An officer with the name '{name}' in department '{dept}' is already registered! Please create a unique ID or use existing credentials."
+            )
         
     user_record = {
         "user_id": uid,
-        "name": req.name.strip(),
-        "department": req.department.strip(),
+        "name": name,
+        "department": dept,
         "password": req.password,
         "created_at": datetime.datetime.now().isoformat(),
         "selected_role_id": None,
@@ -224,7 +249,7 @@ def register_user(req: RegisterRequest):
     
     return {
         "status": "SUCCESS",
-        "message": f"Account created for Officer {req.name} ({uid}). Saved permanently to database.",
+        "message": f"Account created for Officer {name} ({uid}). Saved permanently to database.",
         "user": user_record
     }
 
@@ -396,6 +421,25 @@ def get_registered_employees():
         })
 
     return {"status": "success", "total": len(employee_list), "employees": employee_list}
+
+@app.delete("/api/v1/creator/employee/{user_id}", tags=["Creator Portal"])
+def delete_employee_account(user_id: str):
+    """Creator endpoint to delete an employee account and revoke their platform access."""
+    db = read_db()
+    users = db.get("users", {})
+    
+    if user_id not in users:
+        raise HTTPException(status_code=404, detail=f"Employee '{user_id}' not found.")
+        
+    deleted_user = users.pop(user_id)
+    db["users"] = users
+    write_db(db)
+    
+    return {
+        "status": "SUCCESS",
+        "message": f"Employee '{deleted_user.get('name')}' ({user_id}) account deleted successfully and platform access revoked.",
+        "user_id": user_id
+    }
 
 @app.get("/api/v1/creator/analytics", tags=["Creator Portal"])
 def get_creator_analytics():

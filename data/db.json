@@ -70,219 +70,54 @@
     "COMP_SAMPLING": {
       "baseline": [
         {
-          "id": "Q_SAMP_1",
-          "question": "What type of sampling ensures every individual in the population has an equal non-zero probability of selection?",
-          "options": [
-            "Convenience Sampling",
-            "Simple Random Sampling",
-            "Quota Sampling",
-            "Judgemental Sampling"
-          ],
-          "answer": 1
-        },
-        {
-          "id": "Q_SAMP_2",
-          "question": "Which error in sample surveys arises due to non-response or faulty questionnaire design?",
-          "options": [
-            "Sampling Error",
-            "Non-Sampling Error",
-            "Standard Error",
-            "Margin of Error"
-          ],
-          "answer": 1
-        },
-        {
           "id": "Q_RAG_BASE_COMP_SAMPLING_1",
-          "question": "According to syllabus document 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the primary objective of sample selection for COMP_SAMPLING?",
+          "question": "According to syllabus document 'MoSPI Advanced Sampling Manual 2026': What is the primary objective of sample selection for COMP_SAMPLING?",
           "options": [
-            "To minimize sampling variance and ensure representative data collection",
-            "To bypass official NSO field verification guidelines",
             "To eliminate all non-sampling errors manually",
-            "To collect non-random convenience data without stratification"
+            "To collect non-random convenience data without stratification",
+            "To minimize sampling variance and ensure representative data collection",
+            "To bypass official NSO field verification guidelines"
           ],
-          "answer": 0,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
+          "answer": 2,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
         },
         {
           "id": "Q_RAG_BASE_COMP_SAMPLING_2",
-          "question": "In the training manual 'MoSPI_Advanced_Sampling_Manual_2026.pdf': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
+          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
           "options": [
             "Unweighted simple arithmetic mean across non-equivalent clusters",
+            "Deterministic manual imputation without audit trail",
             "Horvitz-Thompson weighted estimation formula for probability sampling",
-            "Arbitrary non-probabilistic index scaling",
-            "Deterministic manual imputation without audit trail"
+            "Arbitrary non-probabilistic index scaling"
           ],
-          "answer": 1,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
-        },
-        {
-          "id": "Q_RAG_BASE_COMP_SAMPLING_1",
-          "question": "According to syllabus document 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the primary objective of sample selection for COMP_SAMPLING?",
-          "options": [
-            "To minimize sampling variance and ensure representative data collection",
-            "To bypass official NSO field verification guidelines",
-            "To eliminate all non-sampling errors manually",
-            "To collect non-random convenience data without stratification"
-          ],
-          "answer": 0,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
-        },
-        {
-          "id": "Q_RAG_BASE_COMP_SAMPLING_2",
-          "question": "In the training manual 'MoSPI_Advanced_Sampling_Manual_2026.pdf': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
-          "options": [
-            "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Horvitz-Thompson weighted estimation formula for probability sampling",
-            "Arbitrary non-probabilistic index scaling",
-            "Deterministic manual imputation without audit trail"
-          ],
-          "answer": 1,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
+          "answer": 2,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
         }
       ],
       "intermediate": [
         {
-          "id": "Q_SAMP_INT_1",
-          "question": "In a 2-stage cluster sampling design for NSO, what is selected at the Primary Sampling Unit (PSU) level?",
-          "options": [
-            "Individual households",
-            "Urban Frame Survey (UFS) blocks or Villages",
-            "State capitals",
-            "Persons aged 15-59"
-          ],
-          "answer": 1
-        },
-        {
           "id": "Q_RAG_INT_COMP_SAMPLING_1",
-          "question": "In the training manual 'MoSPI_Advanced_Sampling_Manual_2026.pdf': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
+          "question": "In the training manual 'MoSPI Advanced Sampling Manual 2026': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
           "options": [
+            "Horvitz-Thompson weighted estimation formula for probability sampling",
             "Deterministic manual imputation without audit trail",
-            "Arbitrary non-probabilistic index scaling",
             "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Horvitz-Thompson weighted estimation formula for probability sampling"
+            "Arbitrary non-probabilistic index scaling"
           ],
-          "answer": 3,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
+          "answer": 0,
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
         },
         {
           "id": "Q_RAG_INT_COMP_SAMPLING_2",
-          "question": "Based on 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What protocol must be followed prior to publishing public microdata?",
+          "question": "Based on 'MoSPI Advanced Sampling Manual 2026': What protocol must be followed prior to publishing public microdata?",
           "options": [
-            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols",
             "Storing raw field survey schedules without encryption",
+            "Discarding baseline survey metadata without backup",
             "Publishing unmasked personally identifiable information (PII)",
-            "Discarding baseline survey metadata without backup"
-          ],
-          "answer": 0,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
-        },
-        {
-          "id": "Q_RAG_INT_COMP_SAMPLING_1",
-          "question": "In the training manual 'MoSPI_Advanced_Sampling_Manual_2026.pdf': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
-          "options": [
-            "Deterministic manual imputation without audit trail",
-            "Arbitrary non-probabilistic index scaling",
-            "Unweighted simple arithmetic mean across non-equivalent clusters",
-            "Horvitz-Thompson weighted estimation formula for probability sampling"
+            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols"
           ],
           "answer": 3,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
-        },
-        {
-          "id": "Q_RAG_INT_COMP_SAMPLING_2",
-          "question": "Based on 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What protocol must be followed prior to publishing public microdata?",
-          "options": [
-            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols",
-            "Storing raw field survey schedules without encryption",
-            "Publishing unmasked personally identifiable information (PII)",
-            "Discarding baseline survey metadata without backup"
-          ],
-          "answer": 0,
-          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
-        }
-      ]
-    },
-    "COMP_INDEX_NUMBERS": {
-      "baseline": [
-        {
-          "id": "Q_IDX_1",
-          "question": "Which formula is used for calculating the Consumer Price Index (CPI) in India?",
-          "options": [
-            "Paasche's Index",
-            "Laspeyres' Weighted Price Index",
-            "Fisher's Ideal Index",
-            "Marshall-Edgeworth Index"
-          ],
-          "answer": 1
-        }
-      ],
-      "intermediate": [
-        {
-          "id": "Q_IDX_INT_1",
-          "question": "When updating base year weights for CPI, what household survey dataset is primarily utilized?",
-          "options": [
-            "Periodic Labour Force Survey (PLFS)",
-            "Household Consumption Expenditure Survey (HCES)",
-            "Annual Survey of Industries (ASI)",
-            "Agricultural Census"
-          ],
-          "answer": 1
-        }
-      ]
-    },
-    "COMP_DATA_ANALYTICS": {
-      "baseline": [
-        {
-          "id": "Q_DATA_1",
-          "question": "Which Python library is primarily used for tabular data manipulation in statistical analysis?",
-          "options": [
-            "Matplotlib",
-            "Pandas",
-            "PyTorch",
-            "Flask"
-          ],
-          "answer": 1
-        }
-      ],
-      "intermediate": [
-        {
-          "id": "Q_DATA_INT_1",
-          "question": "Which technique is used to handle missing data in large-scale census datasets without introducing bias?",
-          "options": [
-            "Zero filling",
-            "Multiple Imputation by Chained Equations (MICE)",
-            "Deleting all incomplete rows",
-            "Mean substitution for categorical variables"
-          ],
-          "answer": 1
-        }
-      ]
-    },
-    "COMP_GOVERNANCE": {
-      "baseline": [
-        {
-          "id": "Q_GOV_1",
-          "question": "What does GIGW stand for in Indian government IT infrastructure compliance?",
-          "options": [
-            "Guidelines for Indian Government Websites",
-            "Global Information Governance Web",
-            "Government Integrated Gateway Web",
-            "General IT Governance Framework"
-          ],
-          "answer": 0
-        }
-      ],
-      "intermediate": [
-        {
-          "id": "Q_GOV_INT_1",
-          "question": "Under MoSPI data privacy protocols, how must personally identifiable information (PII) be treated before public release?",
-          "options": [
-            "Stored in plain text",
-            "Anonymized/Pseudonymized via microdata masking",
-            "Shared with third parties",
-            "Archived without encryption"
-          ],
-          "answer": 1
+          "source": "RAG Extracted from MoSPI Advanced Sampling Manual 2026"
         }
       ]
     }
@@ -352,66 +187,11 @@
   "creator_uploaded_materials": [
     {
       "id": "DOC-101",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
+      "title": "MoSPI Advanced Sampling Manual 2026",
       "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T09:19:51.014532",
-      "summary": "Uploaded training document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-102",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T09:50:17.984387",
-      "summary": "Uploaded training document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+      "uploaded_at": "2026-08-25T10:01:59.647180",
+      "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
     }
   ],
-  "users": {
-    "EMP-101": {
-      "user_id": "EMP-101",
-      "name": "Officer Ramesh Kumar",
-      "department": "National Statistical Office (NSO)",
-      "password": "pass123",
-      "created_at": "2026-08-25T09:19:50.984768",
-      "selected_role_id": "ROLE_JSO",
-      "current_scores": {
-        "COMP_SAMPLING": 66.7,
-        "COMP_DATA_ANALYTICS": 100.0,
-        "COMP_GOVERNANCE": 45.0
-      },
-      "enrolled_courses": [],
-      "completed_courses": [],
-      "badges": []
-    },
-    "emp102": {
-      "user_id": "emp102",
-      "name": "Aswin",
-      "department": "Public service",
-      "password": "12347890",
-      "created_at": "2026-08-25T09:21:15.586490",
-      "selected_role_id": "ROLE_DATA_ANALYST",
-      "current_scores": {
-        "COMP_DATA_ANALYTICS": 0.0,
-        "COMP_SAMPLING": 25.0
-      },
-      "enrolled_courses": [
-        "IGOT-STAT-003",
-        "IGOT-STAT-001",
-        "DOC-101"
-      ],
-      "completed_courses": [],
-      "badges": []
-    },
-    "emp103": {
-      "user_id": "emp103",
-      "name": "Boopathi",
-      "department": "National Statistical Office (NSO)",
-      "password": "boopathi",
-      "created_at": "2026-08-25T09:33:37.641725",
-      "selected_role_id": "ROLE_JSO",
-      "current_scores": {},
-      "enrolled_courses": [],
-      "completed_courses": [],
-      "badges": []
-    }
-  }
+  "users": {}
 }
