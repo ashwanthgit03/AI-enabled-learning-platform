@@ -272,10 +272,17 @@ async function proceedToBaselineQuiz() {
     activeBaselineQuestions.forEach((q, idx) => {
       const qDiv = document.createElement('div');
       qDiv.className = 'question-card';
+      const isRAG = q.source && q.source.includes('RAG');
+
       qDiv.innerHTML = `
-        <p style="font-weight: 700; font-size: 1rem; color: #172033;">
-          <span style="color: var(--primary);">Q${idx + 1}.</span> [${q.competency_name}] ${q.question}
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
+          <p style="font-weight: 700; font-size: 1rem; color: #172033; flex: 1;">
+            <span style="color: var(--primary);">Q${idx + 1}.</span> [${q.competency_name}] ${q.question}
+          </p>
+          <span style="font-size: 0.7rem; background: ${isRAG ? '#ecfdf5' : '#eff6ff'}; color: ${isRAG ? '#16a34a' : '#2563eb'}; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">
+            ${isRAG ? '🤖 RAG Generated' : '✍️ Creator Set'}
+          </span>
+        </div>
         <div style="margin-top: 0.8rem;">
           ${q.options.map((opt, optIdx) => `
             <button type="button" class="option-btn" id="q-${q.id}-opt-${optIdx}" onclick="selectBaselineAnswer('${q.id}', ${optIdx})">
@@ -577,10 +584,17 @@ async function loadIntermediateQuiz(compCode) {
     activeIntermediateQuestions.forEach((q, idx) => {
       const qDiv = document.createElement('div');
       qDiv.className = 'question-card';
+      const isRAG = q.source && q.source.includes('RAG');
+
       qDiv.innerHTML = `
-        <p style="font-weight: 700; font-size: 0.95rem; color: #172033;">
-          Q${idx + 1}. ${q.question}
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
+          <p style="font-weight: 700; font-size: 0.95rem; color: #172033; flex: 1;">
+            Q${idx + 1}. ${q.question}
+          </p>
+          <span style="font-size: 0.7rem; background: ${isRAG ? '#ecfdf5' : '#eff6ff'}; color: ${isRAG ? '#16a34a' : '#2563eb'}; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">
+            ${isRAG ? '🤖 RAG Generated' : '✍️ Creator Set'}
+          </span>
+        </div>
         <div style="margin-top: 0.6rem;">
           ${q.options.map((opt, optIdx) => `
             <button type="button" class="option-btn" id="int-q-${q.id}-opt-${optIdx}" onclick="selectIntermediateAnswer('${q.id}', ${optIdx})">

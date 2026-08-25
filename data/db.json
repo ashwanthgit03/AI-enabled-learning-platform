@@ -64,36 +64,6 @@
           "target_score": 70
         }
       ]
-    },
-    {
-      "id": "ROLE_TEST_OFFICER",
-      "title": "Chief Survey Methodology Officer",
-      "department": "Survey Design Division",
-      "eligibility": "Ph.D. or Master's in Statistics",
-      "experience_years": 8,
-      "description": "Oversees large-scale sample survey methodology across all states.",
-      "required_competencies": [
-        {
-          "code": "COMP_SAMPLING",
-          "name": "Sampling Techniques",
-          "target_score": 95.0
-        }
-      ]
-    },
-    {
-      "id": "public_ration",
-      "title": "Ration shop",
-      "department": "Public service",
-      "eligibility": "12th Pass with any degree",
-      "experience_years": 2,
-      "description": "be Polite",
-      "required_competencies": [
-        {
-          "code": "maths_101",
-          "name": "Mathematics",
-          "target_score": 80.0
-        }
-      ]
     }
   ],
   "quizzes": {
@@ -122,15 +92,28 @@
           "answer": 1
         },
         {
-          "id": "Q_SAMP_3",
-          "question": "In Stratified Sampling, how should elements within each stratum ideally be?",
+          "id": "Q_RAG_BASE_COMP_SAMPLING_1",
+          "question": "According to syllabus document 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the primary objective of sample selection for COMP_SAMPLING?",
           "options": [
-            "Heterogeneous within, Homogeneous between",
-            "Homogeneous within, Heterogeneous between",
-            "Completely random",
-            "Identical across all strata"
+            "To minimize sampling variance and ensure representative data collection",
+            "To bypass official NSO field verification guidelines",
+            "To eliminate all non-sampling errors manually",
+            "To collect non-random convenience data without stratification"
           ],
-          "answer": 1
+          "answer": 0,
+          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
+        },
+        {
+          "id": "Q_RAG_BASE_COMP_SAMPLING_2",
+          "question": "In the training manual 'MoSPI_Advanced_Sampling_Manual_2026.pdf': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
+          "options": [
+            "Unweighted simple arithmetic mean across non-equivalent clusters",
+            "Horvitz-Thompson weighted estimation formula for probability sampling",
+            "Arbitrary non-probabilistic index scaling",
+            "Deterministic manual imputation without audit trail"
+          ],
+          "answer": 1,
+          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
         }
       ],
       "intermediate": [
@@ -146,81 +129,28 @@
           "answer": 1
         },
         {
-          "id": "Q_SAMP_INT_2",
-          "question": "How is the design effect (Deff) defined in complex survey sample estimation?",
+          "id": "Q_RAG_INT_COMP_SAMPLING_1",
+          "question": "In the training manual 'MoSPI_Advanced_Sampling_Manual_2026.pdf': Which formula standard is mandated for estimating population parameters under COMP_SAMPLING?",
           "options": [
-            "Ratio of variance of complex sample to variance of SRS of same size",
-            "Difference between sample mean and population mean",
-            "Product of sample size and standard deviation",
-            "Ratio of sample size to population size"
+            "Deterministic manual imputation without audit trail",
+            "Arbitrary non-probabilistic index scaling",
+            "Unweighted simple arithmetic mean across non-equivalent clusters",
+            "Horvitz-Thompson weighted estimation formula for probability sampling"
           ],
-          "answer": 0
+          "answer": 3,
+          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
         },
         {
-          "id": "Q_AUTO_DOC-102",
-          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
+          "id": "Q_RAG_INT_COMP_SAMPLING_2",
+          "question": "Based on 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What protocol must be followed prior to publishing public microdata?",
           "options": [
-            "Follow standard MoSPI operational protocol",
-            "Ignore metadata validation",
-            "Manual paper entry without audit",
-            "Bypass sampling frame"
+            "Anonymization and microdata masking in compliance with GIGW & Data Privacy protocols",
+            "Storing raw field survey schedules without encryption",
+            "Publishing unmasked personally identifiable information (PII)",
+            "Discarding baseline survey metadata without backup"
           ],
-          "answer": 0
-        },
-        {
-          "id": "Q_AUTO_DOC-103",
-          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
-          "options": [
-            "Follow standard MoSPI operational protocol",
-            "Ignore metadata validation",
-            "Manual paper entry without audit",
-            "Bypass sampling frame"
-          ],
-          "answer": 0
-        },
-        {
-          "id": "Q_AUTO_DOC-104",
-          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
-          "options": [
-            "Follow standard MoSPI operational protocol",
-            "Ignore metadata validation",
-            "Manual paper entry without audit",
-            "Bypass sampling frame"
-          ],
-          "answer": 0
-        },
-        {
-          "id": "Q_AUTO_DOC-105",
-          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
-          "options": [
-            "Follow standard MoSPI operational protocol",
-            "Ignore metadata validation",
-            "Manual paper entry without audit",
-            "Bypass sampling frame"
-          ],
-          "answer": 0
-        },
-        {
-          "id": "Q_AUTO_DOC-106",
-          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
-          "options": [
-            "Follow standard MoSPI operational protocol",
-            "Ignore metadata validation",
-            "Manual paper entry without audit",
-            "Bypass sampling frame"
-          ],
-          "answer": 0
-        },
-        {
-          "id": "Q_AUTO_DOC-107",
-          "question": "Based on uploaded material 'MoSPI_Advanced_Sampling_Manual_2026.pdf': What is the key procedure outlined for COMP_SAMPLING?",
-          "options": [
-            "Follow standard MoSPI operational protocol",
-            "Ignore metadata validation",
-            "Manual paper entry without audit",
-            "Bypass sampling frame"
-          ],
-          "answer": 0
+          "answer": 0,
+          "source": "RAG Extracted from MoSPI_Advanced_Sampling_Manual_2026.pdf"
         }
       ]
     },
@@ -234,17 +164,6 @@
             "Laspeyres' Weighted Price Index",
             "Fisher's Ideal Index",
             "Marshall-Edgeworth Index"
-          ],
-          "answer": 1
-        },
-        {
-          "id": "Q_IDX_2",
-          "question": "What base year weights are held constant in Laspeyres price index formula?",
-          "options": [
-            "Current year quantities",
-            "Base year quantities",
-            "Average quantities",
-            "Target year prices"
           ],
           "answer": 1
         }
@@ -273,17 +192,6 @@
             "Pandas",
             "PyTorch",
             "Flask"
-          ],
-          "answer": 1
-        },
-        {
-          "id": "Q_DATA_2",
-          "question": "What is the primary objective of Exploratory Data Analysis (EDA)?",
-          "options": [
-            "To deploy machine learning models",
-            "To understand data distribution, anomalies, and underlying patterns",
-            "To encrypt government data",
-            "To format output as HTML"
           ],
           "answer": 1
         }
@@ -396,52 +304,10 @@
   "creator_uploaded_materials": [
     {
       "id": "DOC-101",
-      "title": "MoSPI_Sampling_Methodology_Manual_2025.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-24T14:00:00Z",
-      "summary": "Official reference guide on sampling frame creation and estimation formulas for NSO surveys."
-    },
-    {
-      "id": "DOC-102",
       "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
       "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-24T22:54:43.844896",
-      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-103",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-24T22:55:32.955693",
-      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-104",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-24T23:07:40.964658",
-      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-105",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-24T23:12:14.986104",
-      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-106",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T08:57:42.506063",
-      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
-    },
-    {
-      "id": "DOC-107",
-      "title": "MoSPI_Advanced_Sampling_Manual_2026.pdf",
-      "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T09:04:53.182447",
-      "summary": "Uploaded learning document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
+      "uploaded_at": "2026-08-25T09:19:51.014532",
+      "summary": "Uploaded training document 'MoSPI_Advanced_Sampling_Manual_2026.pdf' for competency COMP_SAMPLING."
     }
   ],
   "users": {
@@ -450,38 +316,14 @@
       "name": "Officer Ramesh Kumar",
       "department": "National Statistical Office (NSO)",
       "password": "pass123",
-      "created_at": "2026-08-24T22:55:32.891137",
+      "created_at": "2026-08-25T09:19:50.984768",
       "selected_role_id": "ROLE_JSO",
       "current_scores": {
-        "COMP_SAMPLING": 100.0,
+        "COMP_SAMPLING": 75.0,
         "COMP_DATA_ANALYTICS": 100.0,
         "COMP_GOVERNANCE": 45.0
       },
       "enrolled_courses": [],
-      "completed_courses": [],
-      "badges": []
-    },
-    "emp101": {
-      "user_id": "emp101",
-      "name": "Ashwanth",
-      "department": "public service",
-      "password": "12345678",
-      "created_at": "2026-08-24T22:58:03.096382",
-      "selected_role_id": "public_ration",
-      "current_scores": {
-        "maths_101": 0.0
-      },
-      "enrolled_courses": [
-        "IGOT-STAT-003",
-        "IGOT-STAT-001",
-        "DOC-101",
-        "DOC-103",
-        "DOC-102",
-        "IGOT-STAT-005",
-        "DOC-104",
-        "IGOT-STAT-002",
-        "IGOT-STAT-004"
-      ],
       "completed_courses": [],
       "badges": []
     }

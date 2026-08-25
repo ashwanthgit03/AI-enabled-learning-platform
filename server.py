@@ -1,6 +1,6 @@
 """
 AI-Enabled Personalized Learning Platform for India's Official Statistical System
-Smart India Hackathon (SIH) - Full Stack Server
+Smart India Hackathon (SIH) - Full Stack Server with RAG Quiz Engine
 Powering: 
  1. Creator / Admin Portal (/creator)
  2. Learner / Government Employee Portal (/)
@@ -17,13 +17,14 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from pydantic import BaseModel, Field
 
-# Import iGOT Scraper Module
+# Import iGOT Scraper Module & RAG Quiz Engine
 from igot_scraper import IGOTKarmayogiScraper
+from rag_quiz_engine import RAGQuizGeneratorEngine
 
 app = FastAPI(
-    title="MoSPI Personalized Learning Platform (SIH)",
+    title="GovLearn AI Platform (SIH)",
     description="Full-stack AI learning platform with Creator Portal & Learner Portal connecting to iGOT Karmayogi ecosystem.",
-    version="2.4.0"
+    version="3.0.0"
 )
 
 # Enable CORS for cross-origin requests
@@ -40,6 +41,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 DB_FILE = os.path.join(DATA_DIR, "db.json")
+
+rag_engine = RAGQuizGeneratorEngine()
 
 # Helper functions for JSON database persistence
 def read_db() -> Dict[str, Any]:
@@ -154,24 +157,24 @@ def serve_document_viewer(doc_id: str):
       <title>{title} - MoSPI Document Viewer</title>
       <link rel="stylesheet" href="/static/styles.css">
     </head>
-    <body style="background: #0f172a; color: #fff; padding: 2rem; font-family: sans-serif;">
-      <div class="glass-card" style="max-width: 800px; margin: 0 auto; padding: 2.5rem; border: 1px solid var(--accent);">
+    <body style="background: #f5f7fb; color: #172033; padding: 2rem; font-family: sans-serif;">
+      <div class="glass-card" style="max-width: 800px; margin: 0 auto; padding: 2.5rem; background: #ffffff;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <span style="font-size: 0.8rem; background: rgba(6,182,212,0.2); color: #06b6d4; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600;">📄 OFFICIAL CREATOR SYLLABUS DOCUMENT</span>
-          <span style="font-size: 0.8rem; color: #94a3b8;">Document ID: {doc_id}</span>
+          <span style="font-size: 0.8rem; background: #eff6ff; color: #2563eb; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 700;">📄 OFFICIAL CREATOR SYLLABUS DOCUMENT</span>
+          <span style="font-size: 0.8rem; color: #64748b;">Document ID: {doc_id}</span>
         </div>
         
-        <h1 style="color: #fff; font-size: 1.8rem; margin-bottom: 0.5rem;">{title}</h1>
-        <p style="color: var(--accent-amber); font-size: 0.95rem; margin-bottom: 1.5rem;">Associated Target Competency: <strong>{comp}</strong></p>
+        <h1 style="color: #172033; font-size: 1.8rem; margin-bottom: 0.5rem;">{title}</h1>
+        <p style="color: #ea580c; font-size: 0.95rem; margin-bottom: 1.5rem; font-weight: 600;">Associated Target Competency: <strong>{comp}</strong></p>
         
-        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
-          <h3 style="color: #a5b4fc; margin-bottom: 0.75rem;">📘 Syllabus Summary & Operational Guidelines</h3>
-          <p style="color: #e2e8f0; font-size: 1rem; line-height: 1.7;">{summary}</p>
+        <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem; border: 1px solid #edf0f4; margin-bottom: 1.5rem;">
+          <h3 style="color: #1e3a8a; margin-bottom: 0.75rem;">📘 Syllabus Summary & RAG Generated Evaluation Guidelines</h3>
+          <p style="color: #475569; font-size: 1rem; line-height: 1.7;">{summary}</p>
         </div>
 
-        <div style="background: rgba(16, 185, 129, 0.05); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(16, 185, 129, 0.2); margin-bottom: 2rem;">
-          <h4 style="color: #34d399; margin-bottom: 0.5rem;">💡 Key Learning Objectives</h4>
-          <ul style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; padding-left: 1.2rem;">
+        <div style="background: #ecfdf5; border-radius: 12px; padding: 1.5rem; border: 1px solid #a7f3d0; margin-bottom: 2rem;">
+          <h4 style="color: #16a34a; margin-bottom: 0.5rem;">💡 Key Learning Objectives & AI RAG Assessment</h4>
+          <ul style="color: #475569; font-size: 0.95rem; line-height: 1.6; padding-left: 1.2rem;">
             <li>Standardized data collection methodologies according to NSO guidelines</li>
             <li>Error auditing and quality assurance standards for official statistics</li>
             <li>Compliance with Indian Government Data Governance Protocols</li>
@@ -297,41 +300,52 @@ def upload_learning_material(
     associated_competency: str = Form(...),
     file: Optional[UploadFile] = File(None)
 ):
-    """Creator endpoint to upload training document (PDF/DOCX) & auto-generate quiz questions."""
+    """
+    Creator endpoint to upload training document (PDF/DOCX).
+    RAG & AI Quiz Generator Engine reads document text and automatically generates
+    both Starting Baseline MCQs and Intermediate Post-Course Evaluation MCQs!
+    """
     db = read_db()
     materials = db.get("creator_uploaded_materials", [])
     
     filename = file.filename if file else title
     doc_id = f"DOC-{len(materials) + 101}"
     
+    doc_text = f"Syllabus and operational guidelines for {title} under competency {associated_competency}."
+    if file:
+        try:
+            content_bytes = file.file.read()
+            doc_text = content_bytes.decode('utf-8', errors='ignore')
+        except Exception:
+            pass
+
     new_material = {
         "id": doc_id,
         "title": filename,
         "associated_competency": associated_competency,
         "uploaded_at": datetime.datetime.now().isoformat(),
-        "summary": f"Uploaded learning document '{title}' for competency {associated_competency}."
+        "summary": f"Uploaded training document '{title}' for competency {associated_competency}."
     }
     materials.append(new_material)
     db["creator_uploaded_materials"] = materials
+    
+    # Run RAG Quiz Engine to generate MCQs automatically from document content
+    rag_results = rag_engine.generate_quiz_from_document(filename, doc_text, associated_competency)
     
     quizzes = db.get("quizzes", {})
     if associated_competency not in quizzes:
         quizzes[associated_competency] = {"baseline": [], "intermediate": []}
         
-    auto_q = {
-        "id": f"Q_AUTO_{doc_id}",
-        "question": f"Based on uploaded material '{filename}': What is the key procedure outlined for {associated_competency}?",
-        "options": ["Follow standard MoSPI operational protocol", "Ignore metadata validation", "Manual paper entry without audit", "Bypass sampling frame"],
-        "answer": 0
-    }
-    quizzes[associated_competency]["intermediate"].append(auto_q)
+    quizzes[associated_competency]["baseline"].extend(rag_results["baseline"])
+    quizzes[associated_competency]["intermediate"].extend(rag_results["intermediate"])
     db["quizzes"] = quizzes
     
     write_db(db)
     return {
         "status": "SUCCESS",
-        "message": f"Material '{filename}' uploaded successfully! Auto-generated AI evaluation quiz questions.",
-        "material": new_material
+        "message": f"Material '{filename}' ingested successfully! RAG Engine generated {len(rag_results['baseline'])} Baseline questions & {len(rag_results['intermediate'])} Intermediate questions.",
+        "material": new_material,
+        "rag_generated_quizzes": rag_results
     }
 
 @app.post("/api/v1/creator/quiz/add", tags=["Creator Portal"])
@@ -471,7 +485,7 @@ def select_user_role(req: SelectRoleRequest):
 
 @app.get("/api/v1/learner/quiz/baseline/{role_id}", tags=["Learner Portal"])
 def get_baseline_quiz(role_id: str):
-    """Generates diagnostic baseline assessment quiz for a chosen government role."""
+    """Generates diagnostic baseline assessment quiz combining Creator MCQs & RAG Document MCQs."""
     db = read_db()
     roles = db.get("roles", [])
     quizzes = db.get("quizzes", {})
@@ -492,7 +506,8 @@ def get_baseline_quiz(role_id: str):
                 "competency_code": comp_code,
                 "competency_name": comp_name,
                 "question": q["question"],
-                "options": q["options"]
+                "options": q["options"],
+                "source": q.get("source", "Creator Benchmark")
             })
             
     return {
@@ -675,7 +690,7 @@ def enroll_learner_course(req: EnrollRequest):
 
 @app.get("/api/v1/learner/quiz/intermediate/{competency_code}", tags=["Learner Portal"])
 def get_intermediate_quiz(competency_code: str):
-    """Returns post-learning intermediate evaluation quiz after completing a course."""
+    """Returns post-learning intermediate evaluation quiz combining Creator MCQs & RAG Document MCQs."""
     db = read_db()
     quizzes = db.get("quizzes", {})
     comp_quizzes = quizzes.get(competency_code, {}).get("intermediate", [])

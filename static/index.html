@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GovLearn AI - India's Official Statistical System Platform (SIH)</title>
+  <title>GovLearn AI - Government Workforce Learning Portal (SIH)</title>
   <link rel="stylesheet" href="/static/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <!-- Top White Glass Navbar -->
+  <!-- Top Glass Navbar -->
   <nav class="navbar">
     <div class="nav-brand">
       <span style="font-size: 1.5rem;">🤖</span>
@@ -27,151 +27,180 @@
     </div>
   </nav>
 
-  <div class="container">
+  <!-- Left Sidebar & Main Content Layout -->
+  <div class="creator-layout">
 
-    <!-- Interactive Step Progress Bar -->
-    <div class="step-bar">
-      <div class="step-item active" id="step-nav-1" onclick="switchStep(1)">
-        <span class="step-number">1</span>
-        <span>Role & Benchmark</span>
-      </div>
-      <div class="step-item" id="step-nav-2" onclick="switchStep(2)">
-        <span class="step-number">2</span>
-        <span>Baseline Assessment</span>
-      </div>
-      <div class="step-item" id="step-nav-3" onclick="switchStep(3)">
-        <span class="step-number">3</span>
-        <span>Skill Gap Matrix</span>
-      </div>
-      <div class="step-item" id="step-nav-4" onclick="switchStep(4)">
-        <span class="step-number">4</span>
-        <span>iGOT Recommended Learning</span>
-      </div>
-      <div class="step-item" id="step-nav-5" onclick="switchStep(5)">
-        <span class="step-number">5</span>
-        <span>Intermediate Evaluation</span>
-      </div>
-    </div>
+    <!-- LEFT SIDEBAR VERTICAL NAVIGATION -->
+    <aside class="creator-sidebar">
+      <div class="sidebar-heading">LEARNER WORKFLOW</div>
 
-    <!-- STEP 1: ROLE SELECTION & ELIGIBILITY CHECK -->
-    <div id="step-content-1">
-      <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <h2 class="text-gradient" style="font-size: 1.6rem;">Step 1: Select Your Government Role & Check Eligibility</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
-              Choose your target statistical role. The platform evaluates your baseline skills against official Creator benchmark standards.
-            </p>
-          </div>
-        </div>
-      </div>
+      <button type="button" class="sidebar-btn active" id="step-nav-1" onclick="switchStep(1)">
+        <span>🏛️</span> 1. Role Benchmark
+      </button>
 
-      <!-- LIVE ROLE SEARCH & FILTER BAR -->
-      <div style="margin-bottom: 1.5rem; position: relative;">
-        <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Sampling, GDP, Price Index)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
-      </div>
+      <button type="button" class="sidebar-btn" id="step-nav-2" onclick="switchStep(2)">
+        <span>✍️</span> 2. Baseline Quiz
+      </button>
 
-      <div class="role-grid" id="learner-role-grid">
-        <!-- Dynamically rendered -->
-      </div>
+      <button type="button" class="sidebar-btn" id="step-nav-3" onclick="switchStep(3)">
+        <span>🕸️</span> 3. Skill Gap Matrix
+      </button>
 
-      <div style="margin-top: 2rem; text-align: right;">
-        <button class="btn btn-primary" onclick="proceedToBaselineQuiz()" id="btn-to-step2" disabled>Proceed to Diagnostic Assessment ➔</button>
-      </div>
-    </div>
+      <button type="button" class="sidebar-btn" id="step-nav-4" onclick="switchStep(4)">
+        <span>🎓</span> 4. iGOT Learning Feed
+      </button>
 
-    <!-- STEP 2: DIAGNOSTIC BASELINE QUIZ -->
-    <div id="step-content-2" class="hidden">
-      <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2 class="text-gradient">Step 2: Diagnostic Baseline Assessment Quiz</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
-          Complete these diagnostic evaluation questions to measure your current competency level against role benchmark requirements.
-        </p>
-      </div>
+      <button type="button" class="sidebar-btn" id="step-nav-5" onclick="switchStep(5)">
+        <span>🏆</span> 5. Intermediate Evaluation
+      </button>
+    </aside>
 
-      <div class="quiz-container" id="baseline-quiz-box">
-        <!-- Questions rendered dynamically -->
-      </div>
+    <!-- MAIN CONTENT AREA -->
+    <main class="creator-content">
 
-      <div style="margin-top: 1.5rem; text-align: right;">
-        <button class="btn btn-success" onclick="submitBaselineQuiz()">Submit Diagnostic Quiz & Calculate Skill Gaps ➔</button>
-      </div>
-    </div>
-
-    <!-- STEP 3: SKILL GAP RADAR DASHBOARD -->
-    <div id="step-content-3" class="hidden">
-      <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2 class="text-gradient">Step 3: Identified Competency Skill Gaps</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Comparing baseline assessment scores against required Creator target benchmarks.
-        </p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem;">
-        <div class="glass-card">
-          <h3 style="margin-bottom: 1rem;">🕸️ Competency Radar Analysis</h3>
-          <div style="height: 360px; position: relative;">
-            <canvas id="gapRadarChart"></canvas>
+      <!-- STEP 1: ROLE SELECTION & ELIGIBILITY CHECK -->
+      <div id="step-content-1">
+        <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h2 class="text-gradient" style="font-size: 1.6rem;">Step 1: Select Your Government Role & Check Eligibility</h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
+                Choose your target statistical role. The platform evaluates your baseline skills against official Creator benchmark standards.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="glass-card">
-          <h3 style="margin-bottom: 1rem;">🎯 Competency Gap Cards</h3>
-          <div id="gap-cards-container" style="display: flex; flex-direction: column; gap: 1rem;">
-            <!-- Rendered dynamically -->
-          </div>
+        <!-- LIVE ROLE SEARCH & FILTER BAR -->
+        <div style="margin-bottom: 1.5rem; position: relative;">
+          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Sampling, GDP, Price Index)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
+        </div>
+
+        <div class="role-grid" id="learner-role-grid">
+          <!-- Dynamically rendered -->
+        </div>
+
+        <div style="margin-top: 2rem; text-align: right;">
+          <button class="btn btn-primary" onclick="proceedToBaselineQuiz()" id="btn-to-step2" disabled>Proceed to Diagnostic Assessment ➔</button>
         </div>
       </div>
 
-      <div style="margin-top: 2rem; text-align: right;">
-        <button class="btn btn-primary" onclick="fetchAndDisplayRecommendations()">Fetch iGOT Karmayogi Recommended Courses ➔</button>
-      </div>
-    </div>
-
-    <!-- STEP 4: iGOT RECOMMENDATIONS & LEARNING -->
-    <div id="step-content-4" class="hidden">
-      <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2 class="text-gradient">Step 4: iGOT Karmayogi Recommended Training Feed</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Scraped and indexed directly from the iGOT Karmayogi national platform (igotkarmayogi.gov.in) and MoSPI training repositories.
-        </p>
-      </div>
-
-      <div class="role-grid" id="rec-cards-container">
-        <!-- Rendered dynamically -->
-      </div>
-    </div>
-
-    <!-- STEP 5: INTERMEDIATE POST-QUIZ & BADGES -->
-    <div id="step-content-5" class="hidden">
-      <div class="glass-card" style="margin-bottom: 1.5rem;">
-        <h2 class="text-gradient">Step 5: Post-Course Intermediate Quiz & Badge Claim</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Complete this intermediate comprehension test after reviewing the course to update your official competency score!
-        </p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-        <!-- Intermediate Quiz Box -->
-        <div class="glass-card">
-          <h3 style="margin-bottom: 1rem;">✍️ Intermediate Knowledge Check</h3>
-          <div id="intermediate-quiz-box">
-            <p style="color: var(--text-muted);">Select a course from Step 4 to launch your intermediate evaluation quiz.</p>
+      <!-- STEP 2: DIAGNOSTIC BASELINE QUIZ -->
+      <div id="step-content-2" class="hidden">
+        <div class="glass-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="text-gradient">Step 2: Diagnostic Baseline Assessment Quiz</h2>
+            <button class="btn btn-secondary" onclick="switchStep(1)">⬅️ Back to Role Selection</button>
           </div>
-          <button class="btn btn-success" id="btn-submit-int-quiz" style="margin-top: 1.5rem; width: 100%; justify-content: center; display: none;" onclick="submitIntermediateQuiz()">
-            Submit Intermediate Quiz & Update Profile
-          </button>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+            Complete these diagnostic evaluation questions (combining Creator benchmarks & AI RAG generated document questions).
+          </p>
         </div>
 
-        <!-- Real-Time Updated Profile & Badges -->
-        <div class="glass-card">
-          <h3 style="margin-bottom: 1rem;">🏆 Live Competency Profile & iGOT Badges</h3>
-          <div id="live-profile-box">
-            <!-- Profile state rendered dynamically -->
-          </div>
+        <div class="quiz-container" id="baseline-quiz-box">
+          <!-- Questions rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+          <button class="btn btn-secondary" onclick="switchStep(1)">⬅️ Previous Step</button>
+          <button class="btn btn-success" onclick="submitBaselineQuiz()">Submit Diagnostic Quiz & Calculate Skill Gaps ➔</button>
         </div>
       </div>
-    </div>
+
+      <!-- STEP 3: SKILL GAP RADAR DASHBOARD -->
+      <div id="step-content-3" class="hidden">
+        <div class="glass-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="text-gradient">Step 3: Identified Competency Skill Gaps</h2>
+            <button class="btn btn-secondary" onclick="switchStep(2)">⬅️ Back to Baseline Quiz</button>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Comparing baseline assessment scores against required Creator target benchmarks.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem;">
+          <div class="glass-card">
+            <h3 style="margin-bottom: 1rem;">🕸️ Competency Radar Analysis</h3>
+            <div style="height: 360px; position: relative;">
+              <canvas id="gapRadarChart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <h3 style="margin-bottom: 1rem;">🎯 Competency Gap Cards</h3>
+            <div id="gap-cards-container" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+          <button class="btn btn-secondary" onclick="switchStep(2)">⬅️ Previous Step</button>
+          <button class="btn btn-primary" onclick="fetchAndDisplayRecommendations()">Fetch iGOT Karmayogi Recommended Courses ➔</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: iGOT RECOMMENDATIONS & LEARNING -->
+      <div id="step-content-4" class="hidden">
+        <div class="glass-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="text-gradient">Step 4: iGOT Karmayogi Recommended Training Feed</h2>
+            <button class="btn btn-secondary" onclick="switchStep(3)">⬅️ Back to Skill Gap Matrix</button>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Scraped and indexed directly from the iGOT Karmayogi national platform (igotkarmayogi.gov.in) and MoSPI training repositories.
+          </p>
+        </div>
+
+        <div class="role-grid" id="rec-cards-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <button class="btn btn-secondary" onclick="switchStep(3)">⬅️ Back to Skill Gap Matrix</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: INTERMEDIATE POST-QUIZ & BADGES -->
+      <div id="step-content-5" class="hidden">
+        <div class="glass-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="text-gradient">Step 5: Post-Course Intermediate Quiz & Badge Claim</h2>
+            <button class="btn btn-secondary" onclick="switchStep(4)">⬅️ Back to Recommended Courses</button>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Complete this intermediate comprehension test after reviewing the course to update your official competency score!
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <!-- Intermediate Quiz Box -->
+          <div class="glass-card">
+            <h3 style="margin-bottom: 1rem;">✍️ Intermediate Knowledge Check</h3>
+            <div id="intermediate-quiz-box">
+              <p style="color: var(--text-muted);">Select a course from Step 4 to launch your intermediate evaluation quiz.</p>
+            </div>
+            <button class="btn btn-success" id="btn-submit-int-quiz" style="margin-top: 1.5rem; width: 100%; justify-content: center; display: none;" onclick="submitIntermediateQuiz()">
+              Submit Intermediate Quiz & Update Profile
+            </button>
+          </div>
+
+          <!-- Real-Time Updated Profile & Badges -->
+          <div class="glass-card">
+            <h3 style="margin-bottom: 1rem;">🏆 Live Competency Profile & iGOT Badges</h3>
+            <div id="live-profile-box">
+              <!-- Profile state rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <button class="btn btn-secondary" onclick="switchStep(4)">⬅️ Previous Step</button>
+        </div>
+      </div>
+
+    </main>
 
   </div>
 
