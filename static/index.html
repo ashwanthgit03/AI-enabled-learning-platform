@@ -73,7 +73,7 @@
 
         <!-- LIVE ROLE SEARCH & FILTER BAR -->
         <div style="margin-bottom: 1.5rem; position: relative;">
-          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="🔍 Search by Government Role Title, Department, or Skill Keyword (e.g. Sampling, GDP, Price Index)..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
+          <input type="text" id="role-search-input" oninput="filterLearnerRoles(this.value)" placeholder="Search by Government Role Title, Department, or Skill Keyword..." style="width: 100%; padding: 0.95rem 1.2rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
         </div>
 
         <div class="role-grid" id="learner-role-grid">
@@ -225,13 +225,13 @@
         <div style="margin-bottom: 1rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Employee ID</label>
           <div style="position: relative; margin-top: 0.3rem;">
-            <input type="text" id="login-user-id" placeholder="Enter your employee ID (e.g. EMP-101)" required style="width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none;">
+            <input type="text" id="login-user-id" placeholder="Government Employee ID" required style="width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none;">
           </div>
         </div>
         <div style="margin-bottom: 1.5rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Password</label>
           <div style="position: relative; margin-top: 0.3rem;">
-            <input type="password" id="login-password" placeholder="Enter your password" required style="width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none;">
+            <input type="password" id="login-password" placeholder="Password" required style="width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none;">
           </div>
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">Sign In ➔</button>
@@ -241,19 +241,19 @@
       <form id="register-form" class="hidden" onsubmit="handleRegisterSubmit(event)">
         <div style="margin-bottom: 1rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Officer Full Name</label>
-          <input type="text" id="reg-name" placeholder="e.g. Officer Ramesh Kumar" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
+          <input type="text" id="reg-name" placeholder="Officer Full Name" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Employee ID</label>
-          <input type="text" id="reg-user-id" placeholder="e.g. EMP-102" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
+          <input type="text" id="reg-user-id" placeholder="Government Employee ID" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Department / Division</label>
-          <input type="text" id="reg-dept" placeholder="e.g. Price Statistics Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
+          <input type="text" id="reg-dept" placeholder="Department / Division" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <div style="margin-bottom: 1.5rem;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Create Password</label>
-          <input type="password" id="reg-password" placeholder="••••••••" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
+          <input type="password" id="reg-password" placeholder="Password" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 12px; color: #172033; outline: none; margin-top: 0.3rem;">
         </div>
         <button type="submit" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">Register Officer & Save Account ➔</button>
       </form>
