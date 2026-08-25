@@ -59,26 +59,18 @@ function getTimeGreeting() {
 }
 
 function checkAuthSession() {
-  const savedUser = localStorage.getItem("mospi_active_user");
-  if (savedUser) {
-    try {
-      activeUser = JSON.parse(savedUser);
-      currentUserId = activeUser.user_id;
-      
-      document.getElementById('auth-modal').classList.add('hidden');
-      document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;
-      
-      loadLearnerRoles();
-      loadLiveUserProfile();
-      switchStep(0); // LANDING PAGE = STEP 0 (PROFILE COMMAND CENTER)
-    } catch (e) {
-      showAuthModal();
-    }
-  } else {
-    showAuthModal();
-    loadLearnerRoles();
-    switchStep(0);
-  }
+  // Always clear active session on refresh so reloading the page forces logout
+  localStorage.removeItem("mospi_active_user");
+  sessionStorage.removeItem("mospi_active_user");
+  activeUser = null;
+  currentUserId = null;
+  selectedRoleId = null;
+  maxUnlockedStep = 1;
+
+  document.getElementById('nav-officer-info').innerText = "Not Logged In";
+  showAuthModal();
+  loadLearnerRoles();
+  switchStep(0);
 }
 
 function showAuthModal() {
@@ -132,7 +124,6 @@ async function handleLoginSubmit(e) {
     if (res.ok) {
       activeUser = data.user;
       currentUserId = activeUser.user_id;
-      localStorage.setItem("mospi_active_user", JSON.stringify(activeUser));
       
       document.getElementById('auth-modal').classList.add('hidden');
       document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;
@@ -185,7 +176,6 @@ async function handleRegisterSubmit(e) {
       activeUser = data.user;
       currentUserId = activeUser.user_id;
       selectedRoleId = selectedJobId;
-      localStorage.setItem("mospi_active_user", JSON.stringify(activeUser));
 
       document.getElementById('auth-modal').classList.add('hidden');
       document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;

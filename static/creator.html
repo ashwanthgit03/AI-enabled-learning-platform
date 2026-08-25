@@ -42,8 +42,12 @@
 
       <div class="sidebar-heading">COURSE CATALOG</div>
 
-      <button type="button" class="sidebar-btn" id="tab-btn-igot" onclick="switchCreatorTab('igot')">
-        <span>🎓</span> iGOT Courses (100)
+      <button type="button" class="sidebar-btn" id="tab-btn-add-igot" onclick="switchCreatorTab('add-igot')">
+        <span>➕</span> Add iGOT Course
+      </button>
+
+      <button type="button" class="sidebar-btn" id="tab-btn-igot-catalog" onclick="switchCreatorTab('igot-catalog')">
+        <span>🎓</span> iGOT Course Catalog (<span id="igot-catalog-badge-count">100</span>)
       </button>
 
       <button type="button" class="sidebar-btn" id="tab-btn-upload" onclick="switchCreatorTab('upload')">
@@ -152,61 +156,79 @@
         </div>
       </div>
 
-      <!-- SECTION 3: MANAGE iGOT COURSES -->
-      <div id="tab-content-igot" class="hidden">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-          <div class="glass-card">
-            <h3 class="text-gradient">🎓 Add iGOT Karmayogi Course</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
-              Index courses from <a href="https://igotkarmayogi.gov.in/#/" target="_blank" style="color: var(--primary); font-weight: 700;">igotkarmayogi.gov.in ↗</a> into the platform.
-            </p>
-
-            <form id="create-igot-course-form" onsubmit="handleCreateIGOTCourse(event)">
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Course ID</label>
-                <input type="text" id="igot-cid" placeholder="Course ID" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Course Title</label>
-                <input type="text" id="igot-title" placeholder="Course Title" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Provider</label>
-                <input type="text" id="igot-provider" placeholder="Government Training Provider" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
-                <select id="igot-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-                  <!-- Dynamic options -->
-                </select>
-              </div>
-
-              <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">iGOT Portal Course URL</label>
-                <input type="url" id="igot-url" placeholder="https://igotkarmayogi.gov.in/course-link" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
-              </div>
-
-              <div style="margin-bottom: 1.5rem;">
-                <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Description</label>
-                <textarea id="igot-desc" rows="2" placeholder="Course Description & Overview" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Index iGOT Course to Database</button>
-            </form>
+      <!-- SECTION 3A: ADD iGOT COURSE FORM -->
+      <div id="tab-content-add-igot" class="hidden">
+        <div class="glass-card" style="max-width: 750px; margin: 0 auto;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 class="text-gradient" style="font-size: 1.5rem;">➕ Add New iGOT Karmayogi Course</h3>
+            <button class="btn btn-secondary" onclick="switchCreatorTab('igot-catalog')">📚 View Full Course Catalog</button>
           </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+            Index courses from <a href="https://igotkarmayogi.gov.in/#/" target="_blank" style="color: var(--primary); font-weight: 700;">igotkarmayogi.gov.in ↗</a> into the platform repository.
+          </p>
 
-          <div class="glass-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-              <h3>📚 iGOT Catalog Index</h3>
-              <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.3rem 0.7rem;" onclick="triggerLiveScrape()">🌐 Auto-Scrape igotkarmayogi.gov.in</button>
+          <form id="create-igot-course-form" onsubmit="handleCreateIGOTCourse(event)">
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Course ID</label>
+              <input type="text" id="igot-cid" placeholder="Course ID (e.g. IGOT-COURSE-101)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
             </div>
-            <div id="igot-course-list" style="display: flex; flex-direction: column; gap: 1rem;">
-              <!-- Rendered dynamically -->
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Course Title</label>
+              <input type="text" id="igot-title" placeholder="Course Title (e.g. Advanced Public Finance & GFR Rules)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Government Provider</label>
+              <input type="text" id="igot-provider" placeholder="Government Training Provider (e.g. DoPT / NIFM / CBC)" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Target Competency Code</label>
+              <select id="igot-comp" required style="width: 100%; padding: 0.75rem 1rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 10px; color: #172033; margin-top: 0.3rem; font-weight: 600;">
+                <!-- Dynamic options -->
+              </select>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">iGOT Portal Course URL</label>
+              <input type="url" id="igot-url" placeholder="https://igotkarmayogi.gov.in/course-link" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;">
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: #172033;">Description & Learning Objectives</label>
+              <textarea id="igot-desc" rows="3" placeholder="Course Description & Overview" required style="width: 100%; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #dbe2ea; border-radius: 10px; color: #172033; margin-top: 0.3rem;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.9rem;">Index iGOT Course to Database ➔</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- SECTION 3B: FULL-WIDTH iGOT COURSE CATALOG PAGE -->
+      <div id="tab-content-igot-catalog" class="hidden">
+        <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid #2563eb;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h2 class="text-gradient" style="font-size: 1.6rem;">📚 iGOT Karmayogi Course Catalog Index</h2>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.2rem;">
+                Browse, search, and manage all indexed official iGOT Karmayogi capacity building courses.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <button class="btn btn-secondary" onclick="triggerLiveScrape()">🌐 Auto-Scrape igotkarmayogi.gov.in</button>
+              <button class="btn btn-primary" onclick="switchCreatorTab('add-igot')">➕ Add New Course</button>
             </div>
           </div>
+        </div>
+
+        <!-- SEARCH BAR FOR COURSES -->
+        <div style="margin-bottom: 1.5rem;">
+          <input type="text" id="creator-course-search" oninput="filterCreatorCourses(this.value)" placeholder="🔍 Search iGOT Courses by Title, Provider, or Competency Code..." style="width: 100%; padding: 0.9rem 1.2rem; background: #ffffff; border: 1.5px solid #3b82f6; border-radius: 12px; color: var(--text-main); font-size: 0.95rem; outline: none; box-shadow: var(--shadow-sm);">
+        </div>
+
+        <div id="igot-course-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
+          <!-- Dynamically rendered -->
         </div>
       </div>
 

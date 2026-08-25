@@ -10,18 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // HIGH SECURITY AUTHENTICATION ENGINE
 function checkCreatorAuthSession() {
-  const savedToken = localStorage.getItem("mospi_creator_token");
-  if (savedToken) {
-    activeCreatorToken = savedToken;
-    document.getElementById('creator-auth-modal').classList.add('hidden');
-    loadCreatorRoles();
-    loadCreatorCourses();
-    loadCompetencyOptions();
-    loadCreatorEmployees();
-    loadCreatorAnalytics();
-  } else {
-    showCreatorAuthModal();
-  }
+  // Always clear saved creator token on refresh so reloading the page forces admin logout!
+  localStorage.removeItem("mospi_creator_token");
+  sessionStorage.removeItem("mospi_creator_token");
+  activeCreatorToken = null;
+  showCreatorAuthModal();
 }
 
 function showCreatorAuthModal() {
@@ -47,7 +40,6 @@ async function handleCreatorLogin(e) {
 
     if (res.ok) {
       activeCreatorToken = data.token;
-      localStorage.setItem("mospi_creator_token", activeCreatorToken);
       document.getElementById('creator-auth-modal').classList.add('hidden');
       errDiv.innerHTML = '';
       
@@ -134,7 +126,7 @@ function refreshAllCreatorData() {
 }
 
 function switchCreatorTab(tabName) {
-  const tabs = ['create-role', 'active-roles', 'igot', 'upload', 'baseline-quiz', 'intermediate-quiz', 'employees', 'analytics'];
+  const tabs = ['create-role', 'active-roles', 'add-igot', 'igot-catalog', 'upload', 'baseline-quiz', 'intermediate-quiz', 'employees', 'analytics'];
   tabs.forEach(t => {
     const btn = document.getElementById(`tab-btn-${t}`);
     const content = document.getElementById(`tab-content-${t}`);
@@ -150,6 +142,7 @@ function switchCreatorTab(tabName) {
   });
 
   if (tabName === 'active-roles') loadCreatorRoles();
+  if (tabName === 'igot-catalog') loadCreatorCourses();
   if (tabName === 'analytics') loadCreatorAnalytics();
   if (tabName === 'employees') loadCreatorEmployees();
 }
@@ -394,10 +387,30 @@ async function loadCreatorCourses() {
     const res = await fetch('/api/v1/igot/catalog');
     const data = await res.json();
     creatorCourses = data.courses || [];
+    const badgeCount = document.getElementById('igot-catalog-badge-count');
+    if (badgeCount) badgeCount.innerText = creatorCourses.length;
     renderCreatorCourses(creatorCourses);
   } catch (err) {
     console.error("Failed to load iGOT catalog:", err);
   }
+}
+
+function filterCreatorCourses(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) {
+    renderCreatorCourses(creatorCourses);
+    return;
+  }
+
+  const filtered = creatorCourses.filter(c => {
+    const titleMatch = c.title && c.title.toLowerCase().includes(q);
+    const provMatch = c.provider && c.provider.toLowerCase().includes(q);
+    const compMatch = c.competency_code && c.competency_code.toLowerCase().includes(q);
+    const descMatch = c.description && c.description.toLowerCase().includes(q);
+    return titleMatch || provMatch || compMatch || descMatch;
+  });
+
+  renderCreatorCourses(filtered);
 }
 
 function renderCreatorCourses(courses) {
@@ -405,22 +418,34 @@ function renderCreatorCourses(courses) {
   container.innerHTML = '';
 
   if (courses.length === 0) {
-    container.innerHTML = '<p style="color: var(--text-muted);">No iGOT courses indexed.</p>';
+    container.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No matching iGOT courses found.</p>';
     return;
   }
 
   courses.forEach(c => {
     const card = document.createElement('div');
     card.className = 'glass-card';
-    card.style.padding = '1rem';
+    card.style.padding = '1.2rem';
+    card.style.display = 'flex';
+    card.style.flexDirection = 'column';
+    card.style.justifyContent = 'space-between';
 
     card.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <h4 style="color: #172033; font-size: 1rem;">${c.title}</h4>
-        <span style="font-size: 0.75rem; background: #ecfdf5; color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${c.competency_code}</span>
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; gap: 0.5rem;">
+          <h4 style="color: #172033; font-size: 1.05rem; font-weight: 700;">${c.title}</h4>
+          <span style="font-size: 0.75rem; background: #ecfdf5; color: var(--accent-green); padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700; border: 1px solid #a7f3d0;">
+            ${c.competency_code}
+          </span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-bottom: 0.4rem;">🏛️ ${c.provider}</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5;">${c.description || 'Official iGOT Karmayogi capacity building course.'}</p>
       </div>
-      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">${c.provider}</p>
-      <a href="${c.igot_url}" target="_blank" style="font-size: 0.8rem; color: var(--primary); display: inline-block; margin-top: 0.5rem;">🔗 View Direct iGOT Course Link ↗</a>
+      <div>
+        <a href="${c.igot_url}" target="_blank" class="btn btn-secondary" style="width: 100%; justify-content: center; font-size: 0.82rem; padding: 0.5rem 0.8rem;">
+          🔗 Launch Direct iGOT Course Link ↗
+        </a>
+      </div>
     `;
     container.appendChild(card);
   });
@@ -512,6 +537,7 @@ async function handleCreateIGOTCourse(e) {
       showFancyPopup("Course Indexed", data.message, "success");
       document.getElementById('create-igot-course-form').reset();
       loadCreatorCourses();
+      switchCreatorTab('igot-catalog');
     } else {
       showFancyPopup("Error", data.detail, "error");
     }

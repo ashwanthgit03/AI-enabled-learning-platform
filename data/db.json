@@ -7321,6 +7321,45 @@
             "No approval needed"
           ],
           "answer": 0
+        },
+        {
+          "id": "Q_CUSTOM_5",
+          "role_id": "ROLE_JOB_001",
+          "competency_code": "COMP_GOVERNANCE",
+          "question": "IAS Special Executive Procedure: How are inter-departmental policy directives approved?",
+          "options": [
+            "Cabinet Secretariat Sign-off",
+            "Oral communication",
+            "Draft memo",
+            "No approval needed"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_CUSTOM_6",
+          "role_id": "ROLE_JOB_001",
+          "competency_code": "COMP_GOVERNANCE",
+          "question": "IAS Special Executive Procedure: How are inter-departmental policy directives approved?",
+          "options": [
+            "Cabinet Secretariat Sign-off",
+            "Oral communication",
+            "Draft memo",
+            "No approval needed"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "Q_CUSTOM_7",
+          "role_id": "ROLE_JOB_001",
+          "competency_code": "COMP_GOVERNANCE",
+          "question": "what is your name",
+          "options": [
+            "Ashwanth",
+            "htnawhsa",
+            "wanthash",
+            "ashwanth"
+          ],
+          "answer": 0
         }
       ],
       "intermediate": [
@@ -7966,6 +8005,45 @@
       "enrolled_courses": [],
       "completed_courses": [],
       "badges": []
+    },
+    "ashw_102": {
+      "user_id": "ashw_102",
+      "name": "Ashwanth 2",
+      "department": "Financial & Banking service",
+      "password": "AAshu@2006",
+      "created_at": "2026-08-25T13:42:00.058359",
+      "selected_role_id": "ROLE_JOB_001",
+      "current_scores": {
+        "COMP_GOVERNANCE": 57.1,
+        "COMP_FINANCE": 33.3,
+        "COMP_DATA_ANALYTICS": 0.0,
+        "COMP_IT": 33.3,
+        "COMP_MANAGEMENT": 66.7
+      },
+      "enrolled_courses": [],
+      "completed_courses": [],
+      "badges": [],
+      "last_answers": {
+        "Q_CUSTOM_7": 0,
+        "Q_CUSTOM_4": 0,
+        "Q_CUSTOM_5": 3,
+        "Q_CUSTOM_6": 1,
+        "Q_GOV_L1_01": 0,
+        "Q_GOV_L2_01": 0,
+        "Q_GOV_L3_01": 2,
+        "Q_FIN_L1_01": 0,
+        "Q_FIN_L2_01": 2,
+        "Q_FIN_L3_01": 3,
+        "Q_DATA_L1_01": 1,
+        "Q_DATA_L2_01": 3,
+        "Q_DATA_L3_01": 3,
+        "Q_IT_L1_01": 1,
+        "Q_IT_L2_01": 1,
+        "Q_IT_L3_01": 0,
+        "Q_MGMT_L1_01": 0,
+        "Q_MGMT_L2_01": 0,
+        "Q_MGMT_L3_01": 2
+      }
     }
   }
 }
