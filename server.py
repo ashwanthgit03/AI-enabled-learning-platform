@@ -564,7 +564,7 @@ def get_learner_roles():
 
 @app.post("/api/v1/learner/select-role", tags=["Learner Portal"])
 def select_user_role(req: SelectRoleRequest):
-    """Learner selects their government role. Auto-initializes user profile if needed."""
+    """Learner selects their government role. Auto-initializes user profile and resets scores if role changed."""
     db = read_db()
     users = db.get("users", {})
     roles = db.get("roles", [])
@@ -589,8 +589,12 @@ def select_user_role(req: SelectRoleRequest):
             "completed_courses": [],
             "badges": []
         }
+    else:
+        # If switching to a new role, reset current_scores for fresh baseline quiz
+        if user_data.get("selected_role_id") != role["id"]:
+            user_data["selected_role_id"] = role["id"]
+            user_data["current_scores"] = {}
         
-    user_data["selected_role_id"] = role["id"]
     users[req.user_id] = user_data
     db["users"] = users
     write_db(db)
@@ -599,7 +603,7 @@ def select_user_role(req: SelectRoleRequest):
 
 @app.get("/api/v1/learner/quiz/baseline/{role_id}", tags=["Learner Portal"])
 def get_baseline_quiz(role_id: str):
-    """Generates diagnostic baseline assessment quiz combining Creator MCQs & RAG Document MCQs."""
+    """Generates role-specific diagnostic baseline assessment quiz for all competencies required by role_id."""
     db = read_db()
     roles = db.get("roles", [])
     quizzes = db.get("quizzes", {})
@@ -616,30 +620,27 @@ def get_baseline_quiz(role_id: str):
         comp_name = comp["name"]
         comp_quizzes = quizzes.get(comp_code, {}).get("baseline", [])
         
-        for q in comp_quizzes:
+        if comp_quizzes:
+            for q in comp_quizzes:
+                questions.append({
+                    "id": q["id"],
+                    "competency_code": comp_code,
+                    "competency_name": comp_name,
+                    "question": q["question"],
+                    "options": q["options"],
+                    "source": q.get("source", "Creator Benchmark")
+                })
+        else:
+            # Generate specific diagnostic check question for this role competency
             questions.append({
-                "id": q["id"],
+                "id": f"Q_AUTO_BASE_{comp_code}_1",
                 "competency_code": comp_code,
                 "competency_name": comp_name,
-                "question": q["question"],
-                "options": q["options"],
-                "source": q.get("source", "Creator Benchmark")
-            })
-
-    # If no custom questions, generate baseline questions for competencies
-    if not questions:
-        for idx, comp in enumerate(role["required_competencies"]):
-            code = comp["code"]
-            name = comp["name"]
-            questions.append({
-                "id": f"Q_AUTO_BASE_{code}_1",
-                "competency_code": code,
-                "competency_name": name,
-                "question": f"Diagnostic Check for {name}: Which procedure standard is mandated under government rules?",
+                "question": f"Diagnostic Assessment for {comp_name} ({role['title']}): Which standard procedure is mandated under government rules?",
                 "options": [
-                    f"Standard Operating Procedure for {name}",
-                    "Manual ad-hoc execution without audit trail",
-                    "Unverified third-party process",
+                    f"Standard Operating Guideline for {comp_name}",
+                    "Ad-hoc manual execution without documentation",
+                    "Unapproved external process",
                     "Non-compliant delegation"
                 ],
                 "source": "Creator Benchmark"

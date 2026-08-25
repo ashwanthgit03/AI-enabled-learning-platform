@@ -10,7 +10,7 @@ let selectedBaselineAnswers = {};
 let selectedIntermediateAnswers = {};
 let currentActiveCompForIntQuiz = null;
 
-let maxUnlockedStep = 1; // Strict linear progression state
+let maxUnlockedStep = 1; // Linear step progression state
 let gapRadarChartInstance = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,6 +51,13 @@ function closeFancyPopup() {
   }
 }
 
+function getTimeGreeting() {
+  const hour = new Date().getHours();
+  if (hour >= 4 && hour < 12) return "Good Morning";
+  if (hour >= 12 && hour < 17) return "Good Afternoon";
+  return "Good Evening";
+}
+
 function checkAuthSession() {
   const savedUser = localStorage.getItem("mospi_active_user");
   if (savedUser) {
@@ -63,12 +70,14 @@ function checkAuthSession() {
       
       loadLearnerRoles();
       loadLiveUserProfile();
+      switchStep(0); // LANDING PAGE = STEP 0 (PROFILE COMMAND CENTER)
     } catch (e) {
       showAuthModal();
     }
   } else {
     showAuthModal();
     loadLearnerRoles();
+    switchStep(0);
   }
 }
 
@@ -128,9 +137,10 @@ async function handleLoginSubmit(e) {
       document.getElementById('auth-modal').classList.add('hidden');
       document.getElementById('nav-officer-info').innerText = `${activeUser.name} (${activeUser.user_id})`;
       
-      showFancyPopup("Welcome Back!", `Successfully signed in as Officer ${activeUser.name} (${activeUser.user_id}).`, 'success', () => {
+      showFancyPopup(`${getTimeGreeting()}!`, `Welcome Back, Officer ${activeUser.name} (${activeUser.user_id}).`, 'success', () => {
         loadLearnerRoles();
         loadLiveUserProfile();
+        switchStep(0); // LAND ON PROFILE DASHBOARD
       });
     } else {
       errMsg.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
@@ -184,6 +194,7 @@ async function handleRegisterSubmit(e) {
         loadLearnerRoles();
         selectRole(selectedJobId);
         loadLiveUserProfile();
+        switchStep(0);
       });
     } else {
       errMsg.innerHTML = `<span style="color: var(--accent-red);">❌ ${data.detail}</span>`;
@@ -206,17 +217,17 @@ function handleLogout() {
 
 // STRICT SEQUENTIAL STEP LOCKING CONTROL
 function switchStep(stepNumber) {
-  if (stepNumber > maxUnlockedStep) {
-    const stepTitles = ["Role Benchmark", "Baseline Quiz", "Skill Gap Matrix", "iGOT Learning Feed", "Intermediate Evaluation", "My Progress Roadmap"];
+  if (stepNumber > 0 && stepNumber > maxUnlockedStep) {
+    const stepTitles = ["Profile Home", "Role Benchmark", "Baseline Quiz", "Skill Gap Matrix", "iGOT Learning Feed", "Intermediate Evaluation", "My Progress Roadmap"];
     showFancyPopup(
       "🔒 Step Locked",
-      `Step ${stepNumber} (${stepTitles[stepNumber - 1]}) is currently locked.\n\nPlease complete Step ${maxUnlockedStep} first to unlock this section.`,
+      `Step ${stepNumber} (${stepTitles[stepNumber]}) is currently locked.\n\nPlease complete Step ${maxUnlockedStep} first for your active role to unlock this section.`,
       "info"
     );
     return;
   }
 
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 0; i <= 6; i++) {
     const navItem = document.getElementById(`step-nav-${i}`);
     const content = document.getElementById(`step-content-${i}`);
     if (navItem && content) {
@@ -233,8 +244,8 @@ function switchStep(stepNumber) {
   updateSidebarLockUI();
   updateOfficerProfileBanner(stepNumber);
 
-  if (stepNumber === 6) {
-    loadProgressDashboard();
+  if (stepNumber === 0 || stepNumber === 6) {
+    loadLiveUserProfile();
   }
 }
 
@@ -268,8 +279,9 @@ function updateSidebarLockUI() {
   }
 }
 
-function updateOfficerProfileBanner(currentStep = 1) {
+function updateOfficerProfileBanner(currentStep = 0) {
   const stepTitles = [
+    "Profile & Command Dashboard",
     "Step 1: Role Benchmark Selection",
     "Step 2: Diagnostic Baseline Quiz",
     "Step 3: Identified Skill Gap Matrix",
@@ -283,11 +295,28 @@ function updateOfficerProfileBanner(currentStep = 1) {
     document.getElementById('banner-avatar').innerText = initials;
     document.getElementById('banner-officer-name').innerText = activeUser.name;
     document.getElementById('banner-officer-id').innerText = `ID: ${activeUser.user_id}`;
+
+    // Update Step 0 Landing Greeting
+    const greetingText = `${getTimeGreeting()}, Officer ${activeUser.name.split(' ')[0]}! ☀️`;
+    const greetingEl = document.getElementById('greeting-header-text');
+    if (greetingEl) greetingEl.innerText = greetingText;
+
+    const homeName = document.getElementById('home-profile-name');
+    if (homeName) homeName.innerText = activeUser.name;
+    const homeId = document.getElementById('home-profile-id');
+    if (homeId) homeId.innerText = activeUser.user_id;
+    const homeDept = document.getElementById('home-profile-dept');
+    if (homeDept) homeDept.innerText = activeUser.department || "Government Department";
   }
 
   const selectedRoleObj = allLearnerRoles.find(r => r.id === selectedRoleId);
-  document.getElementById('banner-officer-role').innerText = selectedRoleObj ? `Target Role: ${selectedRoleObj.title}` : "Target Role: None Selected";
-  document.getElementById('banner-step-status').innerText = stepTitles[currentStep - 1] || "Step 1: Role Selection";
+  const roleTitleText = selectedRoleObj ? selectedRoleObj.title : "None Selected";
+
+  document.getElementById('banner-officer-role').innerText = `Target Role: ${roleTitleText}`;
+  document.getElementById('banner-step-status').innerText = stepTitles[currentStep] || "Profile Dashboard";
+
+  const homeRoleEl = document.getElementById('home-profile-role');
+  if (homeRoleEl) homeRoleEl.innerText = roleTitleText;
 }
 
 async function loadLearnerRoles() {
@@ -367,11 +396,15 @@ function renderLearnerRolesGrid(roles) {
   });
 }
 
+// ROLE SELECTION & ROLE-SPECIFIC QUIZ / SKILL GAP RESET ENGINE
 async function selectRole(roleId) {
   if (!currentUserId) {
     currentUserId = "ashw_101";
   }
+
+  const isNewRoleSelected = selectedRoleId !== roleId;
   selectedRoleId = roleId;
+
   document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
   const selectedCard = document.getElementById(`role-card-${roleId}`);
   if (selectedCard) selectedCard.classList.add('selected');
@@ -381,7 +414,28 @@ async function selectRole(roleId) {
   if (btnBottom) btnBottom.disabled = false;
   if (btnTop) btnTop.disabled = false;
 
-  unlockNextStep(2); // UNLOCK STEP 2
+  // IF switching to a new role, reset previous quiz state, skill gaps, & step locks!
+  if (isNewRoleSelected) {
+    selectedBaselineAnswers = {};
+    activeBaselineQuestions = [];
+    maxUnlockedStep = 1; // Reset progression for new role
+
+    const quizBox = document.getElementById('baseline-quiz-box');
+    if (quizBox) quizBox.innerHTML = '';
+
+    const gapCards = document.getElementById('gap-cards-container');
+    if (gapCards) gapCards.innerHTML = '';
+
+    const recCards = document.getElementById('rec-cards-container');
+    if (recCards) recCards.innerHTML = '';
+
+    if (gapRadarChartInstance) {
+      gapRadarChartInstance.destroy();
+      gapRadarChartInstance = null;
+    }
+  }
+
+  unlockNextStep(2); // Unlock Step 2 for this role
   updateOfficerProfileBanner(1);
 
   try {
@@ -592,7 +646,7 @@ function renderGapCards(gapAnalysis) {
 }
 
 async function fetchAndDisplayRecommendations() {
-  unlockNextStep(4); // UNLOCK STEP 4
+  unlockNextStep(4);
   switchStep(4);
   const container = document.getElementById('rec-cards-container');
   container.innerHTML = '<p style="color: var(--primary);">⏳ Indexing iGOT Karmayogi Courses & Uploaded Syllabus Materials...</p>';
@@ -659,7 +713,7 @@ async function fetchAndDisplayRecommendations() {
 
 async function handleCourseAction(courseId, title, type, compCode, actionUrl) {
   currentActiveCompForIntQuiz = compCode;
-  unlockNextStep(5); // UNLOCK STEP 5
+  unlockNextStep(5);
 
   try {
     await fetch('/api/v1/learner/igot/enroll', {
@@ -689,7 +743,6 @@ function launchCoursePlayer(courseId, title, compCode, igotUrl) {
   const modalContent = document.getElementById('modal-content');
   modal.classList.remove('hidden');
 
-  // Fallback to direct working portal TOC link if url is missing
   const directPortalUrl = igotUrl && igotUrl.startsWith('http') ? igotUrl : "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview";
 
   modalContent.innerHTML = `
@@ -818,7 +871,7 @@ async function submitIntermediateQuiz() {
     });
     const data = await res.json();
 
-    unlockNextStep(6); // UNLOCK STEP 6 (ROADMAP DASHBOARD)
+    unlockNextStep(6);
 
     if (res.ok) {
       showFancyPopup(
@@ -849,58 +902,91 @@ async function loadLiveUserProfile() {
       badgeCountEl.innerText = `🏅 ${data.badges ? data.badges.length : 0} Badges`;
     }
 
-    const box = document.getElementById('live-profile-box');
-    if (!data.role) {
-      box.innerHTML = `<p style="color: var(--text-muted);">No active role selected for ${data.name}. Select a role in Step 1.</p>`;
-      return;
+    // Step 0 Profile Landing Competencies List
+    const homeCompBox = document.getElementById('home-profile-competencies');
+    if (homeCompBox) {
+      homeCompBox.innerHTML = '';
+      if (!data.competencies || data.competencies.length === 0) {
+        homeCompBox.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No target role selected. Go to Step 1 to select a job role.</p>';
+      } else {
+        data.competencies.forEach(c => {
+          const isOk = c.gap <= 5.0;
+          const div = document.createElement('div');
+          div.style.background = '#f8fafc';
+          div.style.border = `1px solid ${isOk ? '#a7f3d0' : '#edf0f4'}`;
+          div.style.padding = '0.75rem';
+          div.style.borderRadius = '10px';
+
+          div.innerHTML = `
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+              <strong style="color: #172033;">${c.name}</strong>
+              <span style="color: ${isOk ? 'var(--accent-green)' : 'var(--accent-amber)'}; font-weight: 700;">
+                ${c.current_score}% / ${c.target_benchmark}% ${isOk ? '✅' : '(Gap: ' + c.gap + '%)'}
+              </span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: ${Math.min(100, (c.current_score / c.target_benchmark) * 100)}%; background: ${isOk ? 'var(--accent-green)' : 'var(--primary)'};"></div>
+            </div>
+          `;
+          homeCompBox.appendChild(div);
+        });
+      }
     }
 
-    let html = `
-      <div style="margin-bottom: 1rem;">
-        <h4 style="color: var(--primary); font-size: 1.1rem;">${data.name}</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">${data.role.title} (${data.role.department})</p>
-      </div>
+    const box = document.getElementById('live-profile-box');
+    if (box) {
+      if (!data.role) {
+        box.innerHTML = `<p style="color: var(--text-muted);">No active role selected for ${data.name}. Select a role in Step 1.</p>`;
+        return;
+      }
 
-      <h5 style="color: #172033; margin-bottom: 0.5rem; font-weight: 700;">Competency Status:</h5>
-      <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-    `;
-
-    data.competencies.forEach(c => {
-      const isOk = c.gap <= 5.0;
-      html += `
-        <div style="background: #f8fafc; border: 1px solid ${isOk ? '#a7f3d0' : '#edf0f4'}; padding: 0.75rem; border-radius: 10px;">
-          <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
-            <strong style="color: #172033;">${c.name}</strong>
-            <span style="color: ${isOk ? 'var(--accent-green)' : 'var(--accent-amber)'}; font-weight: 700;">
-              ${c.current_score}% / ${c.target_benchmark}% ${isOk ? '✅' : '(Gap: ' + c.gap + '%)'}
-            </span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" style="width: ${Math.min(100, (c.current_score / c.target_benchmark) * 100)}%; background: ${isOk ? 'var(--accent-green)' : 'var(--primary)'};"></div>
-          </div>
+      let html = `
+        <div style="margin-bottom: 1rem;">
+          <h4 style="color: var(--primary); font-size: 1.1rem;">${data.name}</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">${data.role.title} (${data.role.department})</p>
         </div>
+
+        <h5 style="color: #172033; margin-bottom: 0.5rem; font-weight: 700;">Competency Status:</h5>
+        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
       `;
-    });
 
-    html += `</div><h5 style="color: #172033; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Earned iGOT Badges:</h5>`;
-
-    if (data.badges.length === 0) {
-      html += '<p style="font-size: 0.85rem; color: var(--text-muted);">No badges earned yet. Complete intermediate evaluation quizzes to earn badges.</p>';
-    } else {
-      data.badges.forEach(b => {
+      data.competencies.forEach(c => {
+        const isOk = c.gap <= 5.0;
         html += `
-          <div class="badge-card">
-            <div class="badge-icon">🏅</div>
-            <div>
-              <strong style="color: #172033; font-size: 0.9rem;">${b.title}</strong>
-              <p style="font-size: 0.75rem; color: var(--text-muted);">Issued: ${new Date(b.issued_at).toLocaleDateString()}</p>
+          <div style="background: #f8fafc; border: 1px solid ${isOk ? '#a7f3d0' : '#edf0f4'}; padding: 0.75rem; border-radius: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+              <strong style="color: #172033;">${c.name}</strong>
+              <span style="color: ${isOk ? 'var(--accent-green)' : 'var(--accent-amber)'}; font-weight: 700;">
+                ${c.current_score}% / ${c.target_benchmark}% ${isOk ? '✅' : '(Gap: ' + c.gap + '%)'}
+              </span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: ${Math.min(100, (c.current_score / c.target_benchmark) * 100)}%; background: ${isOk ? 'var(--accent-green)' : 'var(--primary)'};"></div>
             </div>
           </div>
         `;
       });
-    }
 
-    box.innerHTML = html;
+      html += `</div><h5 style="color: #172033; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Earned iGOT Badges:</h5>`;
+
+      if (data.badges.length === 0) {
+        html += '<p style="font-size: 0.85rem; color: var(--text-muted);">No badges earned yet. Complete intermediate evaluation quizzes to earn badges.</p>';
+      } else {
+        data.badges.forEach(b => {
+          html += `
+            <div class="badge-card">
+              <div class="badge-icon">🏅</div>
+              <div>
+                <strong style="color: #172033; font-size: 0.9rem;">${b.title}</strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Issued: ${new Date(b.issued_at).toLocaleDateString()}</p>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      box.innerHTML = html;
+    }
   } catch (err) {
     console.error("Profile load failed:", err);
   }
@@ -914,7 +1000,6 @@ async function loadProgressDashboard() {
     const res = await fetch(`/api/v1/learner/profile/${currentUserId}`);
     const data = await res.json();
 
-    // 1. Render Competency Mastery Bars
     const compContainer = document.getElementById('roadmap-competencies-list');
     compContainer.innerHTML = '';
 
@@ -946,7 +1031,6 @@ async function loadProgressDashboard() {
       });
     }
 
-    // 2. Render Verified iGOT Badges
     const badgeContainer = document.getElementById('roadmap-badges-list');
     badgeContainer.innerHTML = '';
 
@@ -967,7 +1051,6 @@ async function loadProgressDashboard() {
       });
     }
 
-    // 3. Render AI Personal Improvement Action Plan
     const actionContainer = document.getElementById('roadmap-action-plan');
     actionContainer.innerHTML = '';
 

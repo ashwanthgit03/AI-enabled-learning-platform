@@ -30,13 +30,20 @@
   <!-- Left Sidebar & Main Content Layout -->
   <div class="creator-layout">
 
-    <!-- LEFT SIDEBAR VERTICAL NAVIGATION WITH STRICT LINEAR STEP LOCKING -->
+    <!-- LEFT SIDEBAR VERTICAL NAVIGATION WITH PROFILE HOME & STRICT STEP LOCKING -->
     <aside class="creator-sidebar">
+      <div class="sidebar-heading">PROFILE & DASHBOARD</div>
+
+      <button type="button" class="sidebar-btn active" id="step-nav-0" onclick="switchStep(0)">
+        <span>👤 0. Profile & Command Center</span>
+        <span class="unlocked-badge">HOME</span>
+      </button>
+
       <div class="sidebar-heading">LEARNER WORKFLOW</div>
 
-      <button type="button" class="sidebar-btn active" id="step-nav-1" onclick="switchStep(1)">
+      <button type="button" class="sidebar-btn" id="step-nav-1" onclick="switchStep(1)">
         <span>🏛️ 1. Role Benchmark</span>
-        <span class="unlocked-badge">ACTIVE</span>
+        <span class="unlocked-badge">UNLOCKED</span>
       </button>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-2" onclick="switchStep(2)">
@@ -59,7 +66,7 @@
         <span class="lock-badge" id="badge-lock-5">🔒 LOCKED</span>
       </button>
 
-      <div class="sidebar-heading">PERSONAL DASHBOARD</div>
+      <div class="sidebar-heading">PERSONAL ROADMAP</div>
 
       <button type="button" class="sidebar-btn locked" id="step-nav-6" onclick="switchStep(6)">
         <span>📈 6. My Progress Roadmap</span>
@@ -86,7 +93,7 @@
         <div style="display: flex; gap: 1.5rem; align-items: center;">
           <div style="text-align: right;">
             <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">WORKFLOW STATUS</span>
-            <strong style="color: var(--primary); font-size: 0.9rem;" id="banner-step-status">Step 1: Role Selection</strong>
+            <strong style="color: var(--primary); font-size: 0.9rem;" id="banner-step-status">Profile Dashboard</strong>
           </div>
 
           <div style="text-align: right; border-left: 1px solid var(--border-light); padding-left: 1.5rem;">
@@ -96,8 +103,70 @@
         </div>
       </div>
 
+      <!-- STEP 0: OFFICER PROFILE & COMMAND CENTER (LANDING PAGE) -->
+      <div id="step-content-0">
+        <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--accent-green);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h2 class="text-gradient" style="font-size: 1.8rem;" id="greeting-header-text">Good Day, Officer! ☀️</h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
+                Welcome to your MoSPI iGOT Karmayogi Personalized Workforce Learning Command Center.
+              </p>
+            </div>
+            <button class="btn btn-primary" onclick="switchStep(1)" style="padding: 0.85rem 1.6rem; font-size: 1rem; border-radius: 12px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">
+              🚀 Start / Continue Competency Learning Workflow ➔
+            </button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          
+          <!-- OFFICER PROFILE DETAILS CARD -->
+          <div class="glass-card">
+            <h3 style="margin-bottom: 1rem; color: #172033;">📋 Officer Service Profile</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem;">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Officer Full Name:</span>
+                <strong style="color: #172033;" id="home-profile-name">Loading...</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Government Employee ID:</span>
+                <strong style="color: var(--primary);" id="home-profile-id">Loading...</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Department / Ministry:</span>
+                <strong style="color: #172033;" id="home-profile-dept">Loading...</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Target Government Position:</span>
+                <strong style="color: var(--accent-amber);" id="home-profile-role">None Selected</strong>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 1rem; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <strong style="color: var(--primary); font-size: 0.9rem;">Ready for Competency Assessment?</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Select your job role to unlock diagnostic quizzes and iGOT feeds.</p>
+              </div>
+              <button class="btn btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1rem;" onclick="switchStep(1)">
+                Go to Step 1 ➔
+              </button>
+            </div>
+          </div>
+
+          <!-- ACTIVE COMPETENCY & BADGE SUMMARY CARD -->
+          <div class="glass-card">
+            <h3 style="margin-bottom: 1rem; color: #172033;">🏆 Active Competencies & Badges</h3>
+            <div id="home-profile-competencies" style="display: flex; flex-direction: column; gap: 0.8rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- STEP 1: ROLE SELECTION & ELIGIBILITY CHECK -->
-      <div id="step-content-1">
+      <div id="step-content-1" class="hidden">
         <div class="glass-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div style="flex: 1;">

@@ -3675,16 +3675,14 @@
       "department": "Financial & Banking service",
       "password": "ashu@2006",
       "created_at": "2026-08-25T11:01:46.896543",
-      "selected_role_id": "ROLE_JOB_003",
+      "selected_role_id": "ROLE_JOB_001",
       "current_scores": {
         "COMP_GOVERNANCE": 0.0,
-        "COMP_FINANCE": 0.0,
-        "COMP_DATA_ANALYTICS": 0.0,
-        "COMP_IT": 0.0,
-        "COMP_MANAGEMENT": 0.0
+        "COMP_FINANCE": 0.0
       },
       "enrolled_courses": [
-        "IGOT-COURSE-001"
+        "IGOT-COURSE-001",
+        "IGOT-COURSE-002"
       ],
       "completed_courses": [],
       "badges": []

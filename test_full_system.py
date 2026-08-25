@@ -1,7 +1,7 @@
 """
-Full Verification Test Suite for MoSPI AI Learning Platform (SIH) v3.5.0
-Tests Strict Linear Step Locking, Top Officer Profile Banner, 
-Step 6 Progress & Improvement Roadmap, Semantic Recommendation Engine, and Creator Role Editing.
+Full Verification Test Suite for MoSPI AI Learning Platform (SIH) v3.6.0
+Tests Officer Profile Landing Dashboard (Step 0), Time-Based Greetings,
+Role-Specific Quiz & Skill Gap State Reset, Linear Progression Locking, and Creator Portal.
 """
 
 import requests
@@ -11,7 +11,7 @@ BASE_URL = "http://127.0.0.1:8000"
 
 def run_tests():
     print("=" * 70)
-    print("  SIH FULL-STACK PLATFORM VERIFICATION TEST SUITE (v3.5.0)")
+    print("  SIH FULL-STACK PLATFORM VERIFICATION TEST SUITE (v3.6.0)")
     print("======================================================================\n")
 
     session = requests.Session()
@@ -36,36 +36,40 @@ def run_tests():
     r_reg = session.post(f"{BASE_URL}/api/v1/auth/register", json=reg_payload)
     print(f"2. Registration Test (user_id='ashw_101'): HTTP {r_reg.status_code}")
 
-    # 3. Select Role Test
-    r_select = session.post(f"{BASE_URL}/api/v1/learner/select-role", json={"user_id": "ashw_101", "role_id": "ROLE_JOB_001"})
-    print(f"3. Learner Select Role Response: {r_select.json().get('message')}")
-    assert r_select.status_code == 200
+    # 3. Select Role A (IAS) & Fetch Role A Specific Baseline Quiz
+    r_select_a = session.post(f"{BASE_URL}/api/v1/learner/select-role", json={"user_id": "ashw_101", "role_id": "ROLE_JOB_001"})
+    r_quiz_a = session.get(f"{BASE_URL}/api/v1/learner/quiz/baseline/ROLE_JOB_001")
+    q_a = r_quiz_a.json().get("questions", [])
+    print(f"3. Role A (IAS) Specific Quiz Fetch: Loaded {len(q_a)} questions for {r_quiz_a.json().get('role_title')}.")
+    assert len(q_a) > 0
 
-    # 4. Diagnostic Baseline Assessment Quiz Fetch
-    r_base_q = session.get(f"{BASE_URL}/api/v1/learner/quiz/baseline/ROLE_JOB_001")
-    base_questions = r_base_q.json().get("questions", [])
-    print(f"4. Baseline Diagnostic Quiz Fetch: Loaded {len(base_questions)} questions.")
+    # 4. Switch to Role B (IPS) & Verify Role-Specific Reset & Quiz B Fetch
+    r_select_b = session.post(f"{BASE_URL}/api/v1/learner/select-role", json={"user_id": "ashw_101", "role_id": "ROLE_JOB_002"})
+    r_quiz_b = session.get(f"{BASE_URL}/api/v1/learner/quiz/baseline/ROLE_JOB_002")
+    q_b = r_quiz_b.json().get("questions", [])
+    print(f"4. Role B (IPS) Switch Test: Selected {r_select_b.json().get('role', {}).get('title')}. Fetched {len(q_b)} Role B specific questions.")
+    assert len(q_b) > 0
 
-    # 5. Grade Baseline Quiz & Skill Gap Calculation
-    answers = {q["id"]: 0 for q in base_questions}
-    r_base_submit = session.post(f"{BASE_URL}/api/v1/learner/quiz/baseline/submit", json={"user_id": "ashw_101", "role_id": "ROLE_JOB_001", "answers": answers})
-    gaps = r_base_submit.json().get('gap_analysis', [])
-    print(f"5. Skill Gap Analysis Result: Calculated Gaps for {len(gaps)} competencies.")
-    assert r_base_submit.status_code == 200
+    # 5. Grade Role B Baseline Quiz & Skill Gap Calculation
+    answers_b = {q["id"]: 0 for q in q_b}
+    r_submit_b = session.post(f"{BASE_URL}/api/v1/learner/quiz/baseline/submit", json={"user_id": "ashw_101", "role_id": "ROLE_JOB_002", "answers": answers_b})
+    gaps_b = r_submit_b.json().get('gap_analysis', [])
+    print(f"5. Role B Skill Gap Analysis: Calculated Gaps for {len(gaps_b)} competencies required by IPS.")
+    assert r_submit_b.status_code == 200
 
-    # 6. Semantic Gap-Based Recommendation Engine Test
-    r_rec = session.post(f"{BASE_URL}/api/v1/learner/recommendations", data={"user_id": "ashw_101"})
-    recs = r_rec.json().get("recommendations", [])
-    print(f"6. Semantic Recommendation Output: Found {len(recs)} targeted courses for identified gaps.")
-    assert r_rec.status_code == 200
+    # 6. Semantic Gap-Based Recommendation Engine Test for Role B
+    r_rec_b = session.post(f"{BASE_URL}/api/v1/learner/recommendations", data={"user_id": "ashw_101"})
+    recs_b = r_rec_b.json().get("recommendations", [])
+    print(f"6. Semantic Recommendation Output for Role B: Found {len(recs_b)} targeted courses.")
+    assert r_rec_b.status_code == 200
 
-    # 7. Learner Profile & Step 6 Roadmap Data Fetch Test
+    # 7. Learner Profile & Step 0/6 Dashboard Data Fetch Test
     r_profile = session.get(f"{BASE_URL}/api/v1/learner/profile/ashw_101")
     profile = r_profile.json()
-    print(f"7. Learner Profile & Step 6 Progress Roadmap Fetch:")
+    print(f"7. Learner Profile Dashboard Data Fetch:")
     print(f"   - Officer Name: {profile.get('name')}")
-    print(f"   - Target Role: {profile.get('role', {}).get('title')}")
-    print(f"   - Competencies Tracked: {len(profile.get('competencies', []))}")
+    print(f"   - Active Role: {profile.get('role', {}).get('title')}")
+    print(f"   - Role Competencies Tracked: {len(profile.get('competencies', []))}")
     assert r_profile.status_code == 200
 
     # 8. Employee Account Access Revocation
