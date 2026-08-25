@@ -566,7 +566,8 @@ function launchCoursePlayer(courseId, title, compCode, igotUrl) {
   const modalContent = document.getElementById('modal-content');
   modal.classList.remove('hidden');
 
-  const portalUrl = igotUrl && igotUrl.startsWith('http') ? igotUrl : "https://igotkarmayogi.gov.in/#/";
+  // Fallback to direct working portal TOC link if url is missing
+  const directPortalUrl = igotUrl && igotUrl.startsWith('http') ? igotUrl : "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview";
 
   modalContent.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
@@ -574,33 +575,37 @@ function launchCoursePlayer(courseId, title, compCode, igotUrl) {
         <h2 style="color: #172033;">${title}</h2>
         <p style="color: var(--primary); font-size: 0.9rem; font-weight: 700; margin-top: 0.2rem;">iGOT Karmayogi Official Interactive Training Module</p>
       </div>
-      <a href="${portalUrl}" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem; gap: 0.4rem;">
-        🔗 Open Course on iGOT Portal ↗
+      <a href="${directPortalUrl}" target="_blank" class="btn btn-primary" style="font-size: 0.85rem; gap: 0.4rem; background: linear-gradient(90deg, #16a34a, #059669); border: none;">
+        🌐 Open Course on iGOT Portal ↗
       </a>
     </div>
     
-    <div style="background: #f8fafc; border-radius: 12px; border: 1px solid #edf0f4; padding: 1.5rem; margin-bottom: 1.5rem;">
-      <h4 style="color: #1e3a8a; margin-bottom: 0.5rem;">📘 Official Module Syllabus & Guidelines</h4>
-      <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
-        This module covers the core competencies required under the National Programme for Civil Services Capacity Building (iGOT Karmayogi Framework). Key topics include operational sampling guidelines, survey data estimation formulas, and data security standards.
+    <div style="background: #f8fafc; border-radius: 12px; border: 1px solid #edf0f4; padding: 1.25rem; margin-bottom: 1.25rem;">
+      <p style="color: #475569; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem;">
+        Click the green button above to directly open the course on <strong>portal.igotkarmayogi.gov.in</strong> to watch video lectures and complete official exercises.
       </p>
 
-      <div style="display: flex; gap: 1rem; margin-top: 1.25rem;">
-        <div style="flex: 1; background: #ffffff; border-radius: 8px; padding: 0.8rem; border: 1px solid #edf0f4;">
-          <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">TARGET COMPETENCY</span>
-          <strong style="color: var(--primary);">${compCode}</strong>
+      <div style="display: flex; gap: 1rem;">
+        <div style="flex: 1; background: #ffffff; border-radius: 8px; padding: 0.6rem 0.8rem; border: 1px solid #edf0f4;">
+          <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">TARGET COMPETENCY</span>
+          <strong style="color: var(--primary); font-size: 0.85rem;">${compCode}</strong>
         </div>
-        <div style="flex: 1; background: #ffffff; border-radius: 8px; padding: 0.8rem; border: 1px solid #edf0f4;">
-          <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">GOVERNMENT ISSUER</span>
-          <strong style="color: var(--accent-green);">MoSPI / iGOT Karmayogi</strong>
+        <div style="flex: 1; background: #ffffff; border-radius: 8px; padding: 0.6rem 0.8rem; border: 1px solid #edf0f4;">
+          <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">DIRECT PORTAL LINK</span>
+          <a href="${directPortalUrl}" target="_blank" style="color: var(--accent-green); font-size: 0.8rem; font-weight: 700; word-break: break-all;">${directPortalUrl} ↗</a>
         </div>
       </div>
     </div>
 
+    <!-- Embedded Video Player Demonstration -->
+    <div style="position: relative; padding-bottom: 45%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 1.25rem;">
+      <iframe src="https://www.youtube.com/embed/3E16_f6V4mI" title="iGOT Karmayogi Course Video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+    </div>
+
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700;">✅ Status: Course Enrolled & Syllabus Reviewed</span>
+      <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700;">✅ Status: Course Enrolled & Active</span>
       <button class="btn btn-success" onclick="closeCourseModalAndStartQuiz('${compCode}')">
-        Take Intermediate Evaluation Quiz & Update Skill Profile ➔
+        Take Intermediate Evaluation Quiz & Claim Badge ➔
       </button>
     </div>
   `;

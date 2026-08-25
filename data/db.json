@@ -131,7 +131,7 @@
       "competency_name": "Sampling Techniques & Survey Design",
       "duration": "10 Hours",
       "rating": 4.9,
-      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491201948192001/overview",
+      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
       "description": "Official NSSTA training module covering Stratified Random Sampling, Cluster Sampling, and Multi-Stage Survey Designs in NSO socio-economic surveys.",
       "embed_video_url": "https://www.youtube.com/embed/3E16_f6V4mI"
     },
@@ -143,7 +143,7 @@
       "competency_name": "National Accounts & Macroeconomic Indicators",
       "duration": "16 Hours",
       "rating": 4.8,
-      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491202819201922/overview",
+      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
       "description": "Comprehensive CSO guide on Gross Value Added (GVA), Gross Domestic Product (GDP), input-output tables, and sector-wise economic estimation.",
       "embed_video_url": "https://www.youtube.com/embed/Y63w40V6F64"
     },
@@ -155,7 +155,7 @@
       "competency_name": "Data Processing & Coding (Python/R)",
       "duration": "12 Hours",
       "rating": 4.9,
-      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491203819201923/overview",
+      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
       "description": "Hands-on data cleaning using Pandas, exploratory data analysis, and automated report generation for official government statisticians.",
       "embed_video_url": "https://www.youtube.com/embed/rfscVS0vtbw"
     },
@@ -167,7 +167,7 @@
       "competency_name": "Index Numbers & CPI/WPI Methodology",
       "duration": "8 Hours",
       "rating": 4.7,
-      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491204819201924/overview",
+      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
       "description": "Methodology for Laspeyres price index formula, base year updating, weighting diagrams, and item basket selection for CPI urban and rural.",
       "embed_video_url": "https://www.youtube.com/embed/sU-L0cK1tE8"
     },
@@ -179,7 +179,7 @@
       "competency_name": "Data Security & GIGW Compliance",
       "duration": "5 Hours",
       "rating": 4.6,
-      "igot_url": "https://igotkarmayogi.gov.in/app/toc/lex_auth_0138491205819201925/overview",
+      "igot_url": "https://portal.igotkarmayogi.gov.in/public/toc/do_11462537532581478411778/overview",
       "description": "Guidelines for Indian Government Websites (GIGW 3.0), data privacy protocols, and secure microdata handling in public administrative systems.",
       "embed_video_url": "https://www.youtube.com/embed/X9Xh_s-z-88"
     }
@@ -189,7 +189,7 @@
       "id": "DOC-101",
       "title": "MoSPI Advanced Sampling Manual 2026",
       "associated_competency": "COMP_SAMPLING",
-      "uploaded_at": "2026-08-25T10:01:59.647180",
+      "uploaded_at": "2026-08-25T10:11:23.877324",
       "summary": "Uploaded training document 'MoSPI Advanced Sampling Manual 2026' for competency COMP_SAMPLING."
     }
   ],
